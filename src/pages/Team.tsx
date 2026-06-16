@@ -7,10 +7,22 @@ import { Link } from "react-router-dom";
 
 const teamMembers = [
   {
-    name: "MD Abu Sama (Kias)",
+    name: "ABM Reza",
+    role: "Founder",
+    bio: "As the visionary Founder of RH International, ABM Reza laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
+    initials: "AR",
+    image: "/images/team/abm-reza.jpg",
+    objectPosition: "center 10%",
+    expertise: ["Visionary Leadership", "Global Trade", "Strategic Partnerships"],
+    accent: "180 60% 45%",
+  },
+  {
+    name: "Md Abu Sama Kias",
     role: "Co-Founder & CEO",
     bio: "As the driving force behind RH International, Abu Sama leads with a simple philosophy: build trust through flawless execution. He oversees our global expansion, ensuring that whether it's navigating complex government tenders or delivering high-end digital solutions, our clients always receive world-class results.",
     initials: "MAS",
+    image: "/images/team/abu-sama.jpg",
+    objectPosition: "center 12%",
     expertise: ["Global Strategy", "B2B Growth", "Digital Innovation"],
     accent: "213 55% 50%",
   },
@@ -134,15 +146,24 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute -inset-2 rounded-full border border-dashed border-primary/20"
             />
-            <div className="w-36 h-36 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 relative"
+            <div className="w-36 h-36 rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
               style={{ boxShadow: `0 0 40px hsl(${member.accent} / 0.1)` }}
             >
-              <span
-                className="text-4xl font-bold text-gradient-cyan"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                {member.initials}
-              </span>
+              {member.image ? (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: member.objectPosition || "center" }}
+                />
+              ) : (
+                <span
+                  className="text-4xl font-bold text-gradient-cyan"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  {member.initials}
+                </span>
+              )}
             </div>
             {/* Online indicator */}
             <motion.div
@@ -313,7 +334,7 @@ const Team = () => {
             <p className="text-muted-foreground max-w-lg mx-auto">Driving our global strategy with hands-on expertise and a passion for excellence</p>
           </motion.div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8">
             {teamMembers.map((member, i) => (
               <TeamCard key={member.name} member={member} index={i} />
             ))}
