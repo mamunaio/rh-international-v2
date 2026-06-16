@@ -32,7 +32,7 @@ const values = [
   {
     icon: Target,
     title: "Result-Oriented",
-    description: "We don't just talk about goals; we deliver them. Every decision we make is focused on creating a measurable and positive impact on your business's bottom line.",
+    description: "We don't just talk about goals we deliver them. Every decision we make is focused on creating a measurable and positive impact on your business's bottom line.",
   },
   {
     icon: Heart,
