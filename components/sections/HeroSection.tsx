@@ -1,8 +1,10 @@
+"use client";
+
 import { Html, OrbitControls, Sphere, Stars } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { motion } from "framer-motion";
-import { ArrowRight, MousePointer2 } from "lucide-react";
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, MousePointer2, X } from "lucide-react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import * as THREE from "three";
 
@@ -12,11 +14,13 @@ const SurfaceImageCard = ({
   lon,
   url,
   radius,
+  onClick,
 }: {
   lat: number;
   lon: number;
   url: string;
   radius: number;
+  onClick: (url: string) => void;
 }) => {
   const { viewport } = useThree();
 
@@ -25,10 +29,8 @@ const SurfaceImageCard = ({
 
   const position = useMemo(() => {
     const phi = (90 - lat) * (Math.PI / 180);
-
     const SHIFT_THETA = 0.25;
     const theta = (lon + 180) * (Math.PI / 180) + SHIFT_THETA;
-
     const offset = 0.015 * Math.sin(lat * 2);
 
     return [
@@ -52,13 +54,17 @@ const SurfaceImageCard = ({
     <group position={position} ref={groupRef}>
       <Html transform occlude distanceFactor={responsiveFactor}>
         <motion.div
+          onPointerDown={(e) => {
+            e.stopPropagation();
+            onClick(url);
+          }}
           whileHover={{ scale: 1.2 }}
-          className="w-8 h-6 sm:w-9 sm:h-6 md:w-10 md:h-7 bg-white/10 backdrop-blur-md border border-white/30 rounded-sm overflow-hidden shadow-[0_0_10px_rgba(0,255,255,0.2)] cursor-pointer group"
+          className="w-8 h-6 sm:w-9 sm:h-6 md:w-10 md:h-7 bg-white/10 backdrop-blur-md border border-cyan-400/50 rounded-sm overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.6)] cursor-pointer group pointer-events-auto"
         >
           <img
             src={url}
             alt="client"
-            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none"
           />
         </motion.div>
       </Html>
@@ -67,28 +73,20 @@ const SurfaceImageCard = ({
 };
 
 // --- Globe Scene ---
-const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
+const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) => {
   const globeRef = useRef<THREE.Group>(null);
   const ringRefs = useRef<THREE.Mesh[]>([]);
+  const baseRotationY = useRef(0);
   const { viewport } = useThree();
 
   const BASE_RADIUS = 3.2;
-
-  // responsive scale
   const sceneScale = Math.min(viewport.width / 5, 1.2);
-
   const dynamicRadius = BASE_RADIUS * sceneScale;
 
-  useFrame(() => {
-    const baseSpeed = viewport.width < 6 ? 0.0015 : 0.0025;
-
-    if (globeRef.current) {
-      globeRef.current.rotation.y += baseSpeed + rotationControl.current;
-    }
-
+  useFrame((state, delta) => {
     ringRefs.current.forEach((ring, i) => {
       if (ring) {
-        const speeds = [0.002, -0.0025, 0.003, -0.0015, 0.0022];
+        const speeds = [0.002, -0.0025, 0.003];
         const speed = speeds[i] || 0.002;
 
         ring.rotation.x += speed;
@@ -99,10 +97,10 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
   });
 
   const rows = [
-    { lat: 45, count: 14 },
-    { lat: 20, count: 20 },
-    { lat: -20, count: 20 },
-    { lat: -45, count: 14 },
+    { lat: 40, count: 6 },
+    { lat: 15, count: 10 },
+    { lat: -15, count: 10 },
+    { lat: -40, count: 6 },
   ];
 
   const images = useMemo(() => {
@@ -114,7 +112,7 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
         temp.push({
           lat: row.lat,
           lon: lon,
-          url: `https://picsum.photos/seed/${row.lat + i}/100/70`,
+          url: `https://picsum.photos/seed/${row.lat + i}/200/140`,
         });
       }
     });
@@ -123,41 +121,60 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
 
   return (
     <group scale={sceneScale}>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[5, 3, 5]} intensity={2} color="#00ffff" />
-      <pointLight position={[-10, -10, -10]} intensity={1} color="#0088ff" />
+      <ambientLight intensity={1.5} color="#ffffff" />
+      <directionalLight position={[10, 10, 5]} intensity={3} color="#00ffff" />
+      <directionalLight position={[-10, -10, -5]} intensity={2} color="#ff00ff" />
 
       <group ref={globeRef}>
-        {/* Globe */}
-        <Sphere args={[BASE_RADIUS, 64, 64]}>
-          <meshStandardMaterial
-            color="#010a15"
-            emissive="#002233"
-            roughness={0.2}
-            metalness={0.8}
+        {/* Inner Glowing Core */}
+        <Sphere args={[BASE_RADIUS - 0.5, 32, 32]}>
+          <meshBasicMaterial
+            color="#00ffff"
             transparent
-            opacity={0.9}
+            opacity={0.15}
           />
         </Sphere>
 
-        {/* Grid */}
+        {/* Premium Holographic Outer Shell */}
+        <Sphere args={[BASE_RADIUS, 64, 64]}>
+          <meshPhongMaterial
+            color="#001133"
+            emissive="#002244"
+            specular="#00ffff"
+            shininess={100}
+            transparent={true}
+            opacity={0.6}
+            blending={THREE.NormalBlending}
+          />
+        </Sphere>
+
+        {/* Outer Glow / Atmosphere (Subtle) */}
+        <Sphere args={[BASE_RADIUS + 0.1, 64, 64]}>
+          <meshBasicMaterial
+            color="#00ffff"
+            transparent
+            opacity={0.05}
+            blending={THREE.AdditiveBlending}
+            side={THREE.BackSide}
+          />
+        </Sphere>
+
+        {/* Elegant Cyan Wireframe */}
         <Sphere args={[BASE_RADIUS + 0.01, 32, 32]}>
           <meshBasicMaterial
             color="#00ffff"
             wireframe
             transparent
-            opacity={0.06}
+            opacity={0.15}
             blending={THREE.AdditiveBlending}
           />
         </Sphere>
 
-        {/* Orbit Rings */}
+        {/* Glowing Orbit Rings */}
         {[
-          { r: BASE_RADIUS + 0.3 },
-          { r: BASE_RADIUS + 0.5 },
-          { r: BASE_RADIUS + 0.7 },
-          { r: BASE_RADIUS + 0.9 },
-          { r: BASE_RADIUS + 1.1 },
+          { r: BASE_RADIUS + 0.4 },
+          { r: BASE_RADIUS + 0.8 },
+          { r: BASE_RADIUS + 1.2 },
         ].map((orbit, i) => (
           <mesh
             key={i}
@@ -168,17 +185,17 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
               Math.random() * Math.PI,
             ]}
           >
-            <torusGeometry args={[orbit.r, 0.003, 16, 100]} />
+            <torusGeometry args={[orbit.r, 0.004, 16, 100]} />
             <meshBasicMaterial
-              color="#00ffff"
+              color={i % 2 === 0 ? "#00ffff" : "#ff00ff"}
               transparent
-              opacity={0.08 + i * 0.04}
+              opacity={0.2 + i * 0.05}
               blending={THREE.AdditiveBlending}
             />
           </mesh>
         ))}
 
-        {/* Images */}
+        {/* Interactive Images */}
         {images.map((img, i) => (
           <SurfaceImageCard
             key={i}
@@ -186,6 +203,7 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
             lon={img.lon}
             url={img.url}
             radius={dynamicRadius + 0.05}
+            onClick={onImageClick}
           />
         ))}
       </group>
@@ -193,137 +211,22 @@ const GlobeScene = ({ rotationControl }: { rotationControl: any }) => {
       <OrbitControls
         enableZoom={false}
         enablePan={false}
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
+        enableRotate={true}
+        autoRotate={true}
+        autoRotateSpeed={0.8}
+        minPolarAngle={Math.PI / 2.2}
+        maxPolarAngle={Math.PI / 1.8}
       />
     </group>
   );
 };
 
-// Floating particles component
-const Particles = () => {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 40 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        duration: Math.random() * 15 + 10,
-        delay: Math.random() * 5,
-        opacity: Math.random() * 0.3 + 0.05,
-      })),
-    []
-  );
-
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full bg-primary"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-          }}
-          animate={{
-            y: [0, -80, -160],
-            x: [0, Math.random() > 0.5 ? 30 : -30, 0],
-            opacity: [0, p.opacity, 0],
-            scale: [0, 1, 0.5],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
-// Animated rings
-const PulseRings = () => (
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-    {[0, 1, 2, 3].map((i) => (
-      <motion.div
-        key={i}
-        className="absolute rounded-full border border-primary/10"
-        style={{
-          width: 300 + i * 200,
-          height: 300 + i * 200,
-          top: -(150 + i * 100),
-          left: -(150 + i * 100),
-        }}
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.08 - i * 0.015, 0.15 - i * 0.02, 0.08 - i * 0.015],
-          rotate: i % 2 === 0 ? [0, 360] : [360, 0],
-        }}
-        transition={{
-          duration: 20 + i * 5,
-          repeat: Infinity,
-          ease: "linear",
-          delay: i * 0.5,
-        }}
-      />
-    ))}
-  </div>
-);
-
-// Morphing blob
-const MorphingBlob = () => (
-  <motion.div
-    className="absolute top-[15%] right-[8%] w-[500px] h-[500px] opacity-[0.12]"
-    animate={{
-      borderRadius: [
-        "40% 60% 70% 30% / 40% 50% 60% 50%",
-        "70% 30% 50% 50% / 30% 60% 40% 60%",
-        "50% 60% 30% 70% / 60% 40% 60% 40%",
-        "40% 60% 70% 30% / 40% 50% 60% 50%",
-      ],
-      rotate: [0, 90, 180, 360],
-      scale: [1, 1.15, 0.9, 1],
-    }}
-    transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-    style={{
-      background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--rh-green)), hsl(var(--rh-orange)))",
-    }}
-  />
-);
-
-// Horizontal scanning line
-const ScanLine = () => (
-  <motion.div
-    className="absolute left-0 right-0 h-px"
-    style={{
-      background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.15), transparent)",
-    }}
-    animate={{
-      top: ["-5%", "105%"],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      ease: "linear",
-      repeatDelay: 3,
-    }}
-  />
-);
-
 // Hero Section
 const HeroSection = () => {
-  const rotationControl = useRef(0);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
     <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden bg-transparent backdrop-blur-[4px]">
-      {/* Cinematic animated gradient background */}
-
-
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full pt-20 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
 
@@ -366,7 +269,7 @@ const HeroSection = () => {
               ))}
               <br />
               <motion.span
-                className="text-gradient-cyan inline-block"
+                className="text-gradient-cyan inline-block drop-shadow-[0_0_15px_rgba(0,255,255,0.5)]"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -385,7 +288,6 @@ const HeroSection = () => {
                   {char}
                 </motion.span>
               ))}
-              
             </h1>
 
             <motion.p
@@ -424,43 +326,67 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT */}
-          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px]">
-
-            {/* Cursor */}
-            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+          {/* RIGHT - 3D GLOBE */}
+          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] z-10">
+            {/* Cursor Helper */}
+            <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
               <div className="flex flex-col items-center">
-                <MousePointer2 className="text-cyan-400 animate-bounce w-4 h-4 sm:w-6 sm:h-6" />
-                <span className="text-[10px] sm:text-xs text-white">GLOBAL CLIENTS</span>
+                <MousePointer2 className="text-cyan-400 animate-bounce w-4 h-4 sm:w-6 sm:h-6 drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]" />
+                <span className="text-[10px] sm:text-xs text-white mt-1 drop-shadow-lg font-bold tracking-widest">HOVER & CLICK</span>
               </div>
             </div>
 
-            <Canvas className="z-0" camera={{ position: [0, 0, 18], fov: 35 }}>
+            <Canvas className="z-10" camera={{ position: [0, 0, 18], fov: 35 }} gl={{ alpha: true, antialias: true }}>
               <Suspense fallback={null}>
-                <GlobeScene rotationControl={rotationControl} />
-                <Stars radius={100} depth={50} count={1500} factor={4} fade />
+                <GlobeScene onImageClick={setSelectedImage} />
+                <Stars radius={100} depth={50} count={1000} factor={4} fade />
               </Suspense>
             </Canvas>
-
-            {/* Buttons */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              <button
-                onClick={() => (rotationControl.current -= 0.01)}
-                className="px-4 sm:px-6 py-2 bg-white/10 text-white rounded-full text-xs"
-              >
-                Prev
-              </button>
-
-              <button
-                onClick={() => (rotationControl.current += 0.01)}
-                className="px-4 sm:px-6 py-2 bg-emerald-400 text-black rounded-full text-xs"
-              >
-                Next
-              </button>
-            </div>
           </div>
         </div>
       </div>
+
+      {/* Image Modal overlay */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 30 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-[#020813]/90 backdrop-blur-xl border border-cyan-500/30 rounded-2xl shadow-[0_0_50px_rgba(0,255,255,0.15)] p-2 w-full max-w-lg"
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-4 -right-4 p-2 bg-cyan-500 text-black rounded-full hover:scale-110 transition-transform shadow-[0_0_15px_rgba(0,255,255,0.5)] z-10"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="aspect-video w-full rounded-xl overflow-hidden relative group border border-cyan-500/20">
+                <img 
+                  src={selectedImage} 
+                  alt="Global Client Project" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-end p-6">
+                  <div>
+                    <h3 className="text-cyan-400 font-bold text-xl mb-1 tracking-wide">Global Client Showcase</h3>
+                    <p className="text-white/80 text-sm">Empowering international business with premium solutions.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
