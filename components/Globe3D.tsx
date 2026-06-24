@@ -6,7 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
 // ── Helpers ──
-const toSphere = (lat: number, lon: number, r: number) => {
+export const toSphere = (lat: number, lon: number, r: number) => {
   const phi = (90 - lat) * (Math.PI / 180);
   const theta = (lon + 180) * (Math.PI / 180);
   return new THREE.Vector3(
@@ -16,8 +16,8 @@ const toSphere = (lat: number, lon: number, r: number) => {
   );
 };
 
-// ── Continent wireframe ──
-function generateContinentWireframe(radius: number): THREE.BufferGeometry[] {
+export function generateContinentWireframe(radius: number): THREE.BufferGeometry[] {
+  // ... existing implementation
   const regions = [
     { latRange: [25, 70], lonRange: [-130, -60], prob: 0.12 },
     { latRange: [7, 25], lonRange: [-110, -75], prob: 0.4 },
@@ -47,22 +47,45 @@ function generateContinentWireframe(radius: number): THREE.BufferGeometry[] {
         } else { if (inLand) points.push(toSphere(lat, lon, radius)); inLand = false; }
       }
     }
-    for (let lon = region.lonRange[0]; lon <= region.lonRange[1]; lon += step * 2.5) {
-      let inLand = false;
-      for (let lat = region.latRange[0]; lat <= region.latRange[1]; lat += step * 0.5) {
-        if (Math.random() > region.prob) {
-          points.push(toSphere(lat, lon, radius));
-          if (!inLand) points.push(toSphere(lat, lon, radius));
-          inLand = true;
-        } else { if (inLand) points.push(toSphere(lat, lon, radius)); inLand = false; }
-      }
-    }
     return new THREE.BufferGeometry().setFromPoints(points);
   });
 }
 
+export function generateContinentPoints(radius: number): THREE.BufferGeometry {
+  const regions = [
+    { latRange: [25, 70], lonRange: [-130, -60], prob: 0.2 },
+    { latRange: [7, 25], lonRange: [-110, -75], prob: 0.4 },
+    { latRange: [-55, 12], lonRange: [-80, -35], prob: 0.2 },
+    { latRange: [35, 70], lonRange: [-10, 40], prob: 0.2 },
+    { latRange: [-35, 37], lonRange: [-18, 52], prob: 0.2 },
+    { latRange: [40, 70], lonRange: [40, 180], prob: 0.2 },
+    { latRange: [12, 40], lonRange: [25, 65], prob: 0.3 },
+    { latRange: [5, 35], lonRange: [65, 100], prob: 0.2 },
+    { latRange: [18, 55], lonRange: [100, 145], prob: 0.2 },
+    { latRange: [-10, 20], lonRange: [95, 140], prob: 0.3 },
+    { latRange: [-40, -10], lonRange: [112, 155], prob: 0.2 },
+    { latRange: [50, 60], lonRange: [-10, 2], prob: 0.1 },
+    { latRange: [30, 46], lonRange: [128, 146], prob: 0.2 },
+  ];
+
+  const points: THREE.Vector3[] = [];
+  const step = 1.0; // Much denser points
+
+  for (const region of regions) {
+    for (let lat = region.latRange[0]; lat <= region.latRange[1]; lat += step) {
+      for (let lon = region.lonRange[0]; lon <= region.lonRange[1]; lon += step) {
+        if (Math.random() > region.prob) {
+          points.push(toSphere(lat, lon, radius));
+        }
+      }
+    }
+  }
+
+  return new THREE.BufferGeometry().setFromPoints(points);
+}
+
 // ── Hexagonal grid overlay ──
-function HexGrid() {
+export function HexGrid() {
   const geometry = useMemo(() => {
     const points: THREE.Vector3[] = [];
     const r = 1.008;
@@ -250,7 +273,7 @@ function DataStream({ lat, lon }: { lat: number; lon: number }) {
 }
 
 // ── Scan rings ──
-function ScanRing({ radius, speed, axis }: { radius: number; speed: number; axis: "x" | "y" | "z" }) {
+export function ScanRing({ radius, speed, axis }: { radius: number; speed: number; axis: "x" | "y" | "z" }) {
   const ref = useRef<THREE.Mesh>(null);
   const material = useMemo(
     () =>
@@ -300,7 +323,7 @@ function ScanRing({ radius, speed, axis }: { radius: number; speed: number; axis
 }
 
 // ── Holographic particles ──
-function HoloParticles() {
+export function HoloParticles() {
   const count = 500;
   const { positions, sizes } = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -366,7 +389,7 @@ function HoloParticles() {
 }
 
 // ── Connection arcs ──
-function ConnectionArc({ start, end, color, speed = 1 }: {
+export function ConnectionArc({ start, end, color, speed = 1 }: {
   start: [number, number]; end: [number, number]; color: string; speed?: number;
 }) {
   const curve = useMemo(() => {

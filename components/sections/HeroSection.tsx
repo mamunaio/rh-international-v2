@@ -1,7 +1,6 @@
-"use client";
-
-import { Html, OrbitControls, Sphere, Stars } from "@react-three/drei";
+import { Html, OrbitControls, Sphere, Stars, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { ScanRing, ConnectionArc } from "../Globe3D";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MousePointer2, X } from "lucide-react";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -76,12 +75,22 @@ const SurfaceImageCard = ({
 const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) => {
   const globeRef = useRef<THREE.Group>(null);
   const ringRefs = useRef<THREE.Mesh[]>([]);
-  const baseRotationY = useRef(0);
   const { viewport } = useThree();
 
   const BASE_RADIUS = 3.2;
   const sceneScale = Math.min(viewport.width / 5, 1.2);
   const dynamicRadius = BASE_RADIUS * sceneScale;
+
+  // Load high-res clear earth map texture
+  const earthTexture = useTexture("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg");
+
+  const connections = useMemo(() => [
+    { start: [40, -10] as [number, number], end: [15, 30] as [number, number], color: "#00ffff", speed: 0.8 },
+    { start: [15, 30] as [number, number], end: [-15, 60] as [number, number], color: "#00ffff", speed: 1.0 },
+    { start: [-15, 60] as [number, number], end: [40, 100] as [number, number], color: "#00e5ff", speed: 0.9 },
+    { start: [40, -10] as [number, number], end: [20, -60] as [number, number], color: "#00ffff", speed: 1.1 },
+    { start: [20, -60] as [number, number], end: [-40, -80] as [number, number], color: "#00e5ff", speed: 0.7 },
+  ], []);
 
   useFrame((state, delta) => {
     ringRefs.current.forEach((ring, i) => {
@@ -97,10 +106,10 @@ const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) =
   });
 
   const rows = [
-    { lat: 40, count: 6 },
-    { lat: 15, count: 10 },
-    { lat: -15, count: 10 },
-    { lat: -40, count: 6 },
+    { lat: 45, count: 3 },
+    { lat: 15, count: 4 },
+    { lat: -15, count: 4 },
+    { lat: -45, count: 3 },
   ];
 
   const images = useMemo(() => {
@@ -124,76 +133,37 @@ const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) =
       <ambientLight intensity={1.5} color="#ffffff" />
       <directionalLight position={[10, 10, 5]} intensity={3} color="#00ffff" />
       <directionalLight position={[-10, -10, -5]} intensity={2} color="#ff00ff" />
+      
+      {/* Realistic 3D Space Stars */}
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
 
       <group ref={globeRef}>
-        {/* Inner Glowing Core */}
-        <Sphere args={[BASE_RADIUS - 0.5, 32, 32]}>
-          <meshBasicMaterial
-            color="#00ffff"
-            transparent
-            opacity={0.15}
+        {/* Textured Earth Sphere */}
+        <mesh>
+          <sphereGeometry args={[BASE_RADIUS * 0.98, 64, 64]} />
+          <meshStandardMaterial 
+            map={earthTexture}
+            color="#ffffff" 
+            emissive="#000a14"
+            emissiveIntensity={0.2}
+            roughness={0.6}
+            metalness={0.1}
           />
-        </Sphere>
+        </mesh>
 
-        {/* Premium Holographic Outer Shell */}
-        <Sphere args={[BASE_RADIUS, 64, 64]}>
-          <meshPhongMaterial
-            color="#001133"
-            emissive="#002244"
-            specular="#00ffff"
-            shininess={100}
-            transparent={true}
-            opacity={0.6}
-            blending={THREE.NormalBlending}
-          />
-        </Sphere>
 
-        {/* Outer Glow / Atmosphere (Subtle) */}
-        <Sphere args={[BASE_RADIUS + 0.1, 64, 64]}>
-          <meshBasicMaterial
-            color="#00ffff"
-            transparent
-            opacity={0.05}
-            blending={THREE.AdditiveBlending}
-            side={THREE.BackSide}
-          />
-        </Sphere>
 
-        {/* Elegant Cyan Wireframe */}
-        <Sphere args={[BASE_RADIUS + 0.01, 32, 32]}>
-          <meshBasicMaterial
-            color="#00ffff"
-            wireframe
-            transparent
-            opacity={0.15}
-            blending={THREE.AdditiveBlending}
-          />
-        </Sphere>
+        {/* Connection Arcs */}
+        <group scale={[BASE_RADIUS, BASE_RADIUS, BASE_RADIUS]}>
+          {connections.map((conn, i) => (
+            <ConnectionArc key={i} {...conn} />
+          ))}
+        </group>
 
-        {/* Glowing Orbit Rings */}
-        {[
-          { r: BASE_RADIUS + 0.4 },
-          { r: BASE_RADIUS + 0.8 },
-          { r: BASE_RADIUS + 1.2 },
-        ].map((orbit, i) => (
-          <mesh
-            key={i}
-            ref={(el) => { if (el) ringRefs.current[i] = el; }}
-            rotation={[
-              Math.random() * Math.PI,
-              Math.random() * Math.PI,
-              Math.random() * Math.PI,
-            ]}
-          >
-            <torusGeometry args={[orbit.r, 0.004, 16, 100]} />
-            <meshBasicMaterial
-              color={i % 2 === 0 ? "#00ffff" : "#ff00ff"}
-              transparent
-              opacity={0.2 + i * 0.05}
-              blending={THREE.AdditiveBlending}
-            />
-          </mesh>
-        ))}
+        {/* Scan Rings */}
+        <ScanRing radius={BASE_RADIUS + 0.3} speed={0.4} axis="y" />
+        <ScanRing radius={BASE_RADIUS + 0.6} speed={0.15} axis="x" />
+        <ScanRing radius={BASE_RADIUS + 0.8} speed={0.25} axis="z" />
 
         {/* Interactive Images */}
         {images.map((img, i) => (
@@ -214,8 +184,8 @@ const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) =
         enableRotate={true}
         autoRotate={true}
         autoRotateSpeed={0.8}
-        minPolarAngle={Math.PI / 2.2}
-        maxPolarAngle={Math.PI / 1.8}
+        minPolarAngle={Math.PI / 3}
+        maxPolarAngle={Math.PI / 1.5}
       />
     </group>
   );

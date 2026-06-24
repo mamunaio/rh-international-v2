@@ -2,6 +2,7 @@
 
 import { Sun, Moon, Monitor } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { useState, useEffect } from "react";
 
 const options = [
   { value: "light" as const, icon: Sun, label: "Light" },
@@ -11,6 +12,15 @@ const options = [
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="flex items-center gap-0.5 p-1 rounded-xl bg-secondary/50 border border-border/30 h-[34px] w-[90px]" />;
+  }
 
   return (
     <div className="flex items-center gap-0.5 p-1 rounded-xl bg-secondary/50 border border-border/30">
