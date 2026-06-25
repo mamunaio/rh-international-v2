@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, HelpCircle, ArrowRight } from "lucide-react";
+import { Plus, Minus, MessageSquareQuote, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const faqs = [
@@ -42,154 +42,125 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative z-10 py-16 px-6 overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.03),transparent_70%)] pointer-events-none -translate-y-1/2" />
-
+    <section className="relative z-10 py-24 px-6 overflow-hidden">
+      {/* Background Effect */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.04),transparent_60%)] pointer-events-none -translate-y-1/4 translate-x-1/4" />
+      
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Left — sticky header */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          
+          {/* Left Sidebar - Spans 5 columns */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:sticky lg:top-32 lg:self-start"
+            className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-6">
-              <HelpCircle className="w-3.5 h-3.5 text-primary" />
-              <span className="text-xs text-primary font-semibold tracking-wider uppercase">FAQ</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 mb-8">
+              <MessageSquareQuote className="w-4 h-4 text-primary" />
+              <span className="text-xs text-primary font-bold tracking-widest uppercase">Answers</span>
             </div>
+            
             <h2
-              className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1] mb-5"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-[1.1] mb-6"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Questions?{" "}
-              <span className="text-gradient-cyan">Answers.</span>
+              Frequently <br />
+              <span className="text-gradient-cyan">Asked Questions.</span>
             </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-8 max-w-sm">
-              Got questions? We've got answers. If you don't see what you're looking for, just drop us a message and our team will get back to you!
+            
+            <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-md">
+              Everything you need to know about our services and how we can help your business scale globally. Can't find the answer? We're here to help.
             </p>
 
             {/* Contact CTA */}
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/30 transition-all duration-500"
+              className="group inline-flex items-center gap-4 px-8 py-4 rounded-2xl border border-primary/30 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)] transition-all duration-500"
             >
-              <span className="text-sm font-semibold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                Contact our team
+              <span className="text-base font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                Ask a Question
               </span>
-              <div className="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center group-hover:bg-primary/15 group-hover:border-primary/30 transition-all duration-300">
-                <ArrowRight className="w-3.5 h-3.5 text-primary group-hover:translate-x-0.5 transition-transform" />
+              <div className="w-10 h-10 rounded-full border border-primary/30 bg-background/50 flex items-center justify-center group-hover:bg-primary group-hover:text-background transition-all duration-300">
+                <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
               </div>
             </Link>
-
-            {/* Quick stats */}
-            <div className="mt-10 flex gap-8">
-              <div>
-                <div
-                  className="text-2xl font-bold text-gradient-cyan"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  48h
-                </div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mt-1 font-medium">Response Time</div>
-              </div>
-              <div>
-                <div
-                  className="text-2xl font-bold text-gradient-cyan"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  24/7
-                </div>
-                <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mt-1 font-medium">Availability</div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Right — FAQ items */}
-          <div className="lg:col-span-3 space-y-3">
+          {/* Right — FAQ items (Spans 7 columns) */}
+          <div className="lg:col-span-7 space-y-4">
             {faqs.map((faq, i) => {
               const isOpen = openIndex === i;
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`group rounded-3xl border transition-all duration-500 overflow-hidden ${
+                    isOpen
+                      ? "border-primary/40 bg-card/60 backdrop-blur-md shadow-[0_0_40px_hsl(var(--primary)/0.08)]"
+                      : "border-border/30 bg-card/20 backdrop-blur-sm hover:border-border/60 hover:bg-card/40"
+                  }`}
                 >
-                  <div
-                    className={`group rounded-2xl border overflow-hidden transition-all duration-500 ${isOpen
-                        ? "border-primary/20 bg-card/40"
-                        : "border-border/15 bg-card/15 hover:border-border/30 hover:bg-card/25"
-                      }`}
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between p-6 md:p-8 text-left"
                   >
-                    {/* Left accent bar */}
-                    <div className="relative">
-                      <div
-                        className={`absolute left-0 top-0 bottom-0 w-[3px] rounded-full transition-all duration-500 ${isOpen ? "bg-primary/60" : "bg-transparent"
-                          }`}
-                      />
-
-                      <button
-                        onClick={() => setOpenIndex(isOpen ? null : i)}
-                        className="w-full flex items-center gap-4 p-6 text-left"
+                    <div className="flex items-center gap-6 pr-4">
+                      {/* Number */}
+                      <span
+                        className={`text-sm font-bold font-mono transition-colors duration-500 ${
+                          isOpen ? "text-primary" : "text-muted-foreground/40"
+                        }`}
                       >
-                        {/* Number */}
-                        <span
-                          className={`text-xs font-mono shrink-0 transition-colors duration-300 ${isOpen ? "text-primary" : "text-muted-foreground/30"
-                            }`}
-                        >
-                          0{i + 1}
-                        </span>
-
-                        {/* Question */}
-                        <span
-                          className={`flex-1 text-sm font-semibold tracking-tight transition-colors duration-300 ${isOpen ? "text-foreground" : "text-foreground/75"
-                            }`}
-                          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                        >
-                          {faq.q}
-                        </span>
-
-                        {/* Category tag */}
-                        <span className="hidden md:block text-[10px] font-medium text-muted-foreground/40 uppercase tracking-wider shrink-0 mr-2">
-                          {faq.category}
-                        </span>
-
-                        {/* Toggle icon */}
-                        <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
-                              ? "bg-primary/15 text-primary rotate-0"
-                              : "bg-secondary/30 text-muted-foreground/50"
-                            }`}
-                        >
-                          {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                        </div>
-                      </button>
-
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-6 pb-6 pl-[52px]">
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {faq.a}
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        0{i + 1}
+                      </span>
+                      {/* Question */}
+                      <span
+                        className={`text-lg md:text-xl font-bold tracking-tight transition-colors duration-500 ${
+                          isOpen ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"
+                        }`}
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                      >
+                        {faq.q}
+                      </span>
                     </div>
-                  </div>
+
+                    {/* Plus/Minus Icon */}
+                    <div
+                      className={`shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 ${
+                        isOpen
+                          ? "bg-primary text-background border-primary shadow-[0_0_20px_hsl(var(--primary)/0.4)]"
+                          : "bg-background/50 border-border/40 text-muted-foreground group-hover:border-border/80 group-hover:text-foreground"
+                      }`}
+                    >
+                      {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                      >
+                        <div className="px-6 md:px-8 pb-8 pt-0 ml-[44px]">
+                          <p className="text-base text-muted-foreground leading-relaxed">
+                            {faq.a}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               );
             })}
           </div>
+
         </div>
       </div>
     </section>

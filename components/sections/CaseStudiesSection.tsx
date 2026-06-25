@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, TrendingUp, BarChart3, Award, Printer, Monitor, Plane } from "lucide-react";
+import { ArrowRight, ArrowUpRight, TrendingUp, Award, Printer, Monitor, Plane } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 const caseStudies = [
   {
@@ -65,31 +64,30 @@ const caseStudies = [
 ];
 
 const CaseStudiesSection = () => {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-
   return (
-    <section className="relative z-10 py-16 px-6 overflow-hidden">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.03),transparent_70%)] pointer-events-none" />
+    <section className="relative z-10 py-24 px-6 overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.04),transparent_60%)] pointer-events-none blur-[80px]" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               <span className="text-xs text-primary font-semibold tracking-wider uppercase">Success Stories</span>
             </div>
             <h2
-              className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground tracking-tight leading-[1.1]"
+              className="text-4xl md:text-5xl lg:text-[4rem] font-bold text-foreground tracking-tight leading-[1.1]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               Real Impact,{" "}
-              <span className="text-gradient-cyan">Proven Results</span>
+              <span className="text-gradient-cyan drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] block">Proven Results.</span>
             </h2>
           </motion.div>
 
@@ -98,122 +96,104 @@ const CaseStudiesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-sm leading-relaxed max-w-sm lg:text-right"
+            className="text-muted-foreground text-base leading-relaxed max-w-sm lg:text-right pb-4"
           >
-           Don't just take our word for it. See how we’ve helped businesses win big, scale faster, and solve complex challenges across the globe.
+           Don't just take our word for it. See how we’ve helped businesses win big, scale faster, and solve complex challenges.
           </motion.p>
         </div>
 
-        {/* Case studies — stacked interactive cards */}
-        <div className="space-y-4">
+        {/* STICKY SCROLLING DECK */}
+        <div className="relative pb-[10vh]">
           {caseStudies.map((study, i) => {
             const Icon = study.icon;
-            const isHovered = hoveredId === study.id;
-
+            // Calculate dynamic top positioning for the stacked effect
+            const topPosition = `calc(10vh + ${i * 30}px)`;
+            
             return (
-              <motion.div
+              <div
                 key={study.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                onMouseEnter={() => setHoveredId(study.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group relative rounded-2xl border border-border/20 bg-card/30 backdrop-blur-sm overflow-hidden hover:border-primary/25 transition-all duration-600 cursor-default"
+                className="sticky mb-12 sm:mb-24 last:mb-0"
+                style={{ top: topPosition }}
               >
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 h-full w-[3px] bg-primary/0 group-hover:bg-primary/60 transition-all duration-500" />
-
-                {/* Hover background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.04] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                <div className="relative z-10 p-6 md:p-8">
-                  {/* Main row */}
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                    {/* Left: Number + Icon + Title */}
-                    <div className="flex items-center gap-5 flex-1 min-w-0">
-                      <div className="hidden md:flex items-center gap-4 shrink-0">
-                        <span className="text-sm font-mono text-muted-foreground/30 w-6">0{study.id}</span>
-                        <div className="w-13 h-13 rounded-2xl border border-primary/15 bg-primary/8 flex items-center justify-center group-hover:bg-primary/15 group-hover:scale-105 transition-all duration-500">
-                          <Icon className="w-5.5 h-5.5 text-primary" />
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ margin: "-100px" }}
+                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative rounded-[2rem] bg-card/60 backdrop-blur-2xl border border-border/50 overflow-hidden shadow-[0_30px_50px_rgba(0,0,0,0.3)] dark:shadow-[0_30px_50px_rgba(0,0,0,0.5)] w-full"
+                >
+                  {/* Subtle Glowing Hover Edge */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10 p-8 sm:p-12 flex flex-col md:flex-row gap-10 lg:gap-16">
+                    
+                    {/* Left Column: Context & Tags */}
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-12 h-12 rounded-xl bg-card border border-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all duration-500">
+                            <Icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-bold text-primary/80 uppercase tracking-widest block mb-1">{study.industry}</span>
+                            <span className="text-xs text-muted-foreground font-medium">{study.client}</span>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-3 mb-1.5">
-                          <span className="text-[10px] font-bold text-primary/70 uppercase tracking-wider">{study.industry}</span>
-                          <span className="text-muted-foreground/30">·</span>
-                          <span className="text-[11px] text-muted-foreground/60">{study.client}</span>
-                        </div>
                         <h3
-                          className="text-lg md:text-xl font-bold text-foreground tracking-tight"
+                          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors"
                           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                         >
                           {study.title}
                         </h3>
+                        
+                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
+                          {study.description}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3 mt-auto pt-6 border-t border-border/30">
+                        {study.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1.5 rounded-lg bg-secondary/50 text-xs font-medium text-foreground/80"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Center: Metrics */}
-                    <div className="flex items-center gap-6 shrink-0">
-                      {study.metrics.map((metric) => (
-                        <div key={metric.label} className="text-center min-w-[90px]">
-                          <div
-                            className="text-2xl font-bold text-gradient-cyan leading-none"
-                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                          >
-                            {metric.value}
+                    {/* Right Column: Big Metrics & Results */}
+                    <div className="w-full md:w-[320px] shrink-0 flex flex-col justify-center gap-6">
+                      <div className="bg-background/40 backdrop-blur-md border border-border/40 rounded-2xl p-6 flex flex-col gap-8 group-hover:border-primary/30 transition-all duration-500">
+                        {study.metrics.map((metric, idx) => (
+                          <div key={metric.label} className={idx !== 0 ? "pt-6 border-t border-border/30" : ""}>
+                            <div
+                              className="text-4xl sm:text-5xl font-black text-cyan-600 dark:text-cyan-400 tracking-tighter mb-2"
+                              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                            >
+                              {metric.value}
+                            </div>
+                            <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                              {metric.label}
+                            </div>
                           </div>
-                          <div className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mt-1 font-medium">
-                            {metric.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
 
-                    {/* Right: Arrow */}
-                    <div className="hidden lg:flex items-center shrink-0">
-                      <div className="w-11 h-11 rounded-full border border-border/20 flex items-center justify-center group-hover:border-primary/40 group-hover:bg-primary/10 transition-all duration-500">
-                        <ArrowUpRight className="w-4.5 h-4.5 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                      {/* ROI Result Highlight */}
+                      <div className="flex items-center gap-3 text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-5 py-4 rounded-2xl">
+                        <TrendingUp className="w-5 h-5 shrink-0" />
+                        {study.result}
                       </div>
                     </div>
                   </div>
-
-                  {/* Expandable details on hover */}
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: isHovered ? "auto" : 0,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="pt-6 mt-6 border-t border-border/15 flex flex-col md:flex-row md:items-end gap-5">
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1 max-w-2xl">
-                        {study.description}
-                      </p>
-                      <div className="flex items-center gap-4 shrink-0">
-                        <div className="flex flex-wrap gap-1.5">
-                          {study.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2.5 py-1 rounded-md bg-primary/8 border border-primary/10 text-[10px] font-medium text-primary/80"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="hidden md:block h-8 w-px bg-border/20" />
-                        <div className="flex items-center gap-1.5 text-xs font-semibold text-primary/70">
-                          <TrendingUp className="w-3.5 h-3.5" />
-                          {study.result}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
+                  
+                  {/* Subtle top glare effect for 3D realism */}
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
+                </motion.div>
+              </div>
             );
           })}
         </div>
@@ -223,14 +203,19 @@ const CaseStudiesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-14"
+          className="text-center mt-20"
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl text-sm font-bold hover:bg-primary/90 transition-all duration-300 hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)] overflow-hidden"
           >
-            Start Your Success Story
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <motion.span
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-[hsl(0_0%_100%/0.25)] to-transparent"
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 1.5 }}
+            />
+            <span className="relative">Start Your Success Story</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform relative" />
           </Link>
         </motion.div>
       </div>

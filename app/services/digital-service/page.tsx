@@ -1,7 +1,39 @@
 "use client";
 
 import ServicePageLayout from "@/components/ServicePageLayout";
+import PortfolioGallery from "@/components/PortfolioGallery";
 import { CheckCircle2, Layers, Package, Search, ShoppingCart, Target } from "lucide-react";
+
+const digitalProjects = [
+  {
+    id: "p1",
+    title: "Global Reach Marketing Campaign",
+    category: ["Campaigns", "Branding"],
+    image: "/images/portfolio/campaign.png",
+    techStack: ["Social Media", "Video Production", "Copywriting"]
+  },
+  {
+    id: "p2",
+    title: "D2C Brand Growth Strategy",
+    category: ["E-Commerce", "Strategy"],
+    image: "/images/portfolio/ecommerce.png",
+    techStack: ["Shopify Plus", "Klaviyo", "Meta Ads"]
+  },
+  {
+    id: "p3",
+    title: "Organic Traffic Scaling (10x)",
+    category: ["SEO", "Content"],
+    image: "/images/portfolio/seo.png",
+    techStack: ["Ahrefs", "Google Analytics", "Content Strategy"]
+  },
+  {
+    id: "p4",
+    title: "B2B Lead Generation Automation",
+    category: ["Automation", "Strategy"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+    techStack: ["HubSpot", "Zapier", "LinkedIn Ads"]
+  }
+];
 
 const DigitalService = () => (
   <ServicePageLayout
@@ -10,7 +42,9 @@ const DigitalService = () => (
     description="End-to-end digital consultation and highly scalable e-commerce infrastructures. We build, optimize, and manage digital platforms designed for maximum conversion and seamless user experiences."
     icon={ShoppingCart}
     primaryCtaText="Book a Digital Strategy Session"
+    primaryCtaLink="/booking"
     secondaryCtaText="Launch Your E-Commerce Platform"
+    secondaryCtaLink="/contact"
     features={[
       {
         title: "Enterprise E-Commerce Architecture",
@@ -36,119 +70,136 @@ const DigitalService = () => (
     ]}
   >
     {/* Additional Content Section 1: Overview */}
-    <div className="mt-16 bg-muted/30 p-8 rounded-2xl border border-border">
-      <h3 className="text-2xl font-bold text-foreground mb-4">
-        Overview: Empowering Your Digital Footprint
+    <div className="mb-16">
+      <h3 className="text-3xl font-bold text-foreground mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        Empowering Your <span className="text-gradient-cyan">Digital Footprint</span>
       </h3>
-      <p className="text-muted-foreground leading-relaxed">
-        In the modern marketplace, a successful business requires more than just a standard website; it demands a strategic digital ecosystem. At RH International Sourcing Center, our Digital Service & E-commerce division bridges the gap between traditional business models and cutting-edge digital commerce. Whether you are launching a D2C (Direct-to-Consumer) brand, scaling a B2B wholesale platform, or seeking expert digital transformation consultancy, we provide robust, future-proof solutions tailored to your growth objectives.
+      <p className="text-lg text-muted-foreground leading-relaxed">
+        In the modern marketplace, a successful business requires more than just a standard website; it demands a strategic digital ecosystem. At RH International Sourcing Center, our Digital Service & E-commerce division bridges the gap between traditional business models and cutting-edge digital commerce. Whether you are launching a D2C brand, scaling a B2B wholesale platform, or seeking expert digital transformation consultancy, we provide robust, future-proof solutions.
       </p>
     </div>
 
     {/* Additional Content Section 2: Detailed Capabilities */}
-    <div className="mt-12">
-      <h3 className="text-2xl font-bold text-foreground mb-6">
-        Our Core Digital & E-Commerce Services
+    <div className="mb-20">
+      <h3 className="text-3xl font-bold text-foreground mb-10 flex items-center gap-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <ShoppingCart className="w-8 h-8 text-primary" />
+        Our Core Digital Services
       </h3>
       
-      <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
         {/* Capability 1 */}
-        <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
-          <h4 className="font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-            <Layers className="w-6 h-6 text-primary" />
-            1. Enterprise E-Commerce Architecture
-          </h4>
-          <ul className="space-y-3 pl-8">
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Custom storefront development with high-end UI/UX (Bento-grids, smooth animations).</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Seamless integration of local and international payment gateways.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Advanced inventory, order management, and secure multi-vendor architectures.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>B2B bulk-ordering portals with dynamic pricing tiers.</span>
-            </li>
-          </ul>
+        <div className="relative group p-8 rounded-3xl bg-card/20 backdrop-blur-3xl border border-primary/10 hover:border-primary/30 shadow-lg hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)] group-hover:scale-110 transition-transform duration-500">
+              <Layers className="w-7 h-7 text-primary" />
+            </div>
+            <h4 className="text-xl font-bold mb-3 text-foreground">1. Enterprise E-Commerce Architecture</h4>
+            <ul className="space-y-3 mt-4">
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Custom storefront development with high-end UI/UX.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Seamless integration of local and international payment gateways.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Advanced inventory and secure multi-vendor architectures.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>B2B bulk-ordering portals with dynamic pricing tiers.</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Capability 2 */}
-        <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
-          <h4 className="font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-            <Target className="w-6 h-6 text-primary" />
-            2. Comprehensive Digital Strategy & Consultation
-          </h4>
-          <ul className="space-y-3 pl-8">
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Business model validation and digital transformation planning.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Data-driven Conversion Rate Optimization (CRO) to maximize sales.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Automation of digital workflows to reduce operational overhead.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Brand positioning and digital identity development.</span>
-            </li>
-          </ul>
+        <div className="relative group p-8 rounded-3xl bg-card/20 backdrop-blur-3xl border border-primary/10 hover:border-primary/30 shadow-lg hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)] group-hover:scale-110 transition-transform duration-500">
+              <Target className="w-7 h-7 text-primary" />
+            </div>
+            <h4 className="text-xl font-bold mb-3 text-foreground">2. Strategy & Consultation</h4>
+            <ul className="space-y-3 mt-4">
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Business model validation and digital transformation planning.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Data-driven Conversion Rate Optimization (CRO).</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Automation of digital workflows to reduce operational overhead.</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Capability 3 */}
-        <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
-          <h4 className="font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-            <Package className="w-6 h-6 text-primary" />
-            3. Digital Product Sourcing & Merchandising
-          </h4>
-          <ul className="space-y-3 pl-8">
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Dropshipping and bulk product sourcing integration.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>E-commerce catalog management and high-conversion product descriptions.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Digital supply chain consultation to streamline your fulfillment process.</span>
-            </li>
-          </ul>
+        <div className="relative group p-8 rounded-3xl bg-card/20 backdrop-blur-3xl border border-primary/10 hover:border-primary/30 shadow-lg hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)] group-hover:scale-110 transition-transform duration-500">
+              <Package className="w-7 h-7 text-primary" />
+            </div>
+            <h4 className="text-xl font-bold mb-3 text-foreground">3. Product Sourcing & Merchandising</h4>
+            <ul className="space-y-3 mt-4">
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Dropshipping and bulk product sourcing integration.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>E-commerce catalog management and product descriptions.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Digital supply chain consultation to streamline fulfillment.</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Capability 4 */}
-        <div className="bg-background p-6 rounded-xl border border-border shadow-sm">
-          <h4 className="font-semibold text-lg mb-4 text-foreground flex items-center gap-2">
-            <Search className="w-6 h-6 text-primary" />
-            4. Advanced Digital Growth & SEO
-          </h4>
-          <ul className="space-y-3 pl-8">
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span><strong>Technical & E-commerce SEO:</strong> Optimizing site architecture, core web vitals, and product schema for rapid indexing.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span><strong>Generative Engine Optimization (GEO) & AEO:</strong> Preparing your brand to rank on AI-driven search platforms.</span>
-            </li>
-            <li className="flex gap-3 text-sm text-muted-foreground">
-              <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-              <span>Omni-channel digital marketing and data analytics tracking.</span>
-            </li>
-          </ul>
+        <div className="relative group p-8 rounded-3xl bg-card/20 backdrop-blur-3xl border border-primary/10 hover:border-primary/30 shadow-lg hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 shadow-[0_0_15px_hsl(var(--primary)/0.2)] group-hover:scale-110 transition-transform duration-500">
+              <Search className="w-7 h-7 text-primary" />
+            </div>
+            <h4 className="text-xl font-bold mb-3 text-foreground">4. Advanced Digital Growth</h4>
+            <ul className="space-y-3 mt-4">
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong>Technical SEO:</strong> Optimizing site architecture and core web vitals.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong>GEO & AEO:</strong> Preparing your brand for AI search engines.</span>
+              </li>
+              <li className="flex items-start gap-3 text-muted-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span>Omni-channel digital marketing and data analytics tracking.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+
+    {/* Portfolio Showcase Section */}
+    <PortfolioGallery 
+      projects={digitalProjects} 
+      categories={["E-Commerce", "Strategy", "Campaigns", "Branding", "SEO", "Automation"]} 
+    />
+
   </ServicePageLayout>
 );
 

@@ -22,74 +22,124 @@ const testimonials = [
     text: "Whether it’s bulk PVC card printing or handling large-scale packaging for our exports, they manage everything perfectly. It’s rare to find a partner who takes quality control as seriously as we do. They are our go-to team.",
     rating: 5,
   },
+  {
+    name: "Elena Rodriguez",
+    role: "Founder, Global Trends",
+    text: "Their digital marketing and branding strategies completely transformed our online presence. The ROI we've seen in just six months is staggering. They truly understand how to engage a modern audience.",
+    rating: 5,
+  },
+  {
+    name: "Michael Chen",
+    role: "Director, Apex Solutions",
+    text: "Navigating the European business visa process used to be a nightmare for our executives. Their travel consultation team made the Schengen visa process incredibly smooth and stress-free.",
+    rating: 5,
+  },
 ];
 
 const TestimonialsSection = () => (
-  <section className="relative z-10 pt-10 pb-10 px-6 overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
-
-    <div className="max-w-7xl mx-auto relative">
+  <section className="relative z-10 py-24 px-6 overflow-hidden">
+    {/* Animated Background Orbs */}
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+    <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px] animate-pulse delay-1000" />
+    
+    <div className="max-w-7xl mx-auto relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 mb-6">
           <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-xs text-primary font-semibold tracking-wider uppercase">Testimonials</span>
+          <span className="text-xs text-primary font-bold tracking-widest uppercase">Client Success</span>
         </div>
         <h2
-          className="text-4xl md:text-5xl font-bold text-foreground tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-6"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          What Our Clients <span className="text-gradient-cyan">Say</span>
+          Don't just take <br className="hidden md:block" />
+          <span className="text-gradient-cyan">our word for it.</span>
         </h2>
-        <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-         Don’t just take our word for it. Here’s what real businesses have to say about working with our team.
-        </p>
       </motion.div>
+    </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {testimonials.map((t, i) => (
-          <motion.div
-            key={t.name}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="relative p-8 rounded-2xl border border-border/15 bg-card/30 backdrop-blur-sm group hover:border-primary/20 transition-all duration-500"
-          >
-            {/* Quote icon */}
-            <Quote className="w-8 h-8 text-primary/15 mb-5" />
+    {/* Infinite Marquee Rows */}
+    <div className="relative max-w-[100vw] overflow-hidden flex flex-col gap-8 -mx-6 px-6">
+      
+      {/* Left/Right Fade Gradients for Marquee */}
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
 
-            {/* Rating */}
-            <div className="flex items-center gap-1 mb-4">
-              {[...Array(t.rating)].map((_, s) => (
-                <Star key={s} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-              ))}
-            </div>
-
-            {/* Text */}
-            <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic">
-              "{t.text}"
-            </p>
-
-            {/* Author */}
-            <div className="flex items-center gap-3 pt-5 border-t border-border/15">
-              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <span className="text-xs font-bold text-primary" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {t.name.split(" ").map((n) => n[0]).join("")}
-                </span>
+      {/* Row 1: Moving Left */}
+      <div className="flex animate-[marquee_40s_linear_infinite] whitespace-nowrap hover:[animation-play-state:paused]">
+        {[...Array(2)].map((_, rep) => (
+          <div key={rep} className="flex gap-6 px-3">
+            {testimonials.map((t, i) => (
+              <div
+                key={`${rep}-${i}`}
+                className="w-[350px] md:w-[450px] shrink-0 p-8 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:bg-card/80 hover:-translate-y-2 hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] hover:border-primary/50 transition-all duration-500 whitespace-normal group"
+              >
+                <Quote className="w-10 h-10 text-primary/20 group-hover:text-primary/50 transition-colors duration-500 mb-6" />
+                <div className="flex items-center gap-1 mb-6">
+                  {[...Array(t.rating)].map((_, s) => (
+                    <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400 drop-shadow-sm" />
+                  ))}
+                </div>
+                <p className="text-base text-foreground/80 leading-relaxed mb-8 min-h-[100px]">
+                  "{t.text}"
+                </p>
+                <div className="flex items-center gap-4 pt-6 border-t border-border/40 group-hover:border-primary/20 transition-colors duration-500">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                      {t.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-base font-bold text-foreground">{t.name}</p>
+                    <p className="text-xs text-primary font-medium tracking-wide uppercase mt-1">{t.role}</p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                <p className="text-[11px] text-muted-foreground">{t.role}</p>
-              </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         ))}
       </div>
+
+      {/* Row 2: Moving Right */}
+      <div className="flex animate-[marquee-reverse_45s_linear_infinite] whitespace-nowrap hover:[animation-play-state:paused]">
+        {[...Array(2)].map((_, rep) => (
+          <div key={rep} className="flex gap-6 px-3">
+            {[...testimonials].reverse().map((t, i) => (
+              <div
+                key={`${rep}-rev-${i}`}
+                className="w-[350px] md:w-[450px] shrink-0 p-8 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-xl hover:bg-card/80 hover:-translate-y-2 hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] hover:border-primary/50 transition-all duration-500 whitespace-normal group"
+              >
+                <Quote className="w-10 h-10 text-primary/20 group-hover:text-primary/50 transition-colors duration-500 mb-6" />
+                <div className="flex items-center gap-1 mb-6">
+                  {[...Array(t.rating)].map((_, s) => (
+                    <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400 drop-shadow-sm" />
+                  ))}
+                </div>
+                <p className="text-base text-foreground/80 leading-relaxed mb-8 min-h-[100px]">
+                  "{t.text}"
+                </p>
+                <div className="flex items-center gap-4 pt-6 border-t border-border/40 group-hover:border-primary/20 transition-colors duration-500">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center">
+                    <span className="text-sm font-bold text-primary" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                      {t.name.split(" ").map((n) => n[0]).join("")}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-base font-bold text-foreground">{t.name}</p>
+                    <p className="text-xs text-primary font-medium tracking-wide uppercase mt-1">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
     </div>
   </section>
 );

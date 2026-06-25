@@ -2,7 +2,7 @@ import { Html, OrbitControls, Sphere, Stars, useTexture } from "@react-three/dre
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ScanRing, ConnectionArc } from "../Globe3D";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MousePointer2, X } from "lucide-react";
+import { ArrowRight, MousePointer2, X, Globe, ShieldCheck } from "lucide-react";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import * as THREE from "three";
@@ -194,9 +194,22 @@ const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) =
 // Hero Section
 const HeroSection = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [textIndex, setTextIndex] = useState(0);
+  const rotatingTexts = ["Global Business", "Government Tenders", "Corporate Printing", "Web & IT Solutions", "Global Expansion"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden bg-transparent backdrop-blur-[4px]">
+      {/* Cinematic Ambient Lights */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.15),transparent_60%)] rounded-full blur-[100px] pointer-events-none mix-blend-screen animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(ellipse,hsl(200,100%,50%/0.1),transparent_60%)] rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse delay-1000" />
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full pt-20 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
 
@@ -205,6 +218,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -226,38 +240,27 @@ const HeroSection = () => {
               className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-7 tracking-[-0.02em]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              {"We Make".split(" ").map((char, i) => (
-                <motion.span
-                  key={`e-${i}`}
-                  className="inline-block text-foreground"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.03, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {char}
-                </motion.span>
-              ))}
+              <span className="inline-block">We</span>{" "}
+              <span className="inline-block">Make</span>
               <br />
-              <motion.span
-                className="text-gradient-cyan inline-block drop-shadow-[0_0_15px_rgba(0,255,255,0.5)]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Global Business 
-              </motion.span>
+              <span className="inline-block text-cyan-600 dark:text-cyan-400 font-bold dark:drop-shadow-[0_0_15px_rgba(34,211,238,0.6)] mt-2 mb-4 relative w-full">
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={textIndex}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="inline-block whitespace-nowrap"
+                  >
+                    {rotatingTexts[textIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
               <br />
-              {"Easy for You.".split("").map((char, i) => (
-                <motion.span
-                  key={`b-${i}`}
-                  className="inline-block text-foreground"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 + i * 0.03, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {char}
-                </motion.span>
-              ))}
+              <span className="inline-block">Easy</span>{" "}
+              <span className="inline-block">for</span>{" "}
+              <span className="inline-block">You.</span>
             </h1>
 
             <motion.p
@@ -297,7 +300,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* RIGHT - 3D GLOBE */}
-          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] z-10">
+          <div className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px] z-10 hidden md:block">
             {/* Cursor Helper */}
             <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
               <div className="flex flex-col items-center">
@@ -305,6 +308,37 @@ const HeroSection = () => {
                 <span className="text-[10px] sm:text-xs text-white mt-1 drop-shadow-lg font-bold tracking-widest">HOVER & CLICK</span>
               </div>
             </div>
+
+            {/* Floating Glassmorphism Cards */}
+            <motion.div
+              className="absolute top-16 -right-6 lg:-right-12 px-4 py-3 bg-card/20 backdrop-blur-xl border border-primary/20 rounded-2xl shadow-[0_0_30px_rgba(0,255,255,0.1)] z-20 flex items-center gap-3 pointer-events-none"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0, y: [0, -12, 0] }}
+              transition={{ duration: 1, delay: 1.5, y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" } }}
+            >
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                <Globe className="w-5 h-5 text-primary" />
+              </div>
+              <div className="text-left">
+                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Global Reach</div>
+                <div className="text-xl text-foreground font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>30+ Countries</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="absolute bottom-20 -left-6 lg:-left-12 px-4 py-3 bg-card/20 backdrop-blur-xl border border-primary/20 rounded-2xl shadow-[0_0_30px_rgba(0,255,255,0.1)] z-20 flex items-center gap-3 pointer-events-none"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0, y: [0, 12, 0] }}
+              transition={{ duration: 1, delay: 1.8, y: { duration: 5.5, repeat: Infinity, ease: "easeInOut" } }}
+            >
+              <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div className="text-left">
+                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Trusted By</div>
+                <div className="text-xl text-foreground font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>500+ Clients</div>
+              </div>
+            </motion.div>
 
             <Canvas className="z-10" camera={{ position: [0, 0, 18], fov: 35 }} gl={{ alpha: true, antialias: true }}>
               <Suspense fallback={null}>

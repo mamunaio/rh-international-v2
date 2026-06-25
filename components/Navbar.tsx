@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import QuoteModal from "./QuoteModal";
 import { useAuth } from "@/hooks/use-auth";
 
-import ThemeToggle from "@/components/ThemeToggle";
 import logo from "@/assets/logo.png";
 
 const adminLinks = [
@@ -19,7 +18,7 @@ const adminLinks = [
   { label: "CRM Leads", path: "/admin/leads", icon: Users },
 ];
 
-const megaMenuCategories = [
+const servicesCategories = [
   {
     title: "Business",
     items: [
@@ -28,24 +27,27 @@ const megaMenuCategories = [
     ],
   },
   {
-    title: "Technology",
-    items: [
-      { label: "IT Solution", path: "/services/it-solution", icon: Monitor, desc: "Web dev, SEO & infrastructure" },
-      { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation" },
-    ],
-  },
-  {
     title: "International",
     items: [
       { label: "Travel Consultation", path: "/services/travel-consultation", icon: Plane, desc: "Visa & travel advisory" },
-      { label: "Dubai Office", path: "/services/dubai-office", icon: Building2, desc: "UAE operations hub" },
     ],
   },
 ];
 
+const techCategories = [
+  {
+    title: "Innovation Hub",
+    items: [
+      { label: "IT Solution", path: "/services/it-solution", icon: Monitor, desc: "Web dev, SEO & infrastructure" },
+      { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation" },
+    ],
+  }
+];
+
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services", mega: true },
+  { label: "Services", path: "/services", megaCategories: servicesCategories, width: "w-[500px]" },
+  { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[320px]" },
   { label: "Global Presence", path: "/global-presence" },
   { label: "Team", path: "/team" },
   { label: "Contact", path: "/contact" },
@@ -55,8 +57,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [activeMega, setActiveMega] = useState<string | null>(null);
+  const [mobileMenusOpen, setMobileMenusOpen] = useState<{ [key: string]: boolean }>({});
   const [adminOpen, setAdminOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const location = usePathname() || "";
@@ -79,12 +81,26 @@ const Navbar = () => {
 
   useEffect(() => {
     setOpen(false);
-    setMegaOpen(false);
-    setMobileServicesOpen(false);
+    setActiveMega(null);
+    setMobileMenusOpen({});
     setAdminOpen(false);
   }, [location]);
 
   const isActive = (path: string) => location === path;
+  
+  const isDropdownActive = (link: any) => {
+    if (location === link.path) return true;
+    if (link.megaCategories) {
+      return link.megaCategories.some((cat: any) => 
+        cat.items.some((item: any) => location === item.path || location.startsWith(item.path + "/"))
+      );
+    }
+    return false;
+  };
+  
+  const toggleMobileMenu = (label: string) => {
+    setMobileMenusOpen(prev => ({ ...prev, [label]: !prev[label] }));
+  };
 
   return (
     <>
@@ -115,40 +131,40 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
-              link.mega ? (
+              link.megaCategories ? (
                 <div
-                  key={link.path}
+                  key={link.label}
                   className="relative"
-                  onMouseEnter={() => setMegaOpen(true)}
-                  onMouseLeave={() => setMegaOpen(false)}
+                  onMouseEnter={() => setActiveMega(link.label)}
+                  onMouseLeave={() => setActiveMega(null)}
                 >
                   <button
-                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${location.startsWith("/services")
+                    className={`flex items-center gap-1 px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${isDropdownActive(link)
                         ? "text-primary bg-primary/5"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
                       }`}
                   >
                     {link.label}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${megaOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeMega === link.label ? "rotate-180" : ""}`} />
                   </button>
 
                   {/* Mega Menu */}
                   <AnimatePresence>
-                    {megaOpen && (
+                    {activeMega === link.label && (
                       <motion.div
                         initial={{ opacity: 0, y: 10, scale: 0.97 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.97 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="absolute top-full -left-32 pt-3"
+                        className="absolute top-full -left-10 pt-3"
                       >
-                        <div className="w-[720px] rounded-2xl border border-border/50 bg-card shadow-xl overflow-hidden">
+                        <div className={`${link.width} rounded-2xl border border-border/50 bg-card shadow-xl overflow-hidden`}>
                           {/* Top accent */}
                           <div className="h-[2px] bg-gradient-to-r from-rh-blue/60 via-rh-green/40 to-rh-orange/40" />
 
                           <div className="p-6 flex gap-6">
                             {/* Service categories */}
-                            {megaMenuCategories.map((category) => (
+                            {link.megaCategories.map((category) => (
                               <div key={category.title} className="flex-1">
                                 <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] mb-3 px-2">
                                   {category.title}
@@ -187,21 +203,23 @@ const Navbar = () => {
                           </div>
 
                           {/* Footer */}
-                          <div className="px-6 py-4 border-t border-border/20 bg-secondary/20 flex items-center justify-between">
-                            <Link
-                              href="/services"
-                              className="group/all flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
-                            >
-                              View all services
-                              <ArrowRight className="w-3.5 h-3.5 group-hover/all:translate-x-1 transition-transform" />
-                            </Link>
-                            <button
-                              onClick={() => { setMegaOpen(false); setQuoteOpen(true); }}
-                              className="px-4 py-2 text-xs font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_15px_hsl(var(--primary)/0.2)]"
-                            >
-                              Get a Quote
-                            </button>
-                          </div>
+                          {link.label === "Services" && (
+                            <div className="px-6 py-4 border-t border-border/20 bg-secondary/20 flex items-center justify-between">
+                              <Link
+                                href="/services"
+                                className="group/all flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                              >
+                                View all services
+                                <ArrowRight className="w-3.5 h-3.5 group-hover/all:translate-x-1 transition-transform" />
+                              </Link>
+                              <button
+                                onClick={() => { setActiveMega(null); setQuoteOpen(true); }}
+                                className="px-4 py-2 text-xs font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_15px_hsl(var(--primary)/0.2)]"
+                              >
+                                Get a Quote
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -285,7 +303,6 @@ const Navbar = () => {
 
           {/* CTA + Auth + Mobile toggle */}
           <div className="flex items-center gap-3">
-            <ThemeToggle />
             {user ? (
               <button
                 onClick={async () => { await signOut(); navigate.push("/"); }}
@@ -342,20 +359,20 @@ const Navbar = () => {
             >
               <div className="px-6 py-5 flex flex-col gap-1">
                 {navLinks.map((link) =>
-                  link.mega ? (
-                    <div key={link.path}>
+                  link.megaCategories ? (
+                    <div key={link.label}>
                       <button
-                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${location.startsWith("/services")
+                        onClick={() => toggleMobileMenu(link.label)}
+                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${isDropdownActive(link)
                             ? "text-primary bg-primary/5"
                             : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
                           }`}
                       >
                         {link.label}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileMenusOpen[link.label] ? "rotate-180" : ""}`} />
                       </button>
                       <AnimatePresence>
-                        {mobileServicesOpen && (
+                        {mobileMenusOpen[link.label] && (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
@@ -363,7 +380,7 @@ const Navbar = () => {
                             className="overflow-hidden"
                           >
                             <div className="pl-2 pt-1 space-y-3">
-                              {megaMenuCategories.map((cat) => (
+                              {link.megaCategories.map((cat) => (
                                 <div key={cat.title}>
                                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-4 mb-1 block">{cat.title}</span>
                                   {cat.items.map((item) => {
@@ -383,13 +400,15 @@ const Navbar = () => {
                                   })}
                                 </div>
                               ))}
-                              <Link
-                                href="/services"
-                                onClick={() => setOpen(false)}
-                                className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-primary"
-                              >
-                                All Services <ArrowRight className="w-3.5 h-3.5" />
-                              </Link>
+                              {link.label === "Services" && (
+                                <Link
+                                  href="/services"
+                                  onClick={() => setOpen(false)}
+                                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-primary"
+                                >
+                                  All Services <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                              )}
                             </div>
                           </motion.div>
                         )}

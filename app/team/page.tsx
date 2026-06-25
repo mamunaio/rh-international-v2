@@ -4,29 +4,67 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Award, Briefcase, Globe, Heart, Linkedin, Mail, Sparkles, Target, Users } from "lucide-react";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
-const teamMembers = [
+const leadershipMembers = [
   {
     name: "ABM Reza",
-    role: "Founder",
+    role: "Managing Director & Co-Founder",
     bio: "As the visionary Founder of RH International, ABM Reza laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
     initials: "AR",
     image: "/images/team/abm-reza.jpg",
     objectPosition: "center 10%",
     expertise: ["Visionary Leadership", "Global Trade", "Strategic Partnerships"],
     accent: "180 60% 45%",
+    slug: "abm-reza",
   },
   {
     name: "Md Abu Sama Kias",
-    role: "Co-Founder & CEO",
+    role: "Founder & CEO",
     bio: "As the driving force behind RH International, Abu Sama leads with a simple philosophy: build trust through flawless execution. He oversees our global expansion, ensuring that whether it's navigating complex government tenders or delivering high-end digital solutions, our clients always receive world-class results.",
     initials: "MAS",
     image: "/images/team/abu-sama.jpg",
     objectPosition: "center 12%",
     expertise: ["Global Strategy", "B2B Growth", "Digital Innovation"],
     accent: "213 55% 50%",
+    slug: "abu-sama-kias",
+  },
+];
+
+const teamMembers = [
+  {
+    name: "Md Mamun Hossain",
+    role: "Full Stack Web Developer & SEO Specialist",
+    bio: "With over 10 years of extensive experience, Md Mamun Hossain is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings.",
+    initials: "MH",
+    image: "/images/team/mamun.jpg",
+    objectPosition: "center",
+    expertise: ["Full Stack Development", "Search Engine Optimization (SEO)", "System Architecture"],
+    accent: "280 65% 55%",
+    slug: "md-mamun-hossain",
+  },
+  {
+    name: "John Doe",
+    role: "Global Operations Manager",
+    bio: "John oversees our global operations, ensuring that our international hubs work in perfect sync to deliver unparalleled service to our clients.",
+    initials: "JD",
+    image: "",
+    objectPosition: "center",
+    expertise: ["Operations Management", "Supply Chain", "Global Expansion"],
+    accent: "35 85% 55%",
+    slug: "john-doe",
+  },
+  {
+    name: "Jane Doe",
+    role: "Creative Director",
+    bio: "Jane brings brands to life with her exceptional eye for design and user experience. She leads our creative teams to craft memorable digital identities.",
+    initials: "JD",
+    image: "",
+    objectPosition: "center",
+    expertise: ["UI/UX Design", "Brand Strategy", "Creative Direction"],
+    accent: "340 70% 55%",
+    slug: "jane-doe",
   },
 ];
 
@@ -62,6 +100,12 @@ const highlights = [
 
 // Particles
 const HeroParticles = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const particles = useMemo(
     () => Array.from({ length: 20 }, (_, i) => ({
       id: i,
@@ -73,6 +117,8 @@ const HeroParticles = () => {
     })),
     []
   );
+
+  if (!mounted) return null;
   return (
     <div className="absolute inset-0 overflow-hidden">
       {particles.map((p) => (
@@ -88,8 +134,8 @@ const HeroParticles = () => {
   );
 };
 
-// 3D tilt card for team member
-const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: number }) => {
+// 3D tilt card for member
+const TeamCard = ({ member, index }: { member: any; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -119,7 +165,7 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
       {/* Gradient border */}
       <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/15 via-transparent to-rh-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="relative rounded-3xl border border-border/20 bg-card/30 backdrop-blur-sm overflow-hidden">
+      <div className="relative rounded-3xl border border-border/20 bg-card/30 backdrop-blur-sm overflow-hidden flex flex-col h-full">
         {/* Top accent */}
         <motion.div
           className="h-1 w-full"
@@ -132,11 +178,11 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
 
         {/* Background glow */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
           style={{ background: `radial-gradient(circle, hsl(${member.accent} / 0.08), transparent 70%)` }}
         />
 
-        <div className="relative p-10 md:p-12 text-center">
+        <div className="relative p-10 md:p-12 text-center flex-grow flex flex-col">
           {/* Avatar */}
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -182,11 +228,13 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
           >
             {member.name}
           </h3>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6">
-            <Briefcase className="w-3.5 h-3.5" />
-            {member.role}
-          </span>
-          <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
+          <div className="flex justify-center mb-6">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold">
+              <Briefcase className="w-3.5 h-3.5" />
+              {member.role}
+            </span>
+          </div>
+          <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto flex-grow">
             {member.bio}
           </p>
 
@@ -207,24 +255,16 @@ const TeamCard = ({ member, index }: { member: typeof teamMembers[0]; index: num
             ))}
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center gap-3">
-            {[
-              { icon: Linkedin, label: "LinkedIn" },
-              { icon: Mail, label: "Email" },
-              { icon: Globe, label: "Website" },
-            ].map((item, idx) => (
-              <motion.button
-                key={idx}
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-11 h-11 rounded-xl border border-border/25 bg-secondary/20 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/10 transition-all duration-300"
-                title={item.label}
-              >
-                <item.icon size={16} />
-              </motion.button>
-            ))}
-          </div>
+          <Link href={`/profile/${member.slug}`} className="mt-auto block">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-3.5 rounded-xl border border-primary/20 bg-primary/5 text-primary text-sm font-bold flex items-center justify-center gap-2 hover:bg-primary/10 hover:border-primary/40 transition-all duration-300 group-hover:bg-primary/10"
+            >
+              View Full Profile
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </motion.div>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -337,6 +377,29 @@ const Team = () => {
           </motion.div>
 
           <div className="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8">
+            {leadershipMembers.map((member, i) => (
+              <TeamCard key={member.name} member={member} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Members */}
+      <section className="relative z-10 px-6 pb-24">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              Our <span className="text-gradient-cyan">Team</span>
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto">The dedicated professionals working together to turn your ambitious goals into reality.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             {teamMembers.map((member, i) => (
               <TeamCard key={member.name} member={member} index={i} />
             ))}

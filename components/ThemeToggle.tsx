@@ -19,11 +19,11 @@ const ThemeToggle = () => {
   }, []);
 
   if (!mounted) {
-    return <div className="flex items-center gap-0.5 p-1 rounded-xl bg-secondary/50 border border-border/30 h-[34px] w-[90px]" />;
+    return <div className="fixed bottom-6 left-6 z-50 flex items-center gap-1 p-1.5 rounded-2xl bg-background/80 backdrop-blur-2xl border border-border/50 h-[46px] w-[114px]" />;
   }
 
   return (
-    <div className="flex items-center gap-0.5 p-1 rounded-xl bg-secondary/50 border border-border/30">
+    <div className="fixed bottom-6 left-6 z-50 flex items-center gap-1 p-1.5 rounded-2xl bg-background/80 backdrop-blur-2xl border border-border/50 shadow-xl hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] transition-shadow duration-300">
       {options.map((opt) => {
         const Icon = opt.icon;
         const active = theme === opt.value;
@@ -32,13 +32,13 @@ const ThemeToggle = () => {
             key={opt.value}
             onClick={() => setTheme(opt.value)}
             title={opt.label}
-            className={`p-1.5 rounded-lg transition-all duration-200 ${
+            className={`p-2 rounded-xl transition-all duration-200 ${
               active
-                ? "bg-primary text-primary-foreground shadow-sm"
+                ? "bg-primary text-primary-foreground shadow-md"
                 : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
             }`}
           >
-            <Icon className="w-3.5 h-3.5" />
+            <Icon className="w-4 h-4" />
           </button>
         );
       })}

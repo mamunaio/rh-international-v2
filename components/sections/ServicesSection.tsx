@@ -1,11 +1,10 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Landmark, Printer, Monitor, Plane, Lightbulb, ArrowUpRight,
+  Landmark, Printer, Monitor, Plane, Lightbulb, ArrowRight,
 } from "lucide-react";
-import { useRef, useState } from "react";
 
 const services = [
   {
@@ -13,189 +12,89 @@ const services = [
     desc: "We simplify the complex e-GP bidding process. From preparing flawless documents to final submission, we help you win high-value government contracts.",
     icon: Landmark,
     path: "/services/govt-tender",
-    number: "01",
-    accent: "213 55% 50%",
-    tags: ["e-GP", "Bidding", "Compliance"],
+    color: "from-blue-500/20 to-cyan-500/20",
+    iconColor: "text-cyan-400",
+    borderColor: "group-hover:border-cyan-500/50",
   },
   {
     title: "Commercial Printing",
     desc: "Premium bulk printing done right. We deliver high-quality PVC materials, custom packaging, and large-format solutions on time, every time.",
     icon: Printer,
     path: "/services/printing-press",
-    number: "02",
-    accent: "280 50% 55%",
-    tags: ["PVC", "Packaging", "Bulk Print"],
+    color: "from-purple-500/20 to-pink-500/20",
+    iconColor: "text-purple-400",
+    borderColor: "group-hover:border-purple-500/50",
   },
   {
     title: "IT Solutions",
     desc: "Fast, secure, and modern digital platforms. We build advanced web applications and provide cloud infrastructures that drive real business results.",
     icon: Monitor,
     path: "/services/it-solution",
-    number: "03",
-    accent: "165 50% 45%",
-    tags: ["Web Dev", "SEO", "Cloud"],
+    color: "from-emerald-500/20 to-teal-500/20",
+    iconColor: "text-emerald-400",
+    borderColor: "group-hover:border-emerald-500/50",
   },
   {
     title: "Travel Consultation",
     desc: "Your smooth gateway to Europe. We provide expert visa processing and hassle-free travel support specifically for Portugal, Spain, and Denmark.",
     icon: Plane,
     path: "/services/travel-consultation",
-    number: "04",
-    accent: "35 70% 50%",
-    tags: ["Schengen", "Visa", "Corporate Travel"],
+    color: "from-orange-500/20 to-amber-500/20",
+    iconColor: "text-orange-400",
+    borderColor: "group-hover:border-orange-500/50",
   },
   {
     title: "Digital & E-Commerce",
     desc: "Turn your ideas into a global brand. We offer strategic digital marketing, branding, and highly scalable e-commerce solutions to maximize your revenue.",
     icon: Lightbulb,
     path: "/services/digital-service",
-    number: "05",
-    accent: "340 50% 55%",
-    tags: ["E-Commerce", "Branding", "Strategy"],
+    color: "from-rose-500/20 to-red-500/20",
+    iconColor: "text-rose-400",
+    borderColor: "group-hover:border-rose-500/50",
   },
 ];
 
 const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
   const Icon = service.icon;
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [4, -4]), { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), { stiffness: 200, damping: 20 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
-    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-    setIsHovered(false);
-  };
 
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformPerspective: 800,
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      className="will-change-transform"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
       <Link
         href={service.path}
-        className="group relative block h-full rounded-3xl border border-border/20 bg-card/25 backdrop-blur-sm overflow-hidden transition-all duration-700 hover:border-[hsl(var(--primary)/0.3)]"
+        className={`group relative flex flex-col h-full p-8 rounded-3xl border border-border/40 bg-card/40 backdrop-blur-md overflow-hidden transition-all duration-500 ${service.borderColor} hover:bg-card/60 hover:-translate-y-1 hover:shadow-2xl`}
       >
-        {/* Animated spotlight that follows cursor */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{
-            background: useTransform(
-              [mouseX, mouseY],
-              ([x, y]: number[]) =>
-                `radial-gradient(500px circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, hsl(${service.accent} / 0.08), transparent 60%)`
-            ),
-          }}
-        />
+        {/* Background Gradient Glow on Hover */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
-        {/* Top accent line */}
-        <div
-          className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{
-            background: `linear-gradient(90deg, transparent, hsl(${service.accent} / 0.6), transparent)`,
-          }}
-        />
-
-        {/* Large background number */}
-        <div
-          className="absolute -right-3 -top-6 text-[10rem] font-black text-foreground/[0.015] group-hover:text-foreground/[0.04] transition-colors duration-700 pointer-events-none select-none leading-none"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-        >
-          {service.number}
-        </div>
-
-        <div className="relative z-10 p-8 md:p-9 h-full flex flex-col">
-          {/* Top: number + icon */}
-          <div className="flex items-start justify-between mb-8">
-            <span className="text-xs font-mono text-muted-foreground/30 group-hover:text-muted-foreground/50 transition-colors">
-              {service.number}
-            </span>
-            <motion.div
-              animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-500"
-              style={{
-                borderColor: isHovered ? `hsl(${service.accent} / 0.3)` : "hsl(var(--border) / 0.2)",
-                background: isHovered ? `hsl(${service.accent} / 0.12)` : "hsl(var(--secondary) / 0.3)",
-              }}
-            >
-              <Icon
-                className="w-6 h-6 transition-colors duration-500"
-                style={{ color: isHovered ? `hsl(${service.accent})` : "hsl(var(--muted-foreground) / 0.5)" }}
-              />
-            </motion.div>
+        <div className="relative z-10 flex flex-col h-full">
+          {/* Icon Header */}
+          <div className="mb-6 flex items-center justify-between">
+            <div className="w-14 h-14 rounded-2xl bg-background/50 border border-border/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
+              <Icon className={`w-7 h-7 ${service.iconColor}`} />
+            </div>
           </div>
 
-          {/* Title */}
-          <h3
-            className="text-2xl font-bold text-foreground mb-3 tracking-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
+          {/* Text Content */}
+          <h3 className="text-2xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             {service.title}
           </h3>
-
-          {/* Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed mb-6 flex-1">
+          <p className="text-muted-foreground leading-relaxed flex-1">
             {service.desc}
           </p>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {service.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2.5 py-1 rounded-md text-[10px] font-medium border transition-all duration-500"
-                style={{
-                  borderColor: isHovered ? `hsl(${service.accent} / 0.15)` : "hsl(var(--border) / 0.15)",
-                  color: isHovered ? `hsl(${service.accent} / 0.8)` : "hsl(var(--muted-foreground) / 0.5)",
-                  background: isHovered ? `hsl(${service.accent} / 0.06)` : "transparent",
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="flex items-center justify-between pt-5 border-t border-border/10 group-hover:border-[hsl(var(--primary)/0.15)] transition-colors duration-500">
-            <span className="text-sm font-semibold text-muted-foreground/50 group-hover:text-foreground transition-colors duration-300">
+          {/* Footer CTA */}
+          <div className="mt-8 pt-6 border-t border-border/40 flex items-center justify-between group-hover:border-border/80 transition-colors">
+            <span className="font-semibold text-foreground/80 group-hover:text-foreground transition-colors">
               Explore Service
             </span>
-            <div
-              className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500"
-              style={{
-                borderColor: isHovered ? `hsl(${service.accent} / 0.4)` : "hsl(var(--border) / 0.2)",
-                background: isHovered ? `hsl(${service.accent} / 0.1)` : "transparent",
-              }}
-            >
-              <ArrowUpRight
-                className="w-4 h-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                style={{ color: isHovered ? `hsl(${service.accent})` : "hsl(var(--muted-foreground) / 0.4)" }}
-              />
+            <div className="w-8 h-8 rounded-full bg-background/50 flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-all duration-300">
+              <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
             </div>
           </div>
         </div>
@@ -205,54 +104,51 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 };
 
 const ServicesSection = () => (
-  <section id="services" className="relative z-10 py-16 px-6 overflow-hidden">
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.03),transparent_70%)] pointer-events-none" />
-
+  <section id="services" className="relative z-10 py-20 px-6">
     <div className="max-w-7xl mx-auto">
+      
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 mb-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs text-primary font-semibold tracking-wider uppercase">WHAT WE DO</span>
-          </div>
-          <h2
-            className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-foreground"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Built for contracts,
-            <br />
-            commerce & <span className="text-gradient-cyan">growth</span>
-          </h2>
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-xs text-primary font-bold tracking-widest uppercase">What We Do</span>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
+        
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-muted-foreground text-sm leading-relaxed max-w-sm lg:text-right"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-           Everything you need to scale your business, under one roof. From winning government tenders to complete digital transformation, we are your strategic partner.
+          Built for contracts, <br className="hidden md:block" />
+          <span className="text-gradient-cyan">commerce & growth</span>
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-lg text-muted-foreground leading-relaxed"
+        >
+          Everything you need to scale your business, under one roof. From winning government tenders to complete digital transformation, we are your strategic partner.
         </motion.p>
       </div>
 
-      {/* Cards grid — 3 + 2 layout */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.slice(0, 3).map((service, i) => (
+      {/* Services Grid (Classic 3 Column) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {services.map((service, i) => (
           <ServiceCard key={service.path} service={service} index={i} />
         ))}
       </div>
-      <div className="grid md:grid-cols-2 gap-5 mt-5 lg:max-w-[calc(66.666%-0.42rem)] lg:mx-auto">
-        {services.slice(3).map((service, i) => (
-          <ServiceCard key={service.path} service={service} index={i + 3} />
-        ))}
-      </div>
+      
     </div>
   </section>
 );

@@ -9,34 +9,61 @@ import Link from "next/link";
 
 const offices = [
   {
-    city: "Dubai, UAE",
-    label: "Regional HQ",
-    address: "Business Bay, Dubai, United Arab Emirates",
-    phone: "+971 4 XXX XXXX",
-    email: "dubai@rhinternational.com",
+    city: "Austin, USA",
+    label: "Global Headquarters",
+    address: "815 Brazos St, Austin, TX 78701, USA",
+    phone: "+1 (555) 123-4567",
+    email: "usa@rhinternationalsc.com",
     highlight: true,
+    timezone: "CST / GMT-6",
+    established: "2024",
+    team: "10+",
+    services: ["Global Strategy", "Corporate Partnerships", "Investments"],
+    accent: "213 65% 55%",
+  },
+  {
+    city: "Dubai, UAE",
+    label: "MENA Regional Hub",
+    address: "57QQ+MJX - Business Bay - Dubai - UAE",
+    phone: "+971 4 345 6789",
+    email: "dubai@rhinternationalsc.com",
+    highlight: false,
     timezone: "GMT+4",
     established: "2020",
     team: "15+",
-    services: ["Corporate Setup Sourcing", "Trade Business Verification"],
-    accent: "213 55% 50%",
+    services: ["Corporate Setup", "Trade Facilitation", "Sourcing"],
+    accent: "30 85% 55%",
   },
   {
     city: "Dhaka, Bangladesh",
-    label: "Head Office",
-    address: "Zahir Uddin Market, Mirer Bazar, Pubail, Gazipur",
+    label: "Head Office (Asia)",
+    address: "Banani, 66 Rd No-9, Dhaka 1213",
     phone: "+880 1319-855960",
-    email: "info@rhinternational.com",
+    email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
     established: "2015",
     team: "50+",
-    services: ["e-GP Tenders", "Commercial Print", "IT & Digital Visa Advisory"],
-    accent: "200 55% 48%",
+    services: ["Govt Tenders", "IT & Digital", "Consultation"],
+    accent: "120 50% 45%",
+  },
+  {
+    city: "Gazipur, Bangladesh",
+    label: "Operations & Print",
+    address: "Mirer Bazar, Tongi - Kaliganj - Gorashal - Pachdona Rd.",
+    phone: "+880 1319-855960",
+    email: "print@rhinternationalsc.com",
+    highlight: false,
+    timezone: "GMT+6",
+    established: "2018",
+    team: "30+",
+    services: ["Bulk Printing", "Packaging", "Logistics"],
+    accent: "280 60% 55%",
   },
 ];
 
 const countries = [
+  { name: "USA", flag: "🇺🇸", role: "Global Headquarters", projects: "25+" },
   { name: "Bangladesh", flag: "🇧🇩", role: "Headquarters & Operations", projects: "80+" },
   { name: "UAE", flag: "🇦🇪", role: "MIDDLE EAST SOURCING HUB", projects: "30+" },
   { name: "Portugal", flag: "🇵🇹", role: "VISA & TRAVEL ADVISORY", projects: "15+" },
@@ -45,7 +72,7 @@ const countries = [
 ];
 
 const stats = [
-  { value: "5+", label: "Countries", icon: Globe },
+  { value: "6+", label: "Countries", icon: Globe },
   { value: "65+", label: "Team Members", icon: Users },
   { value: "24/7", label: "Availability", icon: Clock },
   { value: "100+", label: "Projects", icon: TrendingUp },
@@ -331,7 +358,7 @@ const GlobalPresence = () => (
           <p className="text-muted-foreground max-w-lg mx-auto">Where global strategy meets local execution. Here are the core hubs powering our worldwide operations.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {offices.map((office, i) => (
             <OfficeCard key={office.city} office={office} index={i} />
           ))}
