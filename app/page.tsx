@@ -2,16 +2,17 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
-import CTASection from "@/components/sections/CTASection";
-import FAQSection from "@/components/sections/FAQSection";
-import GlobalPresenceSection from "@/components/sections/GlobalPresenceSection";
-import PartnersSection from "@/components/sections/PartnersSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+
+const CaseStudiesSection = dynamic(() => import("@/components/sections/CaseStudiesSection"));
+const CTASection = dynamic(() => import("@/components/sections/CTASection"));
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection"));
+const GlobalPresenceSection = dynamic(() => import("@/components/sections/GlobalPresenceSection"));
+const PartnersSection = dynamic(() => import("@/components/sections/PartnersSection"));
+const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"));
+const TestimonialsSection = dynamic(() => import("@/components/sections/TestimonialsSection"));
+const WhyChooseUsSection = dynamic(() => import("@/components/sections/WhyChooseUsSection"));
 
 const GlobeBackground = dynamic(() => import("@/components/GlobeBackground"), { ssr: false });
 const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), { ssr: false });
