@@ -1,6 +1,20 @@
 import mongoose from 'mongoose';
 
-const BookingSchema = new mongoose.Schema(
+export interface IBooking extends mongoose.Document {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  website?: string;
+  service: string;
+  expert: string;
+  date: string;
+  time: string;
+  message: string;
+  status: 'pending' | 'confirmed' | 'cancelled';
+}
+
+const BookingSchema = new mongoose.Schema<IBooking>(
   {
     name: {
       type: String,
@@ -57,4 +71,4 @@ const BookingSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.Booking || mongoose.model('Booking', BookingSchema);
+export default mongoose.models.Booking as mongoose.Model<IBooking> || mongoose.model<IBooking>('Booking', BookingSchema);
