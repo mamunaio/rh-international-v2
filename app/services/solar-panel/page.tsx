@@ -1,7 +1,7 @@
 "use client";
 
 import ServicePageLayout from "@/components/ServicePageLayout";
-import { Zap, Tool, ShieldCheck, CheckCircle2, Battery, Settings, HandCoins, Image as ImageIcon } from "lucide-react";
+import { Zap, ShieldCheck, CheckCircle2, Battery, Settings, HandCoins, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 
 const SolarPanelService = () => (
