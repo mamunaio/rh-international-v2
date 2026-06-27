@@ -195,9 +195,11 @@ const GlobeScene = ({ onImageClick }: { onImageClick: (url: string) => void }) =
 const HeroSection = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [textIndex, setTextIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const rotatingTexts = ["Global Business", "Government Tenders", "Corporate Printing", "Web & IT Solutions", "Global Expansion"];
 
   useEffect(() => {
+    setIsMounted(true);
     const interval = setInterval(() => {
       setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3000);
@@ -340,12 +342,14 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-            <Canvas className="z-10" camera={{ position: [0, 0, 18], fov: 35 }} gl={{ alpha: true, antialias: true }}>
-              <Suspense fallback={null}>
-                <GlobeScene onImageClick={setSelectedImage} />
-                <Stars radius={100} depth={50} count={1000} factor={4} fade />
-              </Suspense>
-            </Canvas>
+            {isMounted && (
+              <Canvas className="z-10" camera={{ position: [0, 0, 18], fov: 35 }} gl={{ alpha: true, antialias: true }}>
+                <Suspense fallback={null}>
+                  <GlobeScene onImageClick={setSelectedImage} />
+                  <Stars radius={100} depth={50} count={1000} factor={4} fade />
+                </Suspense>
+              </Canvas>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -668,31 +668,38 @@ function CameraRig() {
   return null;
 }
 
-const Globe3DScene = () => (
-  <div className="relative w-full" style={{ height: "min(85vh, 750px)" }}>
-    <Canvas
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      dpr={[1, 2]}
-      style={{ background: "transparent" }}
-    >
-      <CameraRig />
-      <ambientLight intensity={0.06} />
-      <directionalLight position={[5, 3, 5]} intensity={0.12} color="#dbeafe" />
-      <pointLight position={[-3, 2, -3]} intensity={0.2} color="#4785d1" />
-      <pointLight position={[2, -2, 4]} intensity={0.08} color="#4785d1" />
-      <pointLight position={[0, 3, 0]} intensity={0.05} color="#6b9fdf" />
-      <Globe3D />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate={false}
-        minPolarAngle={Math.PI * 0.3}
-        maxPolarAngle={Math.PI * 0.7}
-        rotateSpeed={0.3}
-      />
-    </Canvas>
-    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
-  </div>
-);
+const Globe3DScene = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
+  return (
+    <div className="relative w-full" style={{ height: "min(85vh, 750px)" }}>
+      {isMounted && (
+        <Canvas
+          gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+          dpr={[1, 2]}
+          style={{ background: "transparent" }}
+        >
+          <CameraRig />
+          <ambientLight intensity={0.06} />
+          <directionalLight position={[5, 3, 5]} intensity={0.12} color="#dbeafe" />
+          <pointLight position={[-3, 2, -3]} intensity={0.2} color="#4785d1" />
+          <pointLight position={[2, -2, 4]} intensity={0.08} color="#4785d1" />
+          <pointLight position={[0, 3, 0]} intensity={0.05} color="#6b9fdf" />
+          <Globe3D />
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate={false}
+            minPolarAngle={Math.PI * 0.3}
+            maxPolarAngle={Math.PI * 0.7}
+            rotateSpeed={0.3}
+          />
+        </Canvas>
+      )}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+    </div>
+  );
+};
 
 export default Globe3DScene;

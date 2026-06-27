@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -370,22 +370,29 @@ function CameraSetup() {
 }
 
 // ── Exported Component ──
-const GlobeBackground = () => (
-  <div className="fixed inset-0 z-0 pointer-events-none" style={{ opacity: 0.35 }}>
-    <Canvas
-      gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
-      dpr={[1, 1.5]}
-      style={{ background: "transparent" }}
-    >
-      <CameraSetup />
+const GlobeBackground = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
+
+  return (
+    <div className="fixed inset-0 z-0 pointer-events-none" style={{ opacity: 0.35 }}>
+      {isMounted && (
+        <Canvas
+          gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
+          dpr={[1, 1.5]}
+          style={{ background: "transparent" }}
+        >
+          <CameraSetup />
       <ambientLight intensity={0.08} />
       <directionalLight position={[5, 3, 5]} intensity={0.1} color="#a8c4e0" />
       <pointLight position={[-3, 2, -3]} intensity={0.12} color={BLUE} />
       <pointLight position={[2, -1, 3]} intensity={0.06} color={GREEN} />
       <pointLight position={[0, 3, -2]} intensity={0.04} color={ORANGE} />
       <GlobeGroup />
-    </Canvas>
-  </div>
-);
+        </Canvas>
+      )}
+    </div>
+  );
+};
 
 export default GlobeBackground;

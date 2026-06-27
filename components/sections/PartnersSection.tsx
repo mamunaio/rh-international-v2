@@ -2,18 +2,19 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 // Here we define the paths for the partner logos.
 // The user needs to place the actual image files inside the "public/images/partners" folder.
 const partners = [
-  { name: "Construction Investment CMC", logo: "/images/partners/cmc.png" },
-  { name: "ZTE Corporation", logo: "/images/partners/zte.png" },
-  { name: "Huawei", logo: "/images/partners/huawei.png" },
-  { name: "Bangladesh BCC", logo: "/images/partners/bcc.png" },
-  { name: "Bangladesh ICT", logo: "/images/partners/ict.png" },
-  { name: "Dubai Real Estate", logo: "/images/partners/dubai.png" },
-  { name: "Real Estate Investors", logo: "/images/partners/investors.png" },
-  { name: "Manpower Exchange", logo: "/images/partners/manpower.png" },
+  { name: "CMC", logo: "/images/partners/cmc.png", href: "/services/govt-supplies" },
+  { name: "ZTE Corporation", logo: "/images/partners/zte.png", href: "https://www.zte.com.cn/global/" },
+  { name: "Huawei", logo: "/images/partners/huawei.png", href: "https://www.huawei.com/en/" },
+  { name: "BCC", logo: "/images/partners/bcc.png", href: "http://bcc.gov.bd/" },
+  { name: "ICT", logo: "/images/partners/ict.png", href: "https://ictd.gov.bd/" },
+  { name: "Dubai Real Estate", logo: "/images/partners/dubai.png", href: "/services/dubai-real-estate" },
+  { name: "Real Estate Investors", logo: "/images/partners/investors.png", href: "/portfolio" },
+  { name: "Manpower Exchange", logo: "/images/partners/manpower.png", href: "/services/manpower" },
 ];
 
 const PartnersSection = () => (
@@ -45,27 +46,18 @@ const PartnersSection = () => (
             {[...Array(3)].map((_, rep) => (
               <div key={rep} className="flex items-center gap-6 px-3">
                 {partners.slice(0, 4).map((partner) => (
-                  <div
+                  <Link
+                    href={partner.href}
+                    target={partner.href.startsWith("http") ? "_blank" : undefined}
                     key={`${rep}-${partner.name}`}
-                    className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-default"
+                    className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-pointer"
                   >
-                    <div className="relative w-full h-full flex items-center justify-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                      {/* Using standard img tag to avoid Next.js Image strict domain/path requirements during development */}
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name}
-                        className="max-w-full max-h-full object-contain drop-shadow-md"
-                        onError={(e) => {
-                          // Fallback to text if image is missing
-                          (e.target as HTMLImageElement).style.display = 'none';
-                          (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <span className="hidden text-sm font-semibold text-center whitespace-normal text-muted-foreground group-hover:text-foreground">
+                    <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
+                      <span className="text-lg font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                         {partner.name}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ))}
@@ -80,25 +72,18 @@ const PartnersSection = () => (
             {[...Array(3)].map((_, rep) => (
               <div key={rep} className="flex items-center gap-6 px-3">
                 {partners.slice(4).map((partner) => (
-                  <div
+                  <Link
+                    href={partner.href}
+                    target={partner.href.startsWith("http") ? "_blank" : undefined}
                     key={`${rep}-${partner.name}`}
-                    className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-default"
+                    className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-pointer"
                   >
-                    <div className="relative w-full h-full flex items-center justify-center grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name}
-                        className="max-w-full max-h-full object-contain drop-shadow-md"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                          (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <span className="hidden text-sm font-semibold text-center whitespace-normal text-muted-foreground group-hover:text-foreground">
+                    <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
+                      <span className="text-lg font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                         {partner.name}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             ))}
