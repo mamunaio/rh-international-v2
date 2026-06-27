@@ -6,7 +6,7 @@ async function test() {
     port: 465,
     secure: true,
     auth: {
-      user: 'a.kias@rhinternationalsc.com',
+      user: 'info@rhinternationalsc.com',
       pass: '#A.kias@2026#!',
     },
     logger: true,

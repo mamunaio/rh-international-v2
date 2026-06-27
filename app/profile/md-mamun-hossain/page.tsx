@@ -176,7 +176,7 @@ export default function MdMamunHossainProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:mamun@rhinternationalsc.com" },
+                  { icon: Mail, label: "Email", href: "mailto:info@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a
@@ -196,7 +196,7 @@ export default function MdMamunHossainProfile() {
 
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Hossain;Md Mamun;;;\nFN:Md Mamun Hossain\nORG:RH International\nTITLE:Full Stack Web Developer & SEO Specialist\nEMAIL;TYPE=INTERNET:mamun@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Hossain;Md Mamun;;;\nFN:Md Mamun Hossain\nORG:RH International\nTITLE:Full Stack Web Developer & SEO Specialist\nEMAIL;TYPE=INTERNET:info@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");

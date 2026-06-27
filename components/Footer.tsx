@@ -7,16 +7,17 @@ import { motion } from "framer-motion";
 
 const serviceLinks = [
   { label: "Government Tenders", path: "/services/govt-tender" },
-  { label: "Commercial Printing", path: "/services/printing-press" },
   { label: "IT & Web Solutions", path: "/services/it-solution" },
   { label: "European Visa Advisory", path: "/services/travel-consultation" },
   { label: "Digital & E-Commerce", path: "/services/digital-service" },
+  { label: "Solar Panel Service", path: "/services/solar-panel" },
 ];
 
 const quickLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
   { label: "E-commerce Shop", path: "https://shop.rhinternationalsc.com/" },
+  { label: "Portfolio", path: "/portfolio" },
   { label: "Global Presence", path: "/global-presence" },
   { label: "Contact Us", path: "/contact" },
 ];
@@ -135,7 +136,9 @@ const Footer = () => {
         {/* --- SISTER CONCERN BADGE --- */}
         <div className="flex justify-center mt-12 mb-6 relative z-20">
           <motion.a 
-            href="#"
+            href="http://netbanglaltd.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group relative flex items-center gap-4 px-6 md:px-10 py-4 md:py-5 rounded-full bg-card/30 backdrop-blur-xl border border-border/30 shadow-lg hover:border-primary/40 hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500 cursor-pointer overflow-hidden"

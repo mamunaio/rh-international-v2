@@ -4,16 +4,16 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, Phone, TrendingUp, Users } from "lucide-react";
-import { useMemo, useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
 const offices = [
   {
     city: "Austin, USA",
-    label: "Global Headquarters",
-    address: "815 Brazos St, Austin, TX 78701, USA",
+    label: "Corporate Office",
+    address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     phone: "+1 (555) 123-4567",
-    email: "usa@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     highlight: true,
     timezone: "CST / GMT-6",
     established: "2024",
@@ -23,10 +23,10 @@ const offices = [
   },
   {
     city: "Dubai, UAE",
-    label: "MENA Regional Hub",
-    address: "57QQ+MJX - Business Bay - Dubai - UAE",
+    label: "Branch Office",
+    address: "57QQ+MJX, Business Bay, Dubai",
     phone: "+971 4 345 6789",
-    email: "dubai@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+4",
     established: "2020",
@@ -36,8 +36,8 @@ const offices = [
   },
   {
     city: "Dhaka, Bangladesh",
-    label: "Head Office (Asia)",
-    address: "Banani, 66 Rd No-9, Dhaka 1213",
+    label: "Head Office",
+    address: "NVB Tower, 66 Rd No-9, Banani, Dhaka 1213",
     phone: "+880 1319-855960",
     email: "info@rhinternationalsc.com",
     highlight: false,
@@ -49,10 +49,10 @@ const offices = [
   },
   {
     city: "Gazipur, Bangladesh",
-    label: "Operations & Print",
+    label: "Zone Office",
     address: "Mirer Bazar, Tongi - Kaliganj - Gorashal - Pachdona Rd.",
     phone: "+880 1319-855960",
-    email: "print@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
     established: "2018",
@@ -63,7 +63,7 @@ const offices = [
 ];
 
 const countries = [
-  { name: "USA", flag: "🇺🇸", role: "Global Headquarters", projects: "25+" },
+  { name: "USA", flag: "🇺🇸", role: "Corporate Office", projects: "25+" },
   { name: "Bangladesh", flag: "🇧🇩", role: "Headquarters & Operations", projects: "80+" },
   { name: "UAE", flag: "🇦🇪", role: "MIDDLE EAST SOURCING HUB", projects: "30+" },
   { name: "Portugal", flag: "🇵🇹", role: "VISA & TRAVEL ADVISORY", projects: "15+" },
@@ -80,17 +80,23 @@ const stats = [
 
 // Floating particles for hero
 const HeroParticles = () => {
-  const particles = useMemo(
-    () => Array.from({ length: 25 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 2.5 + 1,
-      duration: Math.random() * 12 + 8,
-      delay: Math.random() * 4,
-    })),
-    []
-  );
+  const [particles, setParticles] = useState<any[]>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 25 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2.5 + 1,
+        duration: Math.random() * 12 + 8,
+        delay: Math.random() * 4,
+      }))
+    );
+  }, []);
+
+  if (particles.length === 0) return null;
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {particles.map((p) => (
@@ -405,23 +411,30 @@ const GlobalPresence = () => (
               whileHover={{ scale: 1.06, y: -4 }}
               className="rounded-2xl relative group overflow-hidden"
             >
-              {/* Hover glow border */}
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Link href={`/countries/${c.name.toLowerCase()}`} className="block h-full w-full">
+                {/* Hover glow border */}
+                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative rounded-2xl border border-border/15 bg-card/25 backdrop-blur-sm p-6 text-center">
-                <motion.span
-                  className="text-4xl mb-4 block"
-                  whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {c.flag}
-                </motion.span>
-                <h3 className="text-sm font-bold text-foreground mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {c.name}
-                </h3>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">{c.role}</p>
-                <div className="text-xs font-semibold text-primary">{c.projects} Projects</div>
-              </div>
+                <div className="relative h-full rounded-2xl border border-border/15 bg-card/25 backdrop-blur-sm p-6 text-center transition-colors group-hover:bg-card/40">
+                  <motion.span
+                    className="text-4xl mb-4 block"
+                    whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {c.flag}
+                  </motion.span>
+                  <h3 className="text-sm font-bold text-foreground mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {c.name}
+                  </h3>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-3">{c.role}</p>
+                  <div className="text-xs font-semibold text-primary">{c.projects} Projects</div>
+                  
+                  {/* Explore button hint */}
+                  <div className="mt-4 flex items-center justify-center gap-1 text-[10px] uppercase tracking-widest text-primary/0 group-hover:text-primary transition-all font-bold translate-y-2 group-hover:translate-y-0">
+                    View Case Study <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

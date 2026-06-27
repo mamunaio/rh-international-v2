@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   Landmark, Printer, Monitor, Plane, Building2, Lightbulb,
-  ArrowRight, Globe, Target, CheckCircle2, Rocket, Search
+  ArrowRight, Globe, Target, CheckCircle2, Rocket, Search, Zap, Users, ShieldCheck
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 const services = [
   {
@@ -17,16 +18,8 @@ const services = [
     path: "/services/govt-tender",
     tag: "Procurement",
     stats: "98% Win Rate",
-    span: "lg:col-span-2"
-  },
-  {
-    title: "Printing Press",
-    desc: "Industrial-grade PVC card, bag, and commercial printing with precision machinery and fast turnaround.",
-    icon: Printer,
-    path: "/services/printing-press",
-    tag: "Manufacturing",
-    stats: "500K+ Delivered",
-    span: "lg:col-span-1"
+    span: "lg:col-span-2",
+    image: "/portfolio/services/govt.png"
   },
   {
     title: "IT Solution",
@@ -35,7 +28,8 @@ const services = [
     path: "/services/it-solution",
     tag: "Technology",
     stats: "99.9% Uptime",
-    span: "lg:col-span-1"
+    span: "lg:col-span-1",
+    image: "/portfolio/services/it.png"
   },
   {
     title: "Travel Consultation",
@@ -44,7 +38,8 @@ const services = [
     path: "/services/travel-consultation",
     tag: "Immigration",
     stats: "200+ Visas Approved",
-    span: "lg:col-span-2"
+    span: "lg:col-span-1",
+    image: "/portfolio/services/travel.png"
   },
   {
     title: "Dubai Office",
@@ -53,7 +48,8 @@ const services = [
     path: "/services/dubai-office",
     tag: "UAE Operations",
     stats: "Fast-track Setup",
-    span: "lg:col-span-2"
+    span: "lg:col-span-2",
+    image: "/portfolio/services/dubai.png"
   },
   {
     title: "Digital Service",
@@ -62,7 +58,38 @@ const services = [
     path: "/services/digital-service",
     tag: "Digital",
     stats: "320% ROI",
-    span: "lg:col-span-1"
+    span: "lg:col-span-1",
+    image: "/portfolio/services/digital.png"
+  },
+  {
+    title: "Solar Panel Service",
+    desc: "Installation, repair, and supply of high-efficiency solar panel systems for a greener future.",
+    icon: Zap,
+    path: "/services/solar-panel",
+    tag: "Energy",
+    stats: "Cost Efficient",
+    span: "lg:col-span-2",
+    image: "/portfolio/solar/commercial.png"
+  },
+  {
+    title: "Global Manpower",
+    desc: "Specialized recruitment for Denmark, Spain, and Portugal. We ensure transparent processing and flawless visa documentation.",
+    icon: Users,
+    path: "/services/manpower",
+    tag: "Recruitment",
+    stats: "98% Success",
+    span: "lg:col-span-2",
+    image: "/images/services/manpower.png"
+  },
+  {
+    title: "Cyber Security & Auditing",
+    desc: "Protect your digital assets with enterprise-grade penetration testing and website auditing.",
+    icon: ShieldCheck,
+    path: "/services/cyber-security",
+    tag: "Security",
+    stats: "OWASP Compliant",
+    span: "lg:col-span-1",
+    image: "/images/services/cyber_dashboard.png"
   },
 ];
 
@@ -132,6 +159,19 @@ const ServicesIndex = () => (
             whileHover={{ y: -5 }}
             className={`group relative rounded-[2rem] bg-card/40 backdrop-blur-xl border border-border/40 overflow-hidden flex flex-col shadow-lg ${service.span}`}
           >
+            {/* Background Image */}
+            {service.image && (
+              <>
+                <Image 
+                  src={service.image} 
+                  alt={service.title}
+                  fill
+                  className="object-cover opacity-20 group-hover:opacity-30 transition-all duration-700 group-hover:scale-110 pointer-events-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-background/30 pointer-events-none" />
+              </>
+            )}
+
             {/* Glowing Neon Hover Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             

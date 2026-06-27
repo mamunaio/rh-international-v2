@@ -269,7 +269,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.7 }}
             >
-             Whether you need to win government tenders, source premium commercial printing, or build a scalable digital brand, we’ve got you covered. We simplify complex challenges so you can focus on growing your business.
+             Whether you need to win government tenders, source premium solar panels, or build a scalable digital brand, we’ve got you covered. We simplify complex challenges so you can focus on growing your business.
             </motion.p>
 
             <motion.div

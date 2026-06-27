@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, TrendingUp, Award, Printer, Monitor, Plane } from "lucide-react";
+import { ArrowRight, ArrowUpRight, TrendingUp, Award, Zap, Monitor, Plane } from "lucide-react";
 import Link from "next/link";
 
 const caseStudies = [
@@ -21,16 +21,16 @@ const caseStudies = [
   },
   {
     id: 2,
-    title: "Delivering 500K+ Branded Items Ahead of Time",
-    client: "National Retail Chain",
-    industry: "COMMERCIAL PRINTING",
-    icon: Printer,
+    title: "Large-scale Commercial Solar Panel Installation",
+    client: "National Manufacturing Plant",
+    industry: "SOLAR ENERGY",
+    icon: Zap,
     metrics: [
-      { label: "Units Delivered", value: "500K+" },
-      { label: "Time Saved", value: "40%" },
+      { label: "Energy Offset", value: "85%" },
+      { label: "Cost Saved", value: "$400K+" },
     ],
-    description: "When a major retail brand needed half a million custom PVC cards and tote bags in record time, we delivered the entire batch flawlessly—without a single defect.",
-    tags: ["PVC Cards", "Bag Printing", "Bulk"],
+    description: "When a major manufacturing plant needed to reduce energy costs and meet sustainability goals, we installed a high-efficiency solar grid ahead of schedule.",
+    tags: ["Solar Grid", "Green Energy", "Efficiency"],
     result: "Delivered 2 weeks early",
   },
   {

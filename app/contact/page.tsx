@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { z } from "zod";
 
@@ -18,33 +18,34 @@ const contactSchema = z.object({
 
 const contactInfo = [
   { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com", accent: "213 55% 50%" },
-  { icon: Phone, label: "Call Us", value: "+880 1319-855960", href: "tel:+8801319855960", accent: "200 55% 48%" },
-  { icon: Clock, label: "Working Hours", value: "Sat - Thu, 9:00 AM - 6:00 PM (GMT+6)", href: undefined, accent: "35 80% 55%" },
+  { icon: MessageCircle, label: "WhatsApp", value: "+880 1319-855960", href: "https://wa.me/8801319855960", accent: "142 70% 45%" },
+  { icon: MessageCircle, label: "WeChat", value: "+60 1164327651", href: undefined, accent: "142 70% 45%" },
+  { icon: Globe, label: "Website", value: "www.rhinternationalsc.com", href: "https://www.rhinternationalsc.com", accent: "200 55% 48%" },
 ];
 
 const globalOffices = [
   {
     city: "Austin, USA",
-    label: "Global Headquarters",
-    address: "815 Brazos St, Austin, TX 78701, USA",
+    label: "Corporate Office",
+    address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     phone: "+1 (555) 123-4567",
-    email: "usa@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "CST / GMT-6",
     image: "/images/offices/austin.png",
   },
   {
     city: "Dubai, UAE",
-    label: "MENA Regional Hub",
-    address: "57QQ+MJX - Business Bay - Dubai - UAE",
+    label: "Branch Office",
+    address: "57QQ+MJX, Business Bay, Dubai",
     phone: "+971 4 345 6789",
-    email: "dubai@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "GMT+4",
     image: "/images/offices/dubai.png",
   },
   {
     city: "Dhaka, Bangladesh",
-    label: "Head Office (Asia)",
-    address: "Banani, 66 Rd No-9, Dhaka 1213",
+    label: "Head Office",
+    address: "NVB Tower, 66 Rd No-9, Banani, Dhaka 1213",
     phone: "+880 1319-855960",
     email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
@@ -52,10 +53,10 @@ const globalOffices = [
   },
   {
     city: "Gazipur, Bangladesh",
-    label: "Operations & Print",
+    label: "Zone Office",
     address: "Mirer Bazar, Tongi - Kaliganj Rd.",
     phone: "+880 1319-855960",
-    email: "print@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
     image: "/images/offices/gazipur.png",
   },
@@ -63,6 +64,12 @@ const globalOffices = [
 
 // Particles
 const HeroParticles = () => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const particles = useMemo(
     () => Array.from({ length: 20 }, (_, i) => ({
       id: i, x: Math.random() * 100, y: Math.random() * 100,
@@ -70,6 +77,9 @@ const HeroParticles = () => {
     })),
     []
   );
+
+  if (!mounted) return null;
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((p) => (
@@ -97,7 +107,7 @@ const Contact = () => {
     setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -109,11 +119,23 @@ const Contact = () => {
       return;
     }
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Failed to send message");
+
       toast({ title: "Message sent!", description: "We'll get back to you within 24 hours." });
       setForm({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+    } catch (err) {
+      toast({ title: "Error", description: "Failed to send message. Please try again later.", variant: "destructive" });
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputClass = (name: string) =>
@@ -218,18 +240,18 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Name</label>
+                      <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Name <span className="text-destructive">*</span></label>
                       <input
-                        name="name" value={form.name} onChange={handleChange} placeholder="John Doe"
+                        name="name" value={form.name} onChange={handleChange} placeholder="John Doe" required
                         onFocus={() => setFocusedField("name")} onBlur={() => setFocusedField(null)}
                         className={inputClass("name")}
                       />
                       {errors.name && <p className="text-xs text-destructive mt-2 ml-1">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Email</label>
+                      <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Email <span className="text-destructive">*</span></label>
                       <input
-                        name="email" value={form.email} onChange={handleChange} placeholder="john@company.com"
+                        name="email" value={form.email} onChange={handleChange} placeholder="john@company.com" required
                         onFocus={() => setFocusedField("email")} onBlur={() => setFocusedField(null)}
                         className={inputClass("email")}
                       />
@@ -238,9 +260,9 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Subject</label>
+                    <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Subject <span className="text-destructive">*</span></label>
                     <input
-                      name="subject" value={form.subject} onChange={handleChange} placeholder="How can we help your business grow?"
+                      name="subject" value={form.subject} onChange={handleChange} placeholder="How can we help your business grow?" required
                       onFocus={() => setFocusedField("subject")} onBlur={() => setFocusedField(null)}
                       className={inputClass("subject")}
                     />
@@ -248,9 +270,9 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Message</label>
+                    <label className="block text-xs text-foreground font-bold uppercase tracking-widest mb-3 ml-1">Message <span className="text-destructive">*</span></label>
                     <textarea
-                      name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your project or requirements..."
+                      name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your project or requirements..." required
                       rows={6}
                       onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)}
                       className={`${inputClass("message")} resize-none`}
@@ -381,7 +403,13 @@ const Contact = () => {
                   </div>
 
                   <h3 className="text-4xl font-bold text-white mb-6 drop-shadow-md" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                    {office.city}
+                    {office.city.includes(', USA') ? (
+                      <>
+                        {office.city.split(', USA')[0]}<span className="text-xl text-white/70 ml-1 font-medium">, USA</span>
+                      </>
+                    ) : (
+                      office.city
+                    )}
                   </h3>
 
                   <div className="space-y-3 translate-y-4 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, Landmark, Printer, Monitor, Plane, Building2, Lightbulb, ShoppingBag, Globe, Users, Mail, LogIn, LogOut, User, LayoutDashboard, Package, ShoppingCart, Ticket } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Landmark, Printer, Monitor, Plane, Building2, Lightbulb, ShoppingBag, Globe, Users, Mail, LogIn, LogOut, User, LayoutDashboard, Package, ShoppingCart, Ticket, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import QuoteModal from "./QuoteModal";
 import { useAuth } from "@/hooks/use-auth";
@@ -23,13 +23,14 @@ const servicesCategories = [
     title: "Business",
     items: [
       { label: "Govt Tender", path: "/services/govt-tender", icon: Landmark, desc: "Procurement & consultancy" },
-      { label: "Printing Press", path: "/services/printing-press", icon: Printer, desc: "PVC & bag printing" },
+      { label: "Solar Panel Service", path: "/services/solar-panel", icon: Lightbulb, desc: "Installation, Repair & Supply" },
     ],
   },
   {
     title: "International",
     items: [
       { label: "Travel Consultation", path: "/services/travel-consultation", icon: Plane, desc: "Visa & travel advisory" },
+      { label: "Global Manpower", path: "/services/manpower", icon: Users, desc: "Denmark, Spain, Portugal" },
     ],
   },
 ];
@@ -40,6 +41,7 @@ const techCategories = [
     items: [
       { label: "IT Solution", path: "/services/it-solution", icon: Monitor, desc: "Web dev, SEO & infrastructure" },
       { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation" },
+      { label: "Cyber Security & Auditing", path: "/services/cyber-security", icon: ShieldCheck, desc: "Pentest & vulnerability audits" },
     ],
   }
 ];
@@ -49,6 +51,7 @@ const navLinks = [
   { label: "Services", path: "/services", megaCategories: servicesCategories, width: "w-[500px]" },
   { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[320px]" },
   { label: "Global Presence", path: "/global-presence" },
+  { label: "Portfolio", path: "/portfolio" },
   { label: "Team", path: "/team" },
   { label: "Contact", path: "/contact" },
 ];
@@ -212,12 +215,13 @@ const Navbar = () => {
                                 View all services
                                 <ArrowRight className="w-3.5 h-3.5 group-hover/all:translate-x-1 transition-transform" />
                               </Link>
-                              <button
-                                onClick={() => { setActiveMega(null); setQuoteOpen(true); }}
-                                className="px-4 py-2 text-xs font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_15px_hsl(var(--primary)/0.2)]"
+                              <Link
+                                href="/booking"
+                                onClick={() => setActiveMega(null)}
+                                className="px-4 py-2 text-xs font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_15px_hsl(var(--primary)/0.2)] inline-block text-center"
                               >
                                 Get a Quote
-                              </button>
+                              </Link>
                             </div>
                           )}
                         </div>
@@ -303,30 +307,14 @@ const Navbar = () => {
 
           {/* CTA + Auth + Mobile toggle */}
           <div className="flex items-center gap-3">
-            {user ? (
-              <button
-                onClick={async () => { await signOut(); navigate.push("/"); }}
-                className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border/30 rounded-xl hover:bg-secondary/40 transition-all"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                Sign Out
-              </button>
-            ) : (
-              <Link
-                href="/auth"
-                className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground border border-border/30 rounded-xl hover:bg-secondary/40 transition-all"
-              >
-                <LogIn className="w-3.5 h-3.5" />
-                Sign In
-              </Link>
-            )}
-            <button
-              onClick={() => setQuoteOpen(true)}
+
+            <Link
+              href="/booking"
               className="hidden lg:flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-[0_0_25px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98]"
             >
               Get a Quote
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
 
             <button
               onClick={() => setOpen(!open)}
@@ -452,12 +440,13 @@ const Navbar = () => {
                   </div>
                 )}
                 <div className="pt-3 mt-2 border-t border-border/20">
-                  <button
-                    onClick={() => { setOpen(false); setQuoteOpen(true); }}
+                  <Link
+                    href="/booking"
+                    onClick={() => setOpen(false)}
                     className="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold bg-primary text-primary-foreground rounded-xl"
                   >
                     Get a Quote <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

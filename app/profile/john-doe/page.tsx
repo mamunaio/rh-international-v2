@@ -175,7 +175,7 @@ export default function JohnDoeProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:john@rhinternationalsc.com" },
+                  { icon: Mail, label: "Email", href: "mailto:info@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a
@@ -195,7 +195,7 @@ export default function JohnDoeProfile() {
 
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;;\nFN:John Doe\nORG:RH International\nTITLE:Global Operations Manager\nEMAIL;TYPE=INTERNET:john@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;;\nFN:John Doe\nORG:RH International\nTITLE:Global Operations Manager\nEMAIL;TYPE=INTERNET:info@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");

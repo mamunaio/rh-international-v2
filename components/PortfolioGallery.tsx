@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export interface Project {
   id: string;
@@ -115,6 +116,16 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
             </motion.div>
           ))}
         </AnimatePresence>
+      </div>
+
+      <div className="mt-12 flex justify-center">
+        <Link 
+          href="/portfolio"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold tracking-wide hover:shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:-translate-y-1 transition-all duration-300"
+        >
+          View All Portfolio
+          <ArrowUpRight className="w-5 h-5" />
+        </Link>
       </div>
 
       {/* Modal Popup */}

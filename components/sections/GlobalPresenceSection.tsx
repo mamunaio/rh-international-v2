@@ -7,10 +7,10 @@ import Link from "next/link";
 const offices = [
   {
     city: "Austin, USA",
-    label: "Global Headquarters",
-    address: "815 Brazos St, Austin, TX 78701, USA",
+    label: "Corporate Office",
+    address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     phone: "+1 (555) 123-4567", // Placeholder, you can update this later
-    email: "usa@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "CST / GMT-6",
     services: ["Global Strategy", "Corporate Partnerships", "Investments"],
     color: "from-blue-500/20 to-indigo-500/20",
@@ -22,10 +22,10 @@ const offices = [
   },
   {
     city: "Dubai, UAE",
-    label: "MENA Regional Hub",
-    address: "57QQ+MJX - Business Bay - Dubai - United Arab Emirates",
+    label: "Branch Office",
+    address: "57QQ+MJX, Business Bay, Dubai",
     phone: "+971 4 345 6789", // Placeholder
-    email: "dubai@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "GMT+4",
     services: ["Corporate Setup", "Trade Facilitation"],
     color: "from-amber-500/20 to-orange-500/20",
@@ -37,8 +37,8 @@ const offices = [
   },
   {
     city: "Dhaka, Bangladesh",
-    label: "Head Office (Asia)",
-    address: "Banani, 66 Rd No-9, Dhaka 1213",
+    label: "Head Office",
+    address: "NVB Tower, 66 Rd No-9, Banani, Dhaka 1213",
     phone: "+880 1319-855960",
     email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
@@ -52,10 +52,10 @@ const offices = [
   },
   {
     city: "Gazipur, Bangladesh",
-    label: "Operations & Print",
+    label: "Zone Office",
     address: "Mirer Bazar, Tongi - Kaliganj - Gorashal - Pachdona Rd.",
     phone: "+880 1319-855960",
-    email: "print@rhinternationalsc.com",
+    email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
     services: ["Bulk Printing", "Packaging", "Logistics"],
     color: "from-purple-500/20 to-pink-500/20",
@@ -130,7 +130,13 @@ const GlobalPresenceSection = () => {
                       {office.label}
                     </span>
                     <h3 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                      {office.city}
+                      {office.city.includes(', USA') ? (
+                        <>
+                          {office.city.split(', USA')[0]}<span className="text-lg md:text-xl text-muted-foreground ml-1 font-medium">, USA</span>
+                        </>
+                      ) : (
+                        office.city
+                      )}
                     </h3>
                     <p className="text-muted-foreground font-mono mt-2">{office.timezone}</p>
                   </div>

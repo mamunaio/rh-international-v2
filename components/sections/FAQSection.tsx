@@ -8,7 +8,7 @@ import Link from "next/link";
 const faqs = [
   {
     q: "What exactly does RH International do?",
-    a: "Think of us as your all-in-one business growth partner. We handle everything from winning government tenders and bulk commercial printing, to building ultra-modern IT & e-commerce platforms, and even managing European travel visas.",
+    a: "Think of us as your all-in-one business growth partner. We handle everything from winning government tenders and solar panel installations, to building ultra-modern IT & e-commerce platforms, and even managing European travel visas.",
     category: "General",
   },
   {

@@ -14,7 +14,9 @@ import { format } from "date-fns";
 const bookingSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
   email: z.string().trim().email("Invalid email address").max(255),
-  company: z.string().trim().max(100).optional(),
+  company: z.string().trim().min(1, "Company name is required").max(100),
+  phone: z.string().trim().min(1, "Phone/WhatsApp is required").max(20),
+  website: z.string().trim().max(255).optional(),
   service: z.string().trim().min(1, "Service type is required"),
   expert: z.string().trim().optional(),
   message: z.string().trim().min(1, "Message is required").max(2000),
@@ -28,9 +30,11 @@ const experts = [
 
 const services = [
   "Government e-GP Tenders",
-  "Commercial Printing & Sourcing",
+  "Solar Panel Service",
   "IT & Web Application Solutions",
+  "Cyber Security & Auditing",
   "European Visa & Travel Advisory",
+  "Global Manpower Solutions",
   "Digital Marketing & E-Commerce",
   "General Business Consultation",
 ];
@@ -53,11 +57,39 @@ const BookingContent = () => {
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+
+  useEffect(() => {
+    const fetchBookedSlots = async () => {
+      if (!date) return;
+      setLoadingSlots(true);
+      try {
+        const dateOnly = date.toISOString().split('T')[0];
+        const res = await fetch(`/api/booking?date=${dateOnly}`, { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          setBookedSlots(data.bookedSlots || []);
+        } else {
+          setBookedSlots([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch booked slots", err);
+        setBookedSlots([]);
+      } finally {
+        setLoadingSlots(false);
+      }
+    };
+    fetchBookedSlots();
+  }, [date]);
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
+    phone: "",
+    website: "",
     service: "",
     expert: expertParam || "any",
     message: "",
@@ -116,7 +148,7 @@ const BookingContent = () => {
         }
         setStep(3); // Success step
       } else {
-        toast({ title: "Error", description: "Failed to send booking request.", variant: "destructive" });
+        toast({ title: "Error", description: data.error || "Failed to send booking request.", variant: "destructive" });
       }
     } catch (err) {
       toast({ title: "Error", description: "Something went wrong.", variant: "destructive" });
@@ -205,8 +237,21 @@ const BookingContent = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-xs font-bold text-foreground uppercase tracking-widest mb-3 ml-1">Company (Optional)</label>
+                      <label className="block text-xs font-bold text-foreground uppercase tracking-widest mb-3 ml-1">Phone / WhatsApp *</label>
+                      <input name="phone" value={form.phone} onChange={handleChange} className={inputClass("phone")} placeholder="+1 234 567 890" />
+                      {errors.phone && <p className="text-xs text-destructive mt-2 ml-1">{errors.phone}</p>}
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-foreground uppercase tracking-widest mb-3 ml-1">Company *</label>
                       <input name="company" value={form.company} onChange={handleChange} className={inputClass("company")} placeholder="Your Company Ltd." />
+                      {errors.company && <p className="text-xs text-destructive mt-2 ml-1">{errors.company}</p>}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label className="block text-xs font-bold text-foreground uppercase tracking-widest mb-3 ml-1">Website / LinkedIn (Optional)</label>
+                      <input name="website" value={form.website} onChange={handleChange} className={inputClass("website")} placeholder="https://example.com" />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-foreground uppercase tracking-widest mb-3 ml-1">Expert Preference</label>
@@ -303,20 +348,26 @@ const BookingContent = () => {
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8 flex-1 overflow-y-auto pr-2" style={{ maxHeight: '280px' }}>
-                      {timeSlots.map((time) => (
-                        <button
-                          key={time}
-                          type="button"
-                          onClick={() => setSelectedTime(time)}
-                          className={`py-3 rounded-xl border font-semibold text-sm transition-all duration-300 ${
-                            selectedTime === time
-                              ? "bg-primary border-primary text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
-                              : "bg-secondary/20 border-border/30 hover:border-primary/50 hover:bg-primary/10 text-foreground"
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      ))}
+                      {timeSlots.map((time) => {
+                        const isBooked = bookedSlots.includes(time);
+                        return (
+                          <button
+                            key={time}
+                            type="button"
+                            disabled={isBooked}
+                            onClick={() => setSelectedTime(time)}
+                            className={`py-3 rounded-xl border font-semibold text-sm transition-all duration-300 ${
+                              isBooked
+                                ? "bg-secondary/10 border-border/10 text-muted-foreground/30 line-through cursor-not-allowed opacity-50"
+                                : selectedTime === time
+                                  ? "bg-primary border-primary text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+                                  : "bg-secondary/20 border-border/30 hover:border-primary/50 hover:bg-primary/10 text-foreground"
+                            }`}
+                          >
+                            {time}
+                          </button>
+                        );
+                      })}
                     </div>
 
                     <div className="flex gap-4">

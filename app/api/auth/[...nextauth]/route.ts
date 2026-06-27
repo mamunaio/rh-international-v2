@@ -63,4 +63,12 @@ const handler = NextAuth({
   },
 });
 
-export { handler as GET, handler as POST };
+export const GET = async (req: Request, context: { params: Promise<{ nextauth: string[] }> }) => {
+  const params = await context.params;
+  return handler(req, { params });
+};
+
+export const POST = async (req: Request, context: { params: Promise<{ nextauth: string[] }> }) => {
+  const params = await context.params;
+  return handler(req, { params });
+};

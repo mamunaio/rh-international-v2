@@ -3,28 +3,10 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Landmark, Printer, Monitor, Plane, Lightbulb, ArrowRight,
+  Landmark, Printer, Monitor, Plane, Lightbulb, ArrowRight, Zap, Users, ShieldCheck
 } from "lucide-react";
 
 const services = [
-  {
-    title: "Government Tenders",
-    desc: "We simplify the complex e-GP bidding process. From preparing flawless documents to final submission, we help you win high-value government contracts.",
-    icon: Landmark,
-    path: "/services/govt-tender",
-    color: "from-blue-500/20 to-cyan-500/20",
-    iconColor: "text-cyan-400",
-    borderColor: "group-hover:border-cyan-500/50",
-  },
-  {
-    title: "Commercial Printing",
-    desc: "Premium bulk printing done right. We deliver high-quality PVC materials, custom packaging, and large-format solutions on time, every time.",
-    icon: Printer,
-    path: "/services/printing-press",
-    color: "from-purple-500/20 to-pink-500/20",
-    iconColor: "text-purple-400",
-    borderColor: "group-hover:border-purple-500/50",
-  },
   {
     title: "IT Solutions",
     desc: "Fast, secure, and modern digital platforms. We build advanced web applications and provide cloud infrastructures that drive real business results.",
@@ -33,6 +15,33 @@ const services = [
     color: "from-emerald-500/20 to-teal-500/20",
     iconColor: "text-emerald-400",
     borderColor: "group-hover:border-emerald-500/50",
+  },
+  {
+    title: "Digital & E-Commerce",
+    desc: "Turn your ideas into a global brand. We offer strategic digital marketing, branding, and highly scalable e-commerce solutions to maximize your revenue.",
+    icon: Lightbulb,
+    path: "/services/digital-service",
+    color: "from-rose-500/20 to-red-500/20",
+    iconColor: "text-rose-400",
+    borderColor: "group-hover:border-rose-500/50",
+  },
+  {
+    title: "Solar Panel Service",
+    desc: "Installation, repair, and supply of high-efficiency solar panel systems for sustainable and cost-effective energy solutions.",
+    icon: Zap,
+    path: "/services/solar-panel",
+    color: "from-yellow-500/20 to-amber-500/20",
+    iconColor: "text-yellow-400",
+    borderColor: "group-hover:border-yellow-500/50",
+  },
+  {
+    title: "Government Tenders",
+    desc: "We simplify the complex e-GP bidding process. From preparing flawless documents to final submission, we help you win high-value government contracts.",
+    icon: Landmark,
+    path: "/services/govt-tender",
+    color: "from-blue-500/20 to-cyan-500/20",
+    iconColor: "text-cyan-400",
+    borderColor: "group-hover:border-cyan-500/50",
   },
   {
     title: "Travel Consultation",
@@ -44,13 +53,22 @@ const services = [
     borderColor: "group-hover:border-orange-500/50",
   },
   {
-    title: "Digital & E-Commerce",
-    desc: "Turn your ideas into a global brand. We offer strategic digital marketing, branding, and highly scalable e-commerce solutions to maximize your revenue.",
-    icon: Lightbulb,
-    path: "/services/digital-service",
-    color: "from-rose-500/20 to-red-500/20",
-    iconColor: "text-rose-400",
-    borderColor: "group-hover:border-rose-500/50",
+    title: "Global Manpower Solutions",
+    desc: "Specialized recruitment for Denmark, Spain, and Portugal. We ensure transparent processing, flawless visa documentation, and a 98% success rate.",
+    icon: Users,
+    path: "/services/manpower",
+    color: "from-indigo-500/20 to-purple-500/20",
+    iconColor: "text-indigo-400",
+    borderColor: "group-hover:border-indigo-500/50",
+  },
+  {
+    title: "Cyber Security & Auditing",
+    desc: "Protect your digital assets. We offer comprehensive penetration testing, website auditing, and infrastructure vulnerability assessments.",
+    icon: ShieldCheck,
+    path: "/services/cyber-security",
+    color: "from-blue-500/20 to-emerald-500/20",
+    iconColor: "text-blue-400",
+    borderColor: "group-hover:border-blue-500/50",
   },
 ];
 

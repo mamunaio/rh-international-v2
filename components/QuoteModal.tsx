@@ -23,6 +23,7 @@ const services = [
   "Travel Consultation",
   "Dubai Office Services",
   "Digital Service & E-commerce",
+  "Solar Panel Service",
   "Other",
 ];
 

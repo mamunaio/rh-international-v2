@@ -7,7 +7,7 @@ import Link from "next/link";
 const contactMethods = [
   { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(210,100%,50%,0.15)]" },
   { icon: Phone, label: "Call Us", value: "+880 1319-855960", href: "tel:+8801319855960", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(150,100%,50%,0.15)]" },
-  { icon: MapPin, label: "Global HQ", value: "Banani, 66 Rd No-9, Dhaka", href: "/global-presence", color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(35,100%,50%,0.15)]" },
+  { icon: MapPin, label: "Global HQ", value: "NVB Tower, Banani, Dhaka", href: "/global-presence", color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(35,100%,50%,0.15)]" },
 ];
 
 const CTASection = () => (
@@ -49,7 +49,7 @@ const CTASection = () => (
               </h2>
 
               <p className="text-lg text-muted-foreground leading-relaxed mb-12 max-w-xl">
-                Whether you need support with a complex government tender, bulk commercial printing, or a highly scalable digital platform—we are ready. Let's discuss your goals and get you a tailored proposal within 48 hours.
+                Whether you need support with a complex government tender, a solar panel installation, or a highly scalable digital platform—we are ready. Let's discuss your goals and get you a tailored proposal within 48 hours.
               </p>
 
               {/* Buttons */}
