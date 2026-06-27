@@ -199,11 +199,14 @@ const HeroSection = () => {
   const rotatingTexts = ["Global Business", "Government Tenders", "Corporate Printing", "Web & IT Solutions", "Global Expansion"];
 
   useEffect(() => {
-    setIsMounted(true);
+    const mountTimeout = setTimeout(() => setIsMounted(true), 150);
     const interval = setInterval(() => {
       setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(mountTimeout);
+      clearInterval(interval);
+    };
   }, []);
 
   return (

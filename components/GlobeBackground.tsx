@@ -372,7 +372,10 @@ function CameraSetup() {
 // ── Exported Component ──
 const GlobeBackground = () => {
   const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 150);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none" style={{ opacity: 0.35 }}>
