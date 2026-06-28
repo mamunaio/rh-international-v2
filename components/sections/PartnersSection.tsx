@@ -8,7 +8,6 @@ import Link from "next/link";
 // The user needs to place the actual image files inside the "public/images/partners" folder.
 const partners = [
   { name: "CMC", logo: "/images/partners/cmc.png", href: "/services/govt-supplies" },
-  { name: "ZTE Corporation", logo: "/images/partners/zte.png", href: "https://www.zte.com.cn/global/" },
   { name: "Huawei", logo: "/images/partners/huawei.png", href: "https://www.huawei.com/en/" },
   { name: "BCC", logo: "/images/partners/bcc.png", href: "http://bcc.gov.bd/" },
   { name: "ICT", logo: "/images/partners/ict.png", href: "https://ictd.gov.bd/" },
