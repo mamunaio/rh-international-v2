@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Landmark, Printer, Monitor, Plane, Building2, Lightbulb,
+  Landmark, Monitor, Plane, Building2, Lightbulb,
   ArrowRight, Globe, Target, CheckCircle2, Rocket, Search, Zap, Users, ShieldCheck
 } from "lucide-react";
 import Navbar from "@/components/Navbar";

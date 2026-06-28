@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const contactMethods = [
   { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(210,100%,50%,0.15)]" },
-  { icon: Phone, label: "Call Us", value: "+880 1319-855960", href: "tel:+8801319855960", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(150,100%,50%,0.15)]" },
+  { icon: Phone, label: "Call Us", value: "+60 1164327651", href: "tel:+601164327651", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(150,100%,50%,0.15)]" },
   { icon: MapPin, label: "Global HQ", value: "NVB Tower, Banani, Dhaka", href: "/global-presence", color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", glow: "group-hover:shadow-[0_0_30px_hsl(35,100%,50%,0.15)]" },
 ];
 

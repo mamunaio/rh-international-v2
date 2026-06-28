@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Landmark, Printer, Monitor, Plane, Lightbulb, ArrowRight, Zap, Users, ShieldCheck
+  Landmark, Monitor, Plane, Lightbulb, ArrowRight, Zap, Users, ShieldCheck
 } from "lucide-react";
 
 const services = [

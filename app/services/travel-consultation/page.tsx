@@ -14,19 +14,23 @@ const TravelConsultation = () => (
     features={[
       {
         title: "Comprehensive Profile Assessment",
-        description: "We don't just fill out forms; we analyze your profile. Our experts review your background to recommend the most strategic approach for a successful visa application."
+        description: "We don't just fill out forms; we analyze your profile. Our experts review your background to recommend the most strategic approach for a successful visa application.",
+        image: "/services/travel-consultation/feature-1.png"
       },
       {
         title: "Flawless Document Preparation",
-        description: "The secret to Schengen visa approval lies in the paperwork. We audit, fix, and organize all necessary documents tailored to your specific travel purpose."
+        description: "The secret to Schengen visa approval lies in the paperwork. We audit, fix, and organize all necessary documents tailored to your specific travel purpose.",
+        image: "/services/travel-consultation/feature-2.png"
       },
       {
         title: "Corporate & B2B Travel Management",
-        description: "Leveraging our global sourcing network, we organize seamless travel for corporate teams, including trade fairs and B2B meetings."
+        description: "Leveraging our global sourcing network, we organize seamless travel for corporate teams, including trade fairs and B2B meetings.",
+        image: "/services/travel-consultation/feature-3.png"
       },
       {
         title: "Appointment & Interview Guidance",
-        description: "We navigate the complexities of VFS and embassy portals to secure timely appointment slots and provide comprehensive interview briefing sessions."
+        description: "We navigate the complexities of VFS and embassy portals to secure timely appointment slots and provide comprehensive interview briefing sessions.",
+        image: "/services/travel-consultation/feature-4.png"
       }
     ]}
     highlights={[

@@ -3,37 +3,7 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import { CheckCircle2, Layers, Package, Search, ShoppingCart, Target } from "lucide-react";
-
-const digitalProjects = [
-  {
-    id: "p1",
-    title: "Global Reach Marketing Campaign",
-    category: ["Campaigns", "Branding"],
-    image: "/images/portfolio/campaign.png",
-    techStack: ["Social Media", "Video Production", "Copywriting"]
-  },
-  {
-    id: "p2",
-    title: "D2C Brand Growth Strategy",
-    category: ["E-Commerce", "Strategy"],
-    image: "/images/portfolio/ecommerce.png",
-    techStack: ["Shopify Plus", "Klaviyo", "Meta Ads"]
-  },
-  {
-    id: "p3",
-    title: "Organic Traffic Scaling (10x)",
-    category: ["SEO", "Content"],
-    image: "/images/portfolio/seo.png",
-    techStack: ["Ahrefs", "Google Analytics", "Content Strategy"]
-  },
-  {
-    id: "p4",
-    title: "B2B Lead Generation Automation",
-    category: ["Automation", "Strategy"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
-    techStack: ["HubSpot", "Zapier", "LinkedIn Ads"]
-  }
-];
+import { portfolioProjects, portfolioCategories } from "@/data/portfolio";
 
 const DigitalService = () => (
   <ServicePageLayout
@@ -48,19 +18,23 @@ const DigitalService = () => (
     features={[
       {
         title: "Enterprise E-Commerce Architecture",
-        description: "We build lightning-fast, secure, and visually stunning online stores utilizing ultra-modern web technologies (like Next.js and React)."
+        description: "We build lightning-fast, secure, and visually stunning online stores utilizing ultra-modern web technologies (like Next.js and React).",
+        image: "/services/digital-service/feature-1.png"
       },
       {
         title: "Comprehensive Digital Strategy & Consultation",
-        description: "Navigating the digital landscape requires a clear roadmap. Our strategic consultants help you align technology with your business goals."
+        description: "Navigating the digital landscape requires a clear roadmap. Our strategic consultants help you align technology with your business goals.",
+        image: "/services/digital-service/feature-2.png"
       },
       {
         title: "Digital Product Sourcing & Merchandising",
-        description: "Leveraging our core strength as a sourcing center, we assist e-commerce businesses in optimizing their product pipelines."
+        description: "Leveraging our core strength as a sourcing center, we assist e-commerce businesses in optimizing their product pipelines.",
+        image: "/services/digital-service/feature-3.png"
       },
       {
         title: "Advanced Digital Growth & SEO",
-        description: "A beautiful store is useless without targeted traffic. We deploy aggressive digital growth strategies to dominate search results."
+        description: "A beautiful store is useless without targeted traffic. We deploy aggressive digital growth strategies to dominate search results.",
+        image: "/services/digital-service/feature-4.png"
       }
     ]}
     highlights={[
@@ -196,8 +170,8 @@ const DigitalService = () => (
 
     {/* Portfolio Showcase Section */}
     <PortfolioGallery 
-      projects={digitalProjects} 
-      categories={["E-Commerce", "Strategy", "Campaigns", "Branding", "SEO", "Automation"]} 
+      projects={portfolioProjects} 
+      categories={portfolioCategories} 
     />
 
   </ServicePageLayout>

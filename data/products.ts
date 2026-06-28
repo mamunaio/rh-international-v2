@@ -16,16 +16,14 @@ export const productImageMap: Record<string, string> = {
   "VISA-001": visaTravelImg.src,
 };
 
-export const categories = ["All", "Printing", "Digital", "Service"];
+export const categories = ["All", "Digital", "Service"];
 
 export const categoryGradients: Record<string, string> = {
-  Printing: "from-rh-blue to-[hsl(210_60%_40%)]",
   Digital: "from-rh-green to-[hsl(140_50%_35%)]",
   Service: "from-rh-orange to-[hsl(20_85%_50%)]",
 };
 
 export const categoryBgGlow: Record<string, string> = {
-  Printing: "hsl(var(--rh-blue)/0.08)",
   Digital: "hsl(var(--rh-green)/0.08)",
   Service: "hsl(var(--rh-orange)/0.08)",
 };

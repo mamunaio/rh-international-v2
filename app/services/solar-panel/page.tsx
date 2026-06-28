@@ -13,23 +13,28 @@ const SolarPanelService = () => (
     features={[
       {
         title: "Expert Installation",
-        description: "Professional and safe installation of solar panel systems customized to your property's energy needs and structural design."
+        description: "Professional and safe installation of solar panel systems customized to your property's energy needs and structural design.",
+        image: "/services/solar-panel/feature-1.png"
       },
       {
         title: "Quality Supply",
-        description: "We source and supply high-efficiency, durable solar panels and inverters from leading global manufacturers."
+        description: "We source and supply high-efficiency, durable solar panels and inverters from leading global manufacturers.",
+        image: "/services/solar-panel/feature-2.png"
       },
       {
         title: "Maintenance & Repair",
-        description: "Comprehensive maintenance packages and rapid-response repair services to ensure your system operates at peak performance."
+        description: "Comprehensive maintenance packages and rapid-response repair services to ensure your system operates at peak performance.",
+        image: "/services/solar-panel/feature-3.png"
       },
       {
         title: "System Design & Consultation",
-        description: "Tailored energy audits and system designs to maximize your return on investment and energy savings."
+        description: "Tailored energy audits and system designs to maximize your return on investment and energy savings.",
+        image: "/services/solar-panel/feature-4.png"
       },
       {
         title: "Battery Storage Solutions",
-        description: "Integration of advanced battery storage systems to keep your property powered even during grid outages."
+        description: "Integration of advanced battery storage systems to keep your property powered even during grid outages.",
+        image: "/services/solar-panel/feature-5.png"
       }
     ]}
     highlights={[
@@ -168,7 +173,7 @@ const SolarPanelService = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
           <Image 
-            src="/portfolio/solar/residential.png" 
+            src="/portfolio/solar/user-1.jpg" 
             alt="Residential Solar Installation"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -182,7 +187,7 @@ const SolarPanelService = () => (
 
         <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
           <Image 
-            src="/portfolio/solar/commercial.png" 
+            src="/portfolio/solar/user-2.jpg" 
             alt="Commercial Solar Farm"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -196,7 +201,7 @@ const SolarPanelService = () => (
 
         <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
           <Image 
-            src="/portfolio/solar/maintenance.png" 
+            src="/portfolio/solar/user-3.jpg" 
             alt="Solar Maintenance"
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -205,6 +210,48 @@ const SolarPanelService = () => (
           <div className="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
             <h4 className="text-xl font-bold text-white mb-2">Professional Maintenance</h4>
             <p className="text-white/80 text-sm">Ongoing support and high-tech diagnostics.</p>
+          </div>
+        </div>
+
+        <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
+          <Image 
+            src="/portfolio/solar/user-4.jpg" 
+            alt="House Roof Solar"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <h4 className="text-xl font-bold text-white mb-2">House Roof Solar</h4>
+            <p className="text-white/80 text-sm">Elegant solar setups on modern home roofs.</p>
+          </div>
+        </div>
+
+        <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
+          <Image 
+            src="/portfolio/solar/user-5.jpg" 
+            alt="Office Roof Solar"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <h4 className="text-xl font-bold text-white mb-2">Office Roof Solar</h4>
+            <p className="text-white/80 text-sm">Corporate office energy independence solutions.</p>
+          </div>
+        </div>
+
+        <div className="relative group rounded-3xl overflow-hidden aspect-[4/3]">
+          <Image 
+            src="/portfolio/solar/pexels-6.jpg" 
+            alt="Industrial Roof Solar"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <h4 className="text-xl font-bold text-white mb-2">Industrial Roof Solar</h4>
+            <p className="text-white/80 text-sm">Large-scale solar integrations for factory buildings.</p>
           </div>
         </div>
       </div>

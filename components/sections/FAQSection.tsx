@@ -27,7 +27,7 @@ const faqs = [
     category: "Services",
   },
   {
-    q: "How fast can you deliver bulk printing and packaging orders?",
+    q: "How fast can you deliver bulk packaging orders?",
     a: "We move fast! Standard items like PVC cards are usually ready within 5-7 business days. For massive bulk orders or custom bags, we’ll give you a precise and realistic timeline upfront so your business never faces delays.",
     category: "Services",
   },

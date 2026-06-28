@@ -3,37 +3,7 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import PortfolioGallery from "@/components/PortfolioGallery";
 import { CheckCircle2, Code2, MonitorSmartphone, PenTool, Server, TrendingUp } from "lucide-react";
-
-const itProjects = [
-  {
-    id: "p1",
-    title: "NexGen ERP Dashboard",
-    category: ["Web Apps", "UI/UX"],
-    image: "/images/portfolio/saas.png",
-    techStack: ["React", "Next.js", "Tailwind CSS", "TypeScript"]
-  },
-  {
-    id: "p2",
-    title: "Luxe Fashion E-Commerce",
-    category: ["E-Commerce", "UI/UX"],
-    image: "/images/portfolio/ecommerce.png",
-    techStack: ["Next.js", "Stripe", "Framer Motion", "Prisma"]
-  },
-  {
-    id: "p3",
-    title: "Global SEO Analytics Tool",
-    category: ["SEO", "Web Apps"],
-    image: "/images/portfolio/seo.png",
-    techStack: ["Node.js", "GraphQL", "PostgreSQL", "React"]
-  },
-  {
-    id: "p4",
-    title: "Enterprise Cloud Infrastructure",
-    category: ["Infrastructure"],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop",
-    techStack: ["AWS", "Docker", "Kubernetes", "Terraform"]
-  }
-];
+import { portfolioProjects, portfolioCategories } from "@/data/portfolio";
 
 const ITSolution = () => (
   <ServicePageLayout
@@ -46,19 +16,23 @@ const ITSolution = () => (
     features={[
       {
         title: "Enterprise Web & Software Development",
-        description: "We build secure, blazing-fast, and highly scalable digital platforms tailored to your specific business architecture."
+        description: "We build secure, blazing-fast, and highly scalable digital platforms tailored to your specific business architecture.",
+        image: "/services/it-solution/feature-1.jpg"
       },
       {
         title: "High-End UI/UX Design",
-        description: "First impressions matter. Our design philosophy revolves around user-centric aesthetics and seamless interactivity."
+        description: "First impressions matter. Our design philosophy revolves around user-centric aesthetics and seamless interactivity.",
+        image: "/services/it-solution/feature-2.jpg"
       },
       {
         title: "Advanced Search Engine Optimization (SEO)",
-        description: "We don't just aim for traffic; we aim for digital dominance. Our specialized SEO strategies ensure your brand is discovered by the right audience."
+        description: "We don't just aim for traffic; we aim for digital dominance. Our specialized SEO strategies ensure your brand is discovered by the right audience.",
+        image: "/services/it-solution/feature-3.jpg"
       },
       {
         title: "IT Sourcing & Infrastructure Consultation",
-        description: "Leveraging our strength as a global sourcing center, we provide hardware and software infrastructure support."
+        description: "Leveraging our strength as a global sourcing center, we provide hardware and software infrastructure support.",
+        image: "/services/it-solution/feature-4.jpg"
       }
     ]}
     highlights={[
@@ -190,8 +164,8 @@ const ITSolution = () => (
 
     {/* Portfolio Showcase Section */}
     <PortfolioGallery 
-      projects={itProjects} 
-      categories={["Web Apps", "E-Commerce", "UI/UX", "SEO", "Infrastructure"]} 
+      projects={portfolioProjects} 
+      categories={portfolioCategories} 
     />
 
   </ServicePageLayout>

@@ -12,10 +12,10 @@ const DubaiOffice = () => (
     primaryCtaText="Schedule a Consultation"
     secondaryCtaText="Explore UAE Markets"
     features={[
-      { title: "Company Formation", description: "End-to-end company registration and licensing in Dubai free zones and mainland jurisdictions." },
-      { title: "Trade Facilitation", description: "Import/export facilitation, trade documentation, and logistics coordination through Dubai's strategic hub." },
-      { title: "Business Services", description: "Virtual office, PRO services, visa processing, and corporate banking setup for seamless operations." },
-      { title: "Market Advisory", description: "Local market intelligence, partnership identification, and business development support in the GCC region." },
+      { title: "Company Formation", description: "End-to-end company registration and licensing in Dubai free zones and mainland jurisdictions.", image: "/services/dubai-office/feature-1.png" },
+      { title: "Trade Facilitation", description: "Import/export facilitation, trade documentation, and logistics coordination through Dubai's strategic hub.", image: "/services/dubai-office/feature-2.png" },
+      { title: "Business Services", description: "Virtual office, PRO services, visa processing, and corporate banking setup for seamless operations.", image: "/services/dubai-office/feature-3.png" },
+      { title: "Market Advisory", description: "Local market intelligence, partnership identification, and business development support in the GCC region.", image: "/services/dubai-office/feature-4.png" },
     ]}
     highlights={[
       "Established presence in Dubai with localized expertise.",

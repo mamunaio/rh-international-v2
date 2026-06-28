@@ -78,19 +78,34 @@ export default function ClientPage({ project }: { project: any }) {
       <section className="relative px-6 pb-24 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative w-full aspect-video rounded-[2rem] lg:rounded-[3rem] overflow-hidden border border-border/40 shadow-2xl bg-card/20"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8, ease: "easeOut" }}
+            className="relative mx-auto w-full max-w-5xl mt-12 group"
+            style={{ perspective: "1000px" }}
           >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
+            {/* Glowing background blob */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-400 opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-700 rounded-[3rem]" />
+            
+            {/* Glass container / Browser mockup */}
+            <div className="relative rounded-[1.5rem] md:rounded-[2.5rem] p-2 md:p-4 bg-white/5 border border-white/10 backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] transform transition-transform duration-700 ease-out hover:scale-[1.02] hover:-translate-y-2">
+              {/* Fake Browser header */}
+              <div className="flex items-center gap-2 px-4 pb-4 pt-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              
+              <div className="relative w-full aspect-video rounded-xl md:rounded-2xl overflow-hidden shadow-inner ring-1 ring-white/10 bg-zinc-900/50">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

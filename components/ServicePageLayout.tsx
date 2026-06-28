@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
 interface Feature {
   title: string;
   description: string;
+  image?: string;
 }
 
 interface ServicePageLayoutProps {
@@ -116,18 +118,31 @@ const ServicePageLayout = ({
                     <div className="w-full md:w-1/2 shrink-0">
                       <div className="relative w-full aspect-square md:aspect-[4/3] rounded-[3rem] bg-card/20 backdrop-blur-3xl border border-primary/20 shadow-[0_0_50px_rgba(34,211,238,0.05)] overflow-hidden flex items-center justify-center group">
                         {/* Dynamic Hover Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+                        
+                        {/* Optional Feature Image */}
+                        {feature.image && (
+                          <div className="absolute inset-0 z-0">
+                            <Image
+                              src={feature.image}
+                              alt={feature.title}
+                              fill
+                              className="object-cover opacity-20 group-hover:opacity-40 transition-all duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                          </div>
+                        )}
                         
                         {/* Giant Number */}
                         <div 
-                          className="text-[12rem] md:text-[18rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-br from-primary/20 to-primary/5 select-none"
+                          className="relative z-20 text-[12rem] md:text-[18rem] leading-none font-black text-transparent bg-clip-text bg-gradient-to-br from-primary/30 to-primary/5 select-none"
                           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                         >
                           {String(i + 1).padStart(2, "0")}
                         </div>
                         
                         {/* Overlay Icon */}
-                        <div className="absolute w-20 h-20 rounded-2xl bg-background/80 backdrop-blur-md border border-primary/30 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                        <div className="absolute z-30 w-20 h-20 rounded-2xl bg-background/80 backdrop-blur-md border border-primary/30 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
                           <CheckCircle2 className="w-10 h-10 text-primary" />
                         </div>
                       </div>

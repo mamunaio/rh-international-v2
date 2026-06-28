@@ -2,6 +2,7 @@
 
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Briefcase, Building2, CheckCircle2, FileText, Globe, MapPin, Plane, ShieldCheck, Users } from "lucide-react";
+import Image from "next/image";
 
 const ManpowerSolutions = () => (
   <ServicePageLayout
@@ -14,19 +15,23 @@ const ManpowerSolutions = () => (
     features={[
       {
         title: "Rigorous Screening Process",
-        description: "We don't just forward resumes. We conduct thorough background checks and skill assessments to match candidates perfectly with European employer requirements."
+        description: "We don't just forward resumes. We conduct thorough background checks and skill assessments to match candidates perfectly with European employer requirements.",
+        image: "/images/manpower/feat-1.jpg"
       },
       {
         title: "Flawless Visa Documentation",
-        description: "Navigating European work permits is complex. Our dedicated team handles all paperwork, ensuring zero-error submissions for maximum approval chances."
+        description: "Navigating European work permits is complex. Our dedicated team handles all paperwork, ensuring zero-error submissions for maximum approval chances.",
+        image: "/images/manpower/feat-2.jpg"
       },
       {
         title: "Employer Partnerships",
-        description: "We work directly with established companies in Denmark, Spain, and Portugal to secure authentic demand letters and reliable employment contracts."
+        description: "We work directly with established companies in Denmark, Spain, and Portugal to secure authentic demand letters and reliable employment contracts.",
+        image: "/images/manpower/feat-3.jpg"
       },
       {
         title: "Post-Arrival Support",
-        description: "Our responsibility doesn't end at visa approval. We assist with initial settlement, accommodation guidance, and compliance with local labor laws."
+        description: "Our responsibility doesn't end at visa approval. We assist with initial settlement, accommodation guidance, and compliance with local labor laws.",
+        image: "/images/manpower/feat-4.jpg"
       }
     ]}
     highlights={[

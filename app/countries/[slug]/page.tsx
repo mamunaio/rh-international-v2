@@ -67,7 +67,7 @@ const countriesData: Record<string, any> = {
     role: "Headquarters & Operations",
     headline: "Powering Operations, IT, and Government Initiatives",
     bgImage: "/portfolio/countries/bangladesh.png",
-    overview: "Our Dhaka headquarters is the operational heart of RH International. We manage large-scale government tenders, drive digital transformation through our IT division, and oversee massive bulk printing and logistics operations from our Gazipur zone office.",
+    overview: "Our Dhaka headquarters is the operational heart of RH International. We manage large-scale government tenders, drive digital transformation through our IT division, and oversee massive logistics operations from our Gazipur zone office.",
     stats: [
       { label: "Completed Projects", value: "80+", icon: Briefcase },
       { label: "Govt Tenders", value: "15+", icon: Award },

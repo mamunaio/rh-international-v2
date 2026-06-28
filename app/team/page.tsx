@@ -87,7 +87,7 @@ const values = [
   {
     icon: Award,
     title: "Zero Compromise",
-    description: "Whether it's printing half a million PVC cards flawlessly or deploying a secure e-commerce platform, we hold ourselves to the highest standard. No shortcuts, just pure quality.",
+    description: "Whether it's managing complex supply chains flawlessly or deploying a secure e-commerce platform, we hold ourselves to the highest standard. No shortcuts, just pure quality.",
   },
 ];
 

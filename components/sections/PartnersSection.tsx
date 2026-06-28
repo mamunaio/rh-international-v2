@@ -7,13 +7,13 @@ import Link from "next/link";
 // Here we define the paths for the partner logos.
 // The user needs to place the actual image files inside the "public/images/partners" folder.
 const partners = [
-  { name: "CMC", logo: "/images/partners/cmc.png", href: "/services/govt-supplies" },
-  { name: "Huawei", logo: "/images/partners/huawei.png", href: "https://www.huawei.com/en/" },
-  { name: "BCC", logo: "/images/partners/bcc.png", href: "http://bcc.gov.bd/" },
-  { name: "ICT", logo: "/images/partners/ict.png", href: "https://ictd.gov.bd/" },
-  { name: "Dubai Real Estate", logo: "/images/partners/dubai.png", href: "/services/dubai-real-estate" },
-  { name: "Real Estate Investors", logo: "/images/partners/investors.png", href: "/portfolio" },
-  { name: "Manpower Exchange", logo: "/images/partners/manpower.png", href: "/services/manpower" },
+  { name: "China National Machinery Import & Export Corporation (CMC)", logo: "/images/partners/cmc.png", href: "https://www.cmc.cn/", hasLogo: true },
+  { name: "Huawei", logo: "/images/partners/huawei.svg", href: "https://www.huawei.com/en/", hasLogo: true },
+  { name: "BCC", logo: "/images/partners/bcc.svg", href: "http://bcc.gov.bd/", hasLogo: true },
+  { name: "ICT", logo: "/images/partners/ict.svg", href: "https://ictd.gov.bd/", hasLogo: true },
+  { name: "Dubai Real Estate", logo: "/images/partners/dubai.png", href: "/services/dubai-real-estate", hasLogo: false },
+  { name: "Real Estate Investors", logo: "/images/partners/investors.png", href: "/portfolio", hasLogo: true },
+  { name: "Manpower Exchange", logo: "/images/partners/manpower.png", href: "/services/manpower", hasLogo: false },
 ];
 
 const PartnersSection = () => (
@@ -51,11 +51,22 @@ const PartnersSection = () => (
                     key={`${rep}-${partner.name}`}
                     className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-pointer"
                   >
-                    <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
-                      <span className="text-lg font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                        {partner.name}
-                      </span>
-                    </div>
+                    {partner.hasLogo ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <Image 
+                          src={partner.logo} 
+                          alt={partner.name} 
+                          fill 
+                          className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
+                        <span className={`font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300 ${partner.name.length > 20 ? 'text-xs leading-snug' : 'text-lg'}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                          {partner.name}
+                        </span>
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>
@@ -77,11 +88,22 @@ const PartnersSection = () => (
                     key={`${rep}-${partner.name}`}
                     className="group flex items-center justify-center w-48 h-24 px-6 py-4 rounded-xl border border-border/15 bg-card/20 backdrop-blur-sm hover:border-primary/25 hover:bg-card/40 transition-all duration-500 cursor-pointer"
                   >
-                    <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
-                      <span className="text-lg font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                        {partner.name}
-                      </span>
-                    </div>
+                    {partner.hasLogo ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <Image 
+                          src={partner.logo} 
+                          alt={partner.name} 
+                          fill 
+                          className="object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-full flex items-center justify-center transition-all duration-500">
+                        <span className={`font-bold text-center whitespace-normal text-muted-foreground group-hover:text-foreground group-hover:scale-105 transition-all duration-300 ${partner.name.length > 20 ? 'text-xs leading-snug' : 'text-lg'}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                          {partner.name}
+                        </span>
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>

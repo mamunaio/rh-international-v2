@@ -19,7 +19,7 @@ const testimonials = [
   {
     name: "Dr. Kamal Hossain",
     role: "Managing Director, Dhaka Exports Ltd.",
-    text: "Whether it’s bulk PVC card printing or handling large-scale packaging for our exports, they manage everything perfectly. It’s rare to find a partner who takes quality control as seriously as we do. They are our go-to team.",
+    text: "Whether it’s handling large-scale packaging for our exports, they manage everything perfectly. It’s rare to find a partner who takes quality control as seriously as we do. They are our go-to team.",
     rating: 5,
   },
   {

@@ -12,23 +12,28 @@ const GovtTender = () => (
     features={[
       {
         title: "Comprehensive e-GP Management",
-        description: "Complete e-GP profile creation, regular maintenance, and rapid renewal services. We handle the technicalities so you can focus on execution."
+        description: "Complete e-GP profile creation, regular maintenance, and rapid renewal services. We handle the technicalities so you can focus on execution.",
+        image: "/services/govt-tender/feature-1.jpg"
       },
       {
         title: "Strategic Bidding (DPM, LTM, OTM)",
-        description: "Expert consultancy on selecting the right procurement method. Whether it’s Direct Procurement (DPM), Limited Tendering (LTM), or Open Tendering (OTM)."
+        description: "Expert consultancy on selecting the right procurement method. Whether it’s Direct Procurement (DPM), Limited Tendering (LTM), or Open Tendering (OTM).",
+        image: "/services/govt-tender/feature-2.jpg"
       },
       {
         title: "Specialized Ministry Focus",
-        description: "Deep expertise in processing and submitting bids for heavy-budget sectors, including the Ministry of Road Transport, Railways, and Agriculture."
+        description: "Deep expertise in processing and submitting bids for heavy-budget sectors, including the Ministry of Road Transport, Railways, and Agriculture.",
+        image: "/services/govt-tender/feature-3.jpg"
       },
       {
         title: "Flawless Document Preparation",
-        description: "Accurate preparation of Tender Document Setup (TDS), Bill of Quantities (BOQ), and compliance paperwork (TIN, BIN, Trade License)."
+        description: "Accurate preparation of Tender Document Setup (TDS), Bill of Quantities (BOQ), and compliance paperwork (TIN, BIN, Trade License).",
+        image: "/services/govt-tender/feature-4.jpg"
       },
       {
         title: "Financial & JV Support",
-        description: "Professional assistance in organizing Liquid Asset certificates, Credit Line formats, and establishing solid Joint Venture Consortium agreements."
+        description: "Professional assistance in organizing Liquid Asset certificates, Credit Line formats, and establishing solid Joint Venture Consortium agreements.",
+        image: "/services/govt-tender/feature-5.jpg"
       }
     ]}
     highlights={[

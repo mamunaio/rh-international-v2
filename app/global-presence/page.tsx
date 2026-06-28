@@ -12,7 +12,6 @@ const offices = [
     city: "Austin, USA",
     label: "Corporate Office",
     address: "815 Brazos St Ste 500 Austin TX 78701, USA",
-    phone: "+1 (555) 123-4567",
     email: "info@rhinternationalsc.com",
     highlight: true,
     timezone: "CST / GMT-6",
@@ -20,12 +19,12 @@ const offices = [
     team: "10+",
     services: ["Global Strategy", "Corporate Partnerships", "Investments"],
     accent: "213 65% 55%",
+    image: "/images/offices/austin.png",
   },
   {
     city: "Dubai, UAE",
     label: "Branch Office",
     address: "57QQ+MJX, Business Bay, Dubai",
-    phone: "+971 4 345 6789",
     email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+4",
@@ -33,12 +32,13 @@ const offices = [
     team: "15+",
     services: ["Corporate Setup", "Trade Facilitation", "Sourcing"],
     accent: "30 85% 55%",
+    image: "/images/offices/dubai.png",
   },
   {
     city: "Dhaka, Bangladesh",
     label: "Head Office",
     address: "NVB Tower, 66 Rd No-9, Banani, Dhaka 1213",
-    phone: "+880 1319-855960",
+    phone: "+60 1164327651",
     email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
@@ -46,19 +46,21 @@ const offices = [
     team: "50+",
     services: ["Govt Tenders", "IT & Digital", "Consultation"],
     accent: "120 50% 45%",
+    image: "/images/offices/dhaka.png",
   },
   {
     city: "Gazipur, Bangladesh",
     label: "Zone Office",
     address: "Mirer Bazar, Tongi - Kaliganj - Gorashal - Pachdona Rd.",
-    phone: "+880 1319-855960",
+    phone: "+60 1164327651",
     email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
     established: "2018",
     team: "30+",
-    services: ["Bulk Printing", "Packaging", "Logistics"],
+    services: ["Packaging", "Logistics"],
     accent: "280 60% 55%",
+    image: "/images/offices/gazipur.png",
   },
 ];
 
@@ -144,6 +146,14 @@ const OfficeCard = ({ office, index }: { office: typeof offices[0]; index: numbe
       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/15 via-transparent to-rh-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className={`relative rounded-2xl border border-border/20 backdrop-blur-sm overflow-hidden ${office.highlight ? "bg-card/40" : "bg-card/25"}`}>
+        {/* Background Image */}
+        <img
+          src={office.image}
+          alt={office.city}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent transition-opacity duration-500" />
+        
         {/* Top accent line */}
         <motion.div
           className="h-px w-full"
@@ -209,9 +219,9 @@ const OfficeCard = ({ office, index }: { office: typeof offices[0]; index: numbe
           <div className="space-y-3 mb-8">
             {[
               { icon: MapPin, text: office.address },
-              { icon: Phone, text: office.phone },
+              office.phone ? { icon: Phone, text: office.phone } : null,
               { icon: Mail, text: office.email },
-            ].map((item, idx) => (
+            ].filter(Boolean).map((item, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: -15 }}

@@ -51,7 +51,7 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {["All", ...categories].map((cat) => (
+          {Array.from(new Set(["All", ...categories])).map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, Landmark, Printer, Monitor, Plane, Building2, Lightbulb, ShoppingBag, Globe, Users, Mail, LogIn, LogOut, User, LayoutDashboard, Package, ShoppingCart, Ticket, ShieldCheck } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Landmark, Monitor, Plane, Building2, Lightbulb, ShoppingBag, Globe, Users, Mail, LogIn, LogOut, User, LayoutDashboard, Package, ShoppingCart, Ticket, ShieldCheck, Zap, Database, Server } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import QuoteModal from "./QuoteModal";
 import { useAuth } from "@/hooks/use-auth";
@@ -37,11 +37,20 @@ const servicesCategories = [
 
 const techCategories = [
   {
-    title: "Innovation Hub",
+    title: "Core Technology",
     items: [
       { label: "IT Solution", path: "/services/it-solution", icon: Monitor, desc: "Web dev, SEO & infrastructure" },
       { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation" },
       { label: "Cyber Security & Auditing", path: "/services/cyber-security", icon: ShieldCheck, desc: "Pentest & vulnerability audits" },
+      { label: "Smart Energy Systems", path: "/services/smart-energy", icon: Zap, desc: "IoT & solar energy monitoring" },
+    ],
+  },
+  {
+    title: "Business Solutions",
+    items: [
+      { label: "E-Governance Solutions", path: "/services/e-governance", icon: Server, desc: "Digital procurement & govt tech" },
+      { label: "HR Tech & Automation", path: "/services/hr-tech", icon: Database, desc: "Manpower & recruitment systems" },
+      { label: "Enterprise ERP & Cloud", path: "/services/erp-cloud", icon: Building2, desc: "Global business management" },
     ],
   }
 ];
@@ -49,7 +58,7 @@ const techCategories = [
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services", megaCategories: servicesCategories, width: "w-[500px]" },
-  { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[320px]" },
+  { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[650px]" },
   { label: "Global Presence", path: "/global-presence" },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Team", path: "/team" },

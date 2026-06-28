@@ -18,7 +18,7 @@ const quoteSchema = z.object({
 
 const services = [
   "Govt Tender",
-  "Printing Press (PVC / Bag)",
+  "Cyber Security",
   "IT Solution",
   "Travel Consultation",
   "Dubai Office Services",

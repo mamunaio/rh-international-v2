@@ -18,7 +18,7 @@ const contactSchema = z.object({
 
 const contactInfo = [
   { icon: Mail, label: "Email Us", value: "info@rhinternationalsc.com", href: "mailto:info@rhinternationalsc.com", accent: "213 55% 50%" },
-  { icon: MessageCircle, label: "WhatsApp", value: "+880 1319-855960", href: "https://wa.me/8801319855960", accent: "142 70% 45%" },
+  { icon: MessageCircle, label: "WhatsApp", value: "+60 1164327651", href: "https://wa.me/601164327651", accent: "142 70% 45%" },
   { icon: MessageCircle, label: "WeChat", value: "+60 1164327651", href: undefined, accent: "142 70% 45%" },
   { icon: Globe, label: "Website", value: "www.rhinternationalsc.com", href: "https://www.rhinternationalsc.com", accent: "200 55% 48%" },
 ];
@@ -28,7 +28,6 @@ const globalOffices = [
     city: "Austin, USA",
     label: "Corporate Office",
     address: "815 Brazos St Ste 500 Austin TX 78701, USA",
-    phone: "+1 (555) 123-4567",
     email: "info@rhinternationalsc.com",
     timezone: "CST / GMT-6",
     image: "/images/offices/austin.png",
@@ -37,7 +36,6 @@ const globalOffices = [
     city: "Dubai, UAE",
     label: "Branch Office",
     address: "57QQ+MJX, Business Bay, Dubai",
-    phone: "+971 4 345 6789",
     email: "info@rhinternationalsc.com",
     timezone: "GMT+4",
     image: "/images/offices/dubai.png",
@@ -46,7 +44,7 @@ const globalOffices = [
     city: "Dhaka, Bangladesh",
     label: "Head Office",
     address: "NVB Tower, 66 Rd No-9, Banani, Dhaka 1213",
-    phone: "+880 1319-855960",
+    phone: "+60 1164327651",
     email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
     image: "/images/offices/dhaka.png",
@@ -55,7 +53,7 @@ const globalOffices = [
     city: "Gazipur, Bangladesh",
     label: "Zone Office",
     address: "Mirer Bazar, Tongi - Kaliganj Rd.",
-    phone: "+880 1319-855960",
+    phone: "+60 1164327651",
     email: "info@rhinternationalsc.com",
     timezone: "GMT+6",
     image: "/images/offices/gazipur.png",
@@ -335,7 +333,7 @@ const Contact = () => {
               {/* WhatsApp CTA */}
               <motion.a
                 whileHover={{ scale: 1.02 }}
-                href={`https://wa.me/8801319855960?text=${encodeURIComponent("Hi, I'm interested in your services.")}`}
+                href={`https://wa.me/601164327651?text=${encodeURIComponent("Hi, I'm interested in your services.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-12 flex items-center gap-4 p-6 rounded-2xl border border-[hsl(142_70%_40%/0.3)] bg-[hsl(142_70%_20%/0.15)] backdrop-blur-md hover:bg-[hsl(142_70%_20%/0.3)] transition-all group/wa relative overflow-hidden shadow-[0_0_30px_hsl(142,70%,40%,0.1)]"
@@ -417,10 +415,12 @@ const Contact = () => {
                       <MapPin className="w-5 h-5 text-primary shrink-0" />
                       {office.address}
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-200">
-                      <Phone className="w-4 h-4 text-primary shrink-0 ml-0.5" />
-                      {office.phone}
-                    </div>
+                    {office.phone && (
+                      <div className="flex items-center gap-3 text-sm text-gray-200">
+                        <Phone className="w-4 h-4 text-primary shrink-0 ml-0.5" />
+                        {office.phone}
+                      </div>
+                    )}
                     <div className="flex items-center gap-3 text-sm text-gray-200">
                       <Mail className="w-4 h-4 text-primary shrink-0 ml-0.5" />
                       {office.email}
