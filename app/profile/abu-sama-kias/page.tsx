@@ -195,7 +195,7 @@ export default function AbuSamaProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:kias@rhinternational.com" },
+                  { icon: Mail, label: "Email", href: "mailto:kias@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a
@@ -228,7 +228,7 @@ export default function AbuSamaProfile() {
               {/* Save Contact Button */}
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Kias;Md;Abu Sama;;\nFN:Md Abu Sama Kias\nORG:RH International\nTITLE:Founder & CEO\nEMAIL;TYPE=INTERNET:kias@rhinternational.com\nURL:https://rhinternational.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Kias;Md;Abu Sama;;\nFN:Md Abu Sama Kias\nORG:RH International\nTITLE:Founder & CEO\nEMAIL;TYPE=INTERNET:kias@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");

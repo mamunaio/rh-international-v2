@@ -40,25 +40,16 @@ const techCategories = [
     title: "Core Technology",
     items: [
       { label: "IT Solution", path: "/services/it-solution", icon: Monitor, desc: "Web dev, SEO & infrastructure" },
-      { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation" },
+      { label: "Digital Service", path: "/services/digital-service", icon: Lightbulb, desc: "Digital transformation & E-Commerce" },
       { label: "Cyber Security & Auditing", path: "/services/cyber-security", icon: ShieldCheck, desc: "Pentest & vulnerability audits" },
-      { label: "Smart Energy Systems", path: "/services/smart-energy", icon: Zap, desc: "IoT & solar energy monitoring" },
-    ],
-  },
-  {
-    title: "Business Solutions",
-    items: [
-      { label: "E-Governance Solutions", path: "/services/e-governance", icon: Server, desc: "Digital procurement & govt tech" },
-      { label: "HR Tech & Automation", path: "/services/hr-tech", icon: Database, desc: "Manpower & recruitment systems" },
-      { label: "Enterprise ERP & Cloud", path: "/services/erp-cloud", icon: Building2, desc: "Global business management" },
     ],
   }
 ];
 
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services", megaCategories: servicesCategories, width: "w-[500px]" },
-  { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[650px]" },
+  { label: "Procurement", path: "/services", megaCategories: servicesCategories, width: "w-[500px]" },
+  { label: "Technology", path: "#", megaCategories: techCategories, width: "w-[350px]" },
   { label: "Global Presence", path: "/global-presence" },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Team", path: "/team" },
@@ -215,7 +206,7 @@ const Navbar = () => {
                           </div>
 
                           {/* Footer */}
-                          {link.label === "Services" && (
+                          {link.label === "Procurement" && (
                             <div className="px-6 py-4 border-t border-border/20 bg-secondary/20 flex items-center justify-between">
                               <Link
                                 href="/services"
@@ -397,7 +388,7 @@ const Navbar = () => {
                                   })}
                                 </div>
                               ))}
-                              {link.label === "Services" && (
+                              {link.label === "Procurement" && (
                                 <Link
                                   href="/services"
                                   onClick={() => setOpen(false)}

@@ -3,7 +3,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, Phone, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, Phone, TrendingUp, Users, MessageCircle } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -13,9 +13,10 @@ const offices = [
     label: "Corporate Office",
     address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     highlight: true,
     timezone: "CST / GMT-6",
-    established: "2024",
+    established: "2023",
     team: "10+",
     services: ["Global Strategy", "Corporate Partnerships", "Investments"],
     accent: "213 65% 55%",
@@ -26,9 +27,10 @@ const offices = [
     label: "Branch Office",
     address: "57QQ+MJX, Business Bay, Dubai",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     highlight: false,
     timezone: "GMT+4",
-    established: "2020",
+    established: "2021",
     team: "15+",
     services: ["Corporate Setup", "Trade Facilitation", "Sourcing"],
     accent: "30 85% 55%",
@@ -42,7 +44,7 @@ const offices = [
     email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
-    established: "2015",
+    established: "2017",
     team: "50+",
     services: ["Govt Tenders", "IT & Digital", "Consultation"],
     accent: "120 50% 45%",
@@ -56,7 +58,7 @@ const offices = [
     email: "info@rhinternationalsc.com",
     highlight: false,
     timezone: "GMT+6",
-    established: "2018",
+    established: "2026",
     team: "30+",
     services: ["Packaging", "Logistics"],
     accent: "280 60% 55%",
@@ -220,6 +222,7 @@ const OfficeCard = ({ office, index }: { office: typeof offices[0]; index: numbe
             {[
               { icon: MapPin, text: office.address },
               office.phone ? { icon: Phone, text: office.phone } : null,
+              office.wechat ? { icon: MessageCircle, text: <a href={`callto:${office.wechat.replace(/[^0-9+]/g, '')}`} className="hover:text-foreground transition-colors">WeChat</a> } : null,
               { icon: Mail, text: office.email },
             ].filter(Boolean).map((item, idx) => (
               <motion.div

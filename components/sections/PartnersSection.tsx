@@ -6,9 +6,12 @@ import Link from "next/link";
 
 // Here we define the paths for the partner logos.
 // The user needs to place the actual image files inside the "public/images/partners" folder.
-const partners = [
+const investors = [
   { name: "China National Machinery Import & Export Corporation (CMC)", logo: "/images/partners/cmc.png", href: "https://www.cmc.cn/", hasLogo: true },
   { name: "Huawei", logo: "/images/partners/huawei.svg", href: "https://www.huawei.com/en/", hasLogo: true },
+];
+
+const partnersList = [
   { name: "BCC", logo: "/images/partners/bcc.svg", href: "http://bcc.gov.bd/", hasLogo: true },
   { name: "ICT", logo: "/images/partners/ict.svg", href: "https://ictd.gov.bd/", hasLogo: true },
   { name: "Dubai Real Estate", logo: "/images/partners/dubai.png", href: "/services/dubai-real-estate", hasLogo: false },
@@ -37,14 +40,16 @@ const PartnersSection = () => (
 
       {/* Infinite scroll marquee — two rows */}
       <div className="space-y-6 overflow-hidden">
-        {/* Row 1 — scrolls left */}
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-          <div className="flex animate-[marquee_40s_linear_infinite] whitespace-nowrap">
-            {[...Array(3)].map((_, rep) => (
-              <div key={rep} className="flex items-center gap-6 px-3">
-                {partners.slice(0, 4).map((partner) => (
+        {/* Row 1 — Investors */}
+        <div className="mb-10">
+          <h3 className="text-xl font-semibold text-center text-muted-foreground/80 mb-6 uppercase tracking-wider" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Our Investors</h3>
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+            <div className="flex animate-[marquee_40s_linear_infinite] whitespace-nowrap">
+              {[...Array(6)].map((_, rep) => (
+                <div key={rep} className="flex items-center gap-6 px-3">
+                  {investors.map((partner) => (
                   <Link
                     href={partner.href}
                     target={partner.href.startsWith("http") ? "_blank" : undefined}
@@ -73,15 +78,18 @@ const PartnersSection = () => (
             ))}
           </div>
         </div>
+        </div>
 
-        {/* Row 2 — scrolls right */}
-        <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-          <div className="flex animate-[marquee-reverse_45s_linear_infinite] whitespace-nowrap">
-            {[...Array(3)].map((_, rep) => (
-              <div key={rep} className="flex items-center gap-6 px-3">
-                {partners.slice(4).map((partner) => (
+        {/* Row 2 — Partners */}
+        <div className="mt-6">
+          <h3 className="text-xl font-semibold text-center text-muted-foreground/80 mb-6 uppercase tracking-wider" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Our Partners</h3>
+          <div className="relative">
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+            <div className="flex animate-[marquee-reverse_45s_linear_infinite] whitespace-nowrap">
+              {[...Array(4)].map((_, rep) => (
+                <div key={rep} className="flex items-center gap-6 px-3">
+                  {partnersList.map((partner) => (
                   <Link
                     href={partner.href}
                     target={partner.href.startsWith("http") ? "_blank" : undefined}
@@ -111,6 +119,7 @@ const PartnersSection = () => (
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 );

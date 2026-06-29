@@ -14,19 +14,23 @@ const CyberSecurity = () => (
     features={[
       {
         title: "Penetration Testing (Pentest)",
-        description: "We simulate real-world cyber attacks on your web applications, networks, and APIs to identify exploitable vulnerabilities before malicious hackers do."
+        description: "We simulate real-world cyber attacks on your web applications, networks, and APIs to identify exploitable vulnerabilities before malicious hackers do.",
+        image: "/images/services/Penetration-Testing-Execution.png"
       },
       {
         title: "Website & Code Auditing",
-        description: "Deep-dive analysis of your source code and website architecture to ensure compliance with global security standards (OWASP Top 10) and best practices."
+        description: "Deep-dive analysis of your source code and website architecture to ensure compliance with global security standards (OWASP Top 10) and best practices.",
+        image: "/images/services/Website-and-Code-Auditing.png"
       },
       {
         title: "Vulnerability Assessment",
-        description: "Automated and manual scanning of your digital infrastructure to detect misconfigurations, outdated software, and potential security loopholes."
+        description: "Automated and manual scanning of your digital infrastructure to detect misconfigurations, outdated software, and potential security loopholes.",
+        image: "/images/services/Vulnerability-Dashboard.png"
       },
       {
         title: "Incident Response & Mitigation",
-        description: "Rapid response strategies and actionable remediation plans to patch vulnerabilities, secure data, and prevent future breaches."
+        description: "Rapid response strategies and actionable remediation plans to patch vulnerabilities, secure data, and prevent future breaches.",
+        image: "/images/services/Incident-Response.png"
       }
     ]}
     highlights={[

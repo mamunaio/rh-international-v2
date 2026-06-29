@@ -29,6 +29,7 @@ const globalOffices = [
     label: "Corporate Office",
     address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     timezone: "CST / GMT-6",
     image: "/images/offices/austin.png",
   },
@@ -37,6 +38,7 @@ const globalOffices = [
     label: "Branch Office",
     address: "57QQ+MJX, Business Bay, Dubai",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     timezone: "GMT+4",
     image: "/images/offices/dubai.png",
   },
@@ -419,6 +421,14 @@ const Contact = () => {
                       <div className="flex items-center gap-3 text-sm text-gray-200">
                         <Phone className="w-4 h-4 text-primary shrink-0 ml-0.5" />
                         {office.phone}
+                      </div>
+                    )}
+                    {office.wechat && (
+                      <div className="flex items-center gap-3 text-sm text-gray-200">
+                        <MessageCircle className="w-4 h-4 text-primary shrink-0 ml-0.5" />
+                        <a href={`callto:${office.wechat.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                          WeChat
+                        </a>
                       </div>
                     )}
                     <div className="flex items-center gap-3 text-sm text-gray-200">

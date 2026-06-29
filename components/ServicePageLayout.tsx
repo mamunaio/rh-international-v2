@@ -142,7 +142,7 @@ const ServicePageLayout = ({
                         </div>
                         
                         {/* Overlay Icon */}
-                        <div className="absolute z-30 w-20 h-20 rounded-2xl bg-background/80 backdrop-blur-md border border-primary/30 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
+                        <div className="absolute z-30 w-20 h-20 rounded-2xl bg-background/80 backdrop-blur-md border border-primary/30 flex items-center justify-center shadow-2xl transition-all duration-500 group-hover:opacity-0 pointer-events-none">
                           <CheckCircle2 className="w-10 h-10 text-primary" />
                         </div>
                       </div>

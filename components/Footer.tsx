@@ -15,7 +15,7 @@ const serviceLinks = [
 
 const quickLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
+  { label: "Procurement", path: "/services" },
   { label: "E-commerce Shop", path: "https://shop.rhinternationalsc.com/" },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Global Presence", path: "/global-presence" },
@@ -28,10 +28,9 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { icon: Linkedin, href: "#", color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/10 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]" },
-  { icon: Twitter, href: "#", color: "hover:text-sky-400 hover:border-sky-400 hover:bg-sky-400/10 hover:shadow-[0_0_15px_rgba(56,189,248,0.5)]" },
-  { icon: Facebook, href: "#", color: "hover:text-blue-600 hover:border-blue-600 hover:bg-blue-600/10 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)]" },
-  { icon: Instagram, href: "#", color: "hover:text-pink-500 hover:border-pink-500 hover:bg-pink-500/10 hover:shadow-[0_0_15px_rgba(236,72,153,0.5)]" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/113504182", color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/10 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]" },
+  { icon: Facebook, href: "https://www.facebook.com/people/RH-International-Sourcing-Center", color: "hover:text-blue-600 hover:border-blue-600 hover:bg-blue-600/10 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)]" },
+  { icon: Mail, href: "mailto:info@rhinternationalsc.com", color: "hover:text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500/10 hover:shadow-[0_0_15px_rgba(16,185,129,0.5)]" },
 ];
 
 const Footer = () => {
@@ -46,7 +45,30 @@ const Footer = () => {
       {/* Ambient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.03),transparent_50%)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-24 pb-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 relative z-10">
+        {/* Massive Brand Text Background - Scrolling Marquee */}
+        <div className="relative flex w-full overflow-hidden select-none pointer-events-none mb-16">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 30,
+            }}
+            className="flex whitespace-nowrap"
+          >
+            {[...Array(4)].map((_, i) => (
+              <h1
+                key={i}
+                className="text-[12vw] font-black text-foreground/[0.03] dark:text-foreground/[0.03] tracking-tighter leading-none px-4"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                RH INTERNATIONAL
+              </h1>
+            ))}
+          </motion.div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
           
           {/* Brand & Description (Spans 4 cols) */}
@@ -93,7 +115,7 @@ const Footer = () => {
 
           {/* Services (Spans 3 cols) */}
           <div className="lg:col-span-3 lg:ml-auto">
-            <h4 className="text-sm font-bold text-foreground mb-6 tracking-widest uppercase">Our Services</h4>
+            <h4 className="text-sm font-bold text-foreground mb-6 tracking-widest uppercase">Procurement</h4>
             <ul className="space-y-4">
               {serviceLinks.map((s) => (
                 <li key={s.path}>
@@ -164,31 +186,8 @@ const Footer = () => {
           </motion.a>
         </div>
 
-        {/* Massive Brand Text Background - Scrolling Marquee */}
-        <div className="relative flex w-full overflow-hidden select-none pointer-events-none mt-4 border-t border-border/10 pt-10">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              ease: "linear",
-              duration: 30,
-            }}
-            className="flex whitespace-nowrap"
-          >
-            {[...Array(4)].map((_, i) => (
-              <h1
-                key={i}
-                className="text-[12vw] font-black text-foreground/[0.02] dark:text-foreground/[0.02] tracking-tighter leading-none px-4"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                RH INTERNATIONAL
-              </h1>
-            ))}
-          </motion.div>
-        </div>
-
         {/* Bottom Bar */}
-        <div className="mt-[-4vw] relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 border-t border-border/10">
           <p className="text-xs text-muted-foreground font-medium">
             © {new Date().getFullYear()} RH International Sourcing Center. All rights reserved.
           </p>

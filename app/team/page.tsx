@@ -9,9 +9,9 @@ import Link from "next/link";
 
 const leadershipMembers = [
   {
-    name: "ABM Reza",
+    name: "A.B.M. REZA ISLAM",
     role: "Managing Director & Co-Founder",
-    bio: "As the visionary Founder of RH International, ABM Reza laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
+    bio: "As the visionary Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
     initials: "AR",
     image: "/images/team/abm-reza.jpg",
     objectPosition: "center 10%",
@@ -35,7 +35,7 @@ const leadershipMembers = [
 const teamMembers = [
   {
     name: "Md Mamun Hossain",
-    role: "Full Stack Web Developer & SEO Specialist",
+    role: "Chief Technology Officer (CTO)",
     bio: "With over 10 years of extensive experience, Md Mamun Hossain is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings.",
     initials: "MH",
     image: "/images/team/mamun.jpg",
@@ -45,26 +45,26 @@ const teamMembers = [
     slug: "md-mamun-hossain",
   },
   {
-    name: "John Doe",
-    role: "Global Operations Manager",
-    bio: "John oversees our global operations, ensuring that our international hubs work in perfect sync to deliver unparalleled service to our clients.",
-    initials: "JD",
+    name: "Fahim Hasan",
+    role: "Operations Manager",
+    bio: "Fahim oversees our daily operations, ensuring that all our internal processes and client deliverables run smoothly, efficiently, and on schedule.",
+    initials: "FH",
     image: "",
     objectPosition: "center",
-    expertise: ["Operations Management", "Supply Chain", "Global Expansion"],
+    expertise: ["Operations Management", "Process Optimization", "Client Relations"],
     accent: "35 85% 55%",
-    slug: "john-doe",
+    slug: "fahim-hasan",
   },
   {
-    name: "Jane Doe",
-    role: "Creative Director",
-    bio: "Jane brings brands to life with her exceptional eye for design and user experience. She leads our creative teams to craft memorable digital identities.",
-    initials: "JD",
-    image: "",
-    objectPosition: "center",
-    expertise: ["UI/UX Design", "Brand Strategy", "Creative Direction"],
+    name: "Fazly Rabbi",
+    role: "Office Executive",
+    bio: "Fazly is the backbone of our office management. He brings precision and dedication to our daily administrative tasks, ensuring a productive environment for everyone.",
+    initials: "FR",
+    image: "/images/team/fazly-rabbi.jpg",
+    objectPosition: "center top",
+    expertise: ["Office Administration", "Team Support", "Workflow Management"],
     accent: "340 70% 55%",
-    slug: "jane-doe",
+    slug: "fazly-rabbi",
   },
 ];
 

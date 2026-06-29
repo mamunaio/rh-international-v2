@@ -24,7 +24,7 @@ const bookingSchema = z.object({
 
 const experts = [
   { id: "abu-sama-kias", name: "Abu Sama Kias", role: "CEO & Founder" },
-  { id: "abm-reza", name: "ABM Reza", role: "Managing Director" },
+  { id: "abm-reza", name: "A.B.M. REZA ISLAM", role: "Managing Director" },
   { id: "any", name: "Any Available Expert", role: "Consulting Team" },
 ];
 

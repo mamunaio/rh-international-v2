@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, MapPin, Phone, Mail, Globe, ArrowRight, Plane } from "lucide-react";
+import { Building2, MapPin, Phone, Mail, Globe, ArrowRight, Plane, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 const offices = [
@@ -10,6 +10,7 @@ const offices = [
     label: "Corporate Office",
     address: "815 Brazos St Ste 500 Austin TX 78701, USA",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     timezone: "CST / GMT-6",
     services: ["Global Strategy", "Corporate Partnerships", "Investments"],
     color: "from-blue-500/20 to-indigo-500/20",
@@ -25,6 +26,7 @@ const offices = [
     label: "Branch Office",
     address: "57QQ+MJX, Business Bay, Dubai",
     email: "info@rhinternationalsc.com",
+    wechat: "+880 1319-855960",
     timezone: "GMT+4",
     services: ["Corporate Setup", "Trade Facilitation"],
     color: "from-amber-500/20 to-orange-500/20",
@@ -162,6 +164,14 @@ const GlobalPresenceSection = () => {
                     <div className="flex items-center gap-3 text-sm text-gray-200">
                       <Phone className={`w-4 h-4 ${office.iconColor}`} />
                       {office.phone}
+                    </div>
+                  )}
+                  {office.wechat && (
+                    <div className="flex items-center gap-3 text-sm text-gray-200">
+                      <MessageCircle className={`w-4 h-4 ${office.iconColor}`} />
+                      <a href={`callto:${office.wechat.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                        WeChat
+                      </a>
                     </div>
                   )}
                   <div className="flex items-center gap-3 text-sm text-gray-200">

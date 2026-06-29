@@ -135,7 +135,7 @@ export default function ABMRezaProfile() {
                 >
                   <Image 
                     src="/images/abm-reza.jpg" 
-                    alt="ABM Reza" 
+                    alt="A.B.M. REZA ISLAM" 
                     width={144}
                     height={144}
                     className="w-full h-full object-cover object-top"
@@ -155,7 +155,7 @@ export default function ABMRezaProfile() {
                 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                ABM Reza
+                A.B.M. REZA ISLAM
               </h1>
 
               {/* Title Badge */}
@@ -166,7 +166,7 @@ export default function ABMRezaProfile() {
 
               {/* Bio */}
               <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
-                As the visionary Managing Director & Co-Founder of RH International, ABM Reza laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.
+                As the visionary Managing Director & Co-Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.
               </p>
 
               {/* Expertise Tags */}
@@ -193,7 +193,7 @@ export default function ABMRezaProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:contact@rhinternational.com" },
+                  { icon: Mail, label: "Email", href: "mailto:contact@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a
@@ -226,7 +226,7 @@ export default function ABMRezaProfile() {
               {/* Save Contact Button */}
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Reza;ABM;;;\nFN:ABM Reza\nORG:RH International\nTITLE:Managing Director & Co-Founder\nEMAIL;TYPE=INTERNET:contact@rhinternational.com\nURL:https://rhinternational.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Islam;A.B.M. Reza;;;\nFN:A.B.M. REZA ISLAM\nORG:RH International\nTITLE:Managing Director & Co-Founder\nEMAIL;TYPE=INTERNET:contact@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");
