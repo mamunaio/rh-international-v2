@@ -9,8 +9,9 @@ interface VcardPageProps {
   };
 }
 
-export default function VcardPage({ params }: VcardPageProps) {
-  const profile = vCardsData[params.name as keyof typeof vCardsData];
+export default async function VcardPage({ params }: VcardPageProps) {
+  const { name } = await params;
+  const profile = vCardsData[name as keyof typeof vCardsData];
 
   if (!profile) {
     notFound();
