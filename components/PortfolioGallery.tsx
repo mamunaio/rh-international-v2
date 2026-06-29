@@ -163,11 +163,9 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
                 
                 <div className="p-8 md:p-10 bg-card">
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {selectedProject.category.map((cat) => (
-                      <span key={cat} className="text-xs font-bold uppercase tracking-wider text-primary">
-                        {cat}
-                      </span>
-                    ))}
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                      {selectedProject.category}
+                    </span>
                   </div>
                   
                   <h3 className="text-3xl md:text-4xl font-bold mb-6 text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
