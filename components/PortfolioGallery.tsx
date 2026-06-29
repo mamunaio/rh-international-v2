@@ -8,7 +8,7 @@ import Link from "next/link";
 export interface Project {
   id: string;
   title: string;
-  category: string[];
+  category: string;
   image: string;
   techStack: string[];
 }
@@ -35,7 +35,7 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
 
   const filteredProjects = activeFilter === "All"
     ? projects
-    : projects.filter(p => p.category.includes(activeFilter));
+    : projects.filter(p => p.category === activeFilter);
 
   return (
     <div className="w-full mt-24 mb-10 border-t border-border/30 pt-16">
