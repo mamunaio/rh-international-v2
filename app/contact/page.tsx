@@ -153,7 +153,7 @@ const Contact = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative z-10 pt-32 pb-24 px-6 overflow-hidden">
+      <section className="relative z-10 pt-32 pb-12 md:pb-16 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             animate={{ x: [0, 50, -30, 0], y: [0, -40, 30, 0], scale: [1, 1.15, 0.9, 1] }}
@@ -175,7 +175,7 @@ const Contact = () => {
               <span className="text-xs text-primary font-bold tracking-[0.2em] uppercase">Let's Connect</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-8 leading-[1.05]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.05]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {"Let's Talk".split("").map((char, i) => (
                 <motion.span
                   key={i}
@@ -202,7 +202,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.7 }}
-              className="text-muted-foreground text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed border-l-2 border-primary/30 pl-6 text-left md:text-center md:border-none md:pl-0"
+              className="text-muted-foreground text-base max-w-3xl mx-auto leading-relaxed border-l-2 border-primary/30 pl-6 text-left md:text-center md:border-none md:pl-0"
             >
               Got a major project in mind, or need expert consultancy? Drop us a line. Our team is ready to help you build and scale something extraordinary.
             </motion.p>
@@ -211,7 +211,7 @@ const Contact = () => {
       </section>
 
       {/* Main Contact Area */}
-      <section className="relative z-10 px-6 pb-20">
+      <section className="relative z-10 py-12 md:py-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* Contact Form */}
@@ -222,18 +222,18 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
             className="lg:col-span-8 relative group"
           >
-            <div className="absolute -inset-px rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-primary/5 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm" />
-            <div className="relative rounded-[2.5rem] border border-border/20 bg-card/30 backdrop-blur-xl overflow-hidden shadow-2xl">
-              <div className="p-10 md:p-14">
-                <div className="flex items-center gap-5 mb-10">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shadow-[0_0_20px_hsl(var(--primary)/0.2)]">
-                    <Send className="w-7 h-7 text-primary" />
+            <div className="absolute -inset-px rounded-[1.5rem] sm:rounded-[2.5rem] bg-gradient-to-br from-primary/20 via-primary/5 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm" />
+            <div className="relative rounded-[1.5rem] sm:rounded-[2.5rem] border border-border/20 bg-card/30 backdrop-blur-xl overflow-hidden shadow-2xl">
+              <div className="p-5 sm:p-10 md:p-14">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 mb-8 sm:mb-10">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-[0_0_20px_hsl(var(--primary)/0.2)]">
+                    <Send className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                       Send a Message
                     </h2>
-                    <p className="text-muted-foreground mt-2 text-sm md:text-base">Fill out the form below, and our team will get back to you.</p>
+                    <p className="text-muted-foreground mt-1 sm:mt-2 text-xs sm:text-sm md:text-base">Fill out the form below, and our team will get back to you.</p>
                   </div>
                 </div>
 
@@ -302,30 +302,30 @@ const Contact = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="p-8 rounded-[2rem] border border-border/20 bg-card/40 backdrop-blur-xl shadow-xl h-full flex flex-col"
+              className="p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] border border-border/20 bg-card/40 backdrop-blur-xl shadow-xl h-full flex flex-col"
             >
               <h3 className="text-2xl font-bold mb-8 text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 Contact Info
               </h3>
               
-              <div className="space-y-8 flex-1">
+              <div className="space-y-8 flex-1 min-w-0">
                 {contactInfo.map((item, i) => (
                   <motion.div
                     key={item.label}
                     whileHover={{ x: 5 }}
-                    className="flex items-start gap-5 group/info"
+                    className="flex items-start gap-5 group/info min-w-0"
                   >
                     <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover/info:bg-primary group-hover/info:text-white transition-colors duration-300">
                       <item.icon className="w-5 h-5 text-primary group-hover/info:text-white transition-colors" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold mb-1">{item.label}</p>
                       {item.href ? (
-                        <a href={item.href} className="text-base text-foreground font-medium hover:text-primary transition-colors">
+                        <a href={item.href} className="text-base text-foreground font-medium hover:text-primary transition-colors break-all">
                           {item.value}
                         </a>
                       ) : (
-                        <p className="text-base text-foreground font-medium">{item.value}</p>
+                        <p className="text-base text-foreground font-medium break-all">{item.value}</p>
                       )}
                     </div>
                   </motion.div>
@@ -355,14 +355,14 @@ const Contact = () => {
       </section>
 
       {/* --- MULTIPLE LOCATIONS SECTION --- */}
-      <section className="relative z-10 pt-10 pb-32 px-6">
+      <section className="relative z-10 pt-10 pb-12 md:pb-16 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Our <span className="text-gradient-cyan">Global Offices</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
               With a strategic presence across continents, our local experts are ready to provide world-class solutions wherever you are.
             </p>
           </div>
@@ -375,7 +375,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative h-[450px] rounded-[2.5rem] overflow-hidden border border-border/20 shadow-2xl bg-card"
+                className="group relative h-[400px] sm:h-[450px] rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border border-border/20 shadow-2xl bg-card"
               >
                 {/* Background Image */}
                 <img
@@ -389,7 +389,7 @@ const Contact = () => {
                 <div className="absolute inset-0 bg-primary/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Content */}
-                <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
+                <div className="absolute inset-0 p-6 sm:p-8 md:p-10 flex flex-col justify-end">
                   <div className="flex items-center justify-between mb-4">
                     <span className="px-4 py-2 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-xs font-bold uppercase tracking-widest text-primary shadow-[0_0_15px_hsl(var(--primary)/0.3)]">
                       {office.label}
@@ -402,38 +402,38 @@ const Contact = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-4xl font-bold text-white mb-6 drop-shadow-md" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                   <h3 className="text-4xl font-bold text-slate-900 dark:text-white mb-6 drop-shadow-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {office.city.includes(', USA') ? (
                       <>
-                        {office.city.split(', USA')[0]}<span className="text-xl text-white/70 ml-1 font-medium">, USA</span>
+                        {office.city.split(', USA')[0]}<span className="text-xl text-slate-900/70 dark:text-white/70 ml-1 font-medium">, USA</span>
                       </>
                     ) : (
                       office.city
                     )}
                   </h3>
 
-                  <div className="space-y-3 translate-y-4 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="flex items-start gap-3 text-sm text-gray-200">
+                  <div className="space-y-3 translate-y-4 opacity-80 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 min-w-0">
+                    <div className="flex items-start gap-3 text-sm text-slate-800 dark:text-gray-200">
                       <MapPin className="w-5 h-5 text-primary shrink-0" />
-                      {office.address}
+                      <span className="break-words">{office.address}</span>
                     </div>
                     {office.phone && (
-                      <div className="flex items-center gap-3 text-sm text-gray-200">
+                      <div className="flex items-center gap-3 text-sm text-slate-800 dark:text-gray-200">
                         <Phone className="w-4 h-4 text-primary shrink-0 ml-0.5" />
-                        {office.phone}
+                        <span className="break-all">{office.phone}</span>
                       </div>
                     )}
                     {office.wechat && (
-                      <div className="flex items-center gap-3 text-sm text-gray-200">
+                      <div className="flex items-center gap-3 text-sm text-slate-800 dark:text-gray-200">
                         <MessageCircle className="w-4 h-4 text-primary shrink-0 ml-0.5" />
-                        <a href={`callto:${office.wechat.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
-                          WeChat
+                        <a href={`callto:${office.wechat.replace(/[^0-9+]/g, '')}`} className="hover:text-slate-950 dark:hover:text-white transition-colors break-all">
+                          WeChat: {office.wechat}
                         </a>
                       </div>
                     )}
-                    <div className="flex items-center gap-3 text-sm text-gray-200">
+                    <div className="flex items-center gap-3 text-sm text-slate-800 dark:text-gray-200">
                       <Mail className="w-4 h-4 text-primary shrink-0 ml-0.5" />
-                      {office.email}
+                      <span className="break-all">{office.email}</span>
                     </div>
                   </div>
                 </div>

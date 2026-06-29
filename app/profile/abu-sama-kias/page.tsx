@@ -152,7 +152,7 @@ export default function AbuSamaProfile() {
 
               {/* Name */}
               <h1 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
+                className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Md Abu Sama Kias
@@ -165,7 +165,7 @@ export default function AbuSamaProfile() {
               </div>
 
               {/* Generated Bio */}
-              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
                 As the dynamic Founder & CEO of RH International, Md Abu Sama Kias leads with a philosophy centered on building trust through flawless execution. He is the driving force behind the company's global expansion and technological integration. Overseeing operations from complex government tenders to cutting-edge digital solutions, his innovative leadership ensures that clients worldwide receive nothing short of excellence.
               </p>
 

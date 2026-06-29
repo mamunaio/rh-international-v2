@@ -55,7 +55,7 @@ const GovtTender = () => (
     {/* Additional Content Section 2: Comprehensive Services */}
     <div className="mb-20">
       <h3 className="text-3xl font-bold text-foreground mb-10 flex items-center gap-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        <FileText className="w-8 h-8 text-primary" />
+        <span><FileText className="w-8 h-8 text-primary" /></span>
         Our Comprehensive Tender Management Services
       </h3>
       

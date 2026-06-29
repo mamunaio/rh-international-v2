@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Award, Briefcase, Globe, Heart, Linkedin, Mail, Sparkles, Target, Users } from "lucide-react";
 import { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const leadershipMembers = [
   {
@@ -278,7 +279,7 @@ const Team = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-24 px-6 relative overflow-hidden">
+      <section className="pt-32 pb-12 md:pb-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             animate={{ x: [0, 50, -30, 0], y: [0, -40, 30, 0], scale: [1, 1.15, 0.9, 1] }}
@@ -306,7 +307,7 @@ const Team = () => {
             <span className="text-xs text-primary font-semibold tracking-wider uppercase">Our Team</span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             {"The Minds Behind".split("").map((char, i) => (
               <motion.span
                 key={i}
@@ -333,7 +334,7 @@ const Team = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.7 }}
-            className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
+            className="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed"
           >
             We are more than just a multi-service company. We are a dedicated team of problem-solvers, tech innovators, and global strategists working together to turn your most ambitious business goals into reality.
           </motion.p>
@@ -352,7 +353,7 @@ const Team = () => {
                 className="p-5 rounded-2xl border border-border/15 bg-card/20 backdrop-blur-sm text-center"
               >
                 <div className="text-2xl font-bold text-gradient-cyan" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">{stat.label}</div>
               </motion.div>
@@ -362,7 +363,7 @@ const Team = () => {
       </section>
 
       {/* Leadership */}
-      <section className="relative z-10 px-6 pb-24">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -385,7 +386,7 @@ const Team = () => {
       </section>
 
       {/* Team Members */}
-      <section className="relative z-10 px-6 pb-24">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -419,7 +420,7 @@ const Team = () => {
       </div>
 
       {/* Our Values */}
-      <section className="relative z-10 px-6 py-24">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -466,7 +467,7 @@ const Team = () => {
       </section>
 
       {/* Join CTA */}
-      <section className="relative z-10 px-6 pb-28">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

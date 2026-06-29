@@ -215,7 +215,7 @@ const HeroSection = () => {
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.15),transparent_60%)] rounded-full blur-[100px] pointer-events-none mix-blend-screen animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(ellipse,hsl(200,100%,50%/0.1),transparent_60%)] rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse delay-1000" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full pt-20 pb-10">
+      <div className="relative max-w-7xl mx-auto px-6 w-full pt-20 pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-center">
 
           {/* Left — Text */}
@@ -223,7 +223,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10"
+            className="relative z-20"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -242,7 +242,7 @@ const HeroSection = () => {
             </motion.div>
 
             <h1
-              className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-7 tracking-[-0.02em]"
+              className="text-4xl md:text-6xl font-bold leading-[1.05] mb-7 tracking-[-0.02em]"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
               <span className="inline-block">We</span>{" "}
@@ -269,7 +269,7 @@ const HeroSection = () => {
             </h1>
 
             <motion.p
-              className="text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed mb-10"
+              className="text-base text-muted-foreground max-w-lg leading-relaxed mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.7 }}

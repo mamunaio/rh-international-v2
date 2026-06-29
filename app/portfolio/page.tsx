@@ -22,7 +22,7 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-40 pb-20 px-6 overflow-hidden min-h-[40vh] flex flex-col justify-center text-center">
+      <section className="relative z-10 pt-40 pb-12 md:pb-16 px-6 overflow-hidden min-h-[40vh] flex flex-col justify-center text-center">
         <div className="absolute inset-0 pointer-events-none">
           <motion.div
             animate={{ x: [0, 50, -30, 0], y: [0, -40, 30, 0], scale: [1, 1.1, 0.9, 1] }}
@@ -46,7 +46,7 @@ export default function PortfolioPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             Showcasing Our <span className="text-gradient-cyan">Best Work</span>
@@ -56,7 +56,7 @@ export default function PortfolioPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Explore how we transform complex challenges into innovative digital solutions for enterprises across the globe.
           </motion.p>
@@ -64,7 +64,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Filter Section */}
-      <section className="relative z-20 px-6 pb-12">
+      <section className="relative z-20 py-12 md:py-16 px-6">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-3">
           {portfolioCategories.map((category) => (
             <button
@@ -83,7 +83,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Compact Projects Grid */}
-      <section className="relative z-10 px-6 pb-32">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             <AnimatePresence mode="popLayout">

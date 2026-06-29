@@ -152,7 +152,7 @@ export default function ABMRezaProfile() {
 
               {/* Name */}
               <h1 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
+                className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 A.B.M. REZA ISLAM
@@ -164,7 +164,6 @@ export default function ABMRezaProfile() {
                 <span className="text-sm font-semibold text-primary tracking-wide">Managing Director & Co-Founder</span>
               </div>
 
-              {/* Bio */}
               <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
                 As the visionary Managing Director & Co-Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.
               </p>

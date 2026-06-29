@@ -20,7 +20,7 @@ const partnersList = [
 ];
 
 const PartnersSection = () => (
-  <section className="relative z-10 py-16 px-6">
+  <section className="relative z-10 py-12 md:py-16 px-6">
     <div className="max-w-7xl mx-auto">
       {/* Header */}
       <motion.div

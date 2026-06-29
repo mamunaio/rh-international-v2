@@ -51,13 +51,13 @@ const reasons = [
 const trustBadges = ["ISO Certified Processes", "Government-Approved Vendor", "Multi-Currency Operations"];
 
 const WhyChooseUsSection = () => (
-  <section className="relative z-10 py-10 px-6 overflow-hidden">
+  <section className="relative z-10 py-12 md:py-16 px-6 overflow-hidden">
     {/* Ambient background */}
     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.03),transparent_70%)] pointer-events-none" />
 
     <div className="max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-20">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 md:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

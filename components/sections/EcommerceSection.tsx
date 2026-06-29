@@ -8,7 +8,7 @@ const EcommerceSection = () => {
   const { data: products = [], isLoading } = useProducts();
 
   return (
-    <section id="ecommerce" className="relative z-10 py-28 px-6">
+    <section id="ecommerce" className="relative z-10 py-12 md:py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

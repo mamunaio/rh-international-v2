@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import Image from "next/image";
 
 const services = [
@@ -117,7 +118,7 @@ const ServicesIndex = () => (
     <Navbar />
 
     {/* Cinematic Hero */}
-    <section className="relative z-10 pt-40 pb-28 px-6 overflow-hidden">
+    <section className="relative z-10 pt-40 pb-12 md:pb-16 px-6 overflow-hidden">
       {/* Background Animated Orb */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,hsl(var(--primary)/0.08),transparent_60%)] blur-[100px] animate-pulse pointer-events-none" />
 
@@ -132,13 +133,13 @@ const ServicesIndex = () => (
             <span className="text-xs text-primary font-bold tracking-widest uppercase">Global Expertise</span>
           </div>
           <h1
-            className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight mb-8 leading-[1.1]"
+            className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             What We <br className="md:hidden" />
             <span className="text-gradient-cyan drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">Deliver.</span>
           </h1>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed">
             Comprehensive B2B & B2C solutions spanning procurement, manufacturing,
             technology, immigration, and digital transformation across 5+ countries.
           </p>
@@ -147,7 +148,7 @@ const ServicesIndex = () => (
     </section>
 
     {/* Premium Bento Grid */}
-    <section className="relative z-10 pb-32 px-6">
+    <section className="relative z-10 py-12 md:py-16 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service, i) => (
           <motion.div
@@ -204,7 +205,7 @@ const ServicesIndex = () => (
 
               {/* Footer row */}
               <div className="flex items-center justify-between pt-6 border-t border-border/40">
-                <span className="text-xs font-bold text-foreground/80">{service.stats}</span>
+                <span className="text-xs font-bold text-foreground/80"><AnimatedCounter value={service.stats} /></span>
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                   <ArrowRight className="w-4 h-4" />
                 </div>
@@ -216,9 +217,9 @@ const ServicesIndex = () => (
     </section>
 
     {/* Workflow Section */}
-    <section className="relative z-10 py-32 px-6 border-y border-border/20 bg-background/50 backdrop-blur-3xl">
+    <section className="relative z-10 py-12 md:py-16 px-6 border-y border-border/20 bg-background/50 backdrop-blur-3xl">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-16">
           <h2
             className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-6"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
@@ -255,7 +256,7 @@ const ServicesIndex = () => (
     </section>
 
     {/* Interactive Massive CTA */}
-    <section className="relative z-10 py-32 px-6">
+    <section className="relative z-10 py-12 md:py-16 px-6">
       <div className="max-w-5xl mx-auto text-center bg-card/30 backdrop-blur-2xl border border-border/50 rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
         
@@ -271,7 +272,7 @@ const ServicesIndex = () => (
           >
             Ready to <span className="text-gradient-cyan">Elevate Your Business?</span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground mb-10 max-w-2xl mx-auto">
             Get in touch with our experts today and discover how our global solutions can drive your success.
           </p>
           <Link

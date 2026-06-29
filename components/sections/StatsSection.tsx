@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Zap, Globe, Shield } from "lucide-react";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const stats = [
   { value: "7+", label: "Service Verticals", icon: Zap },
@@ -11,7 +12,7 @@ const stats = [
 ];
 
 const StatsSection = () => (
-  <section className="relative z-10 py-24 px-6">
+  <section className="relative z-10 py-12 md:py-16 px-6">
     <div className="max-w-6xl mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {stats.map((stat, i) => (
@@ -29,7 +30,7 @@ const StatsSection = () => (
                 className="text-4xl md:text-5xl font-bold text-gradient-cyan mb-1.5"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                {stat.value}
+                <AnimatedCounter value={stat.value} />
               </p>
               <p className="text-xs text-muted-foreground tracking-wider uppercase">{stat.label}</p>
             </div>

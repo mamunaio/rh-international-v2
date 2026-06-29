@@ -18,7 +18,7 @@ const Locations = () => {
       <div className="fixed inset-0 mesh-gradient pointer-events-none" />
       <Navbar />
 
-      <section className="relative z-10 pt-28 pb-16 px-6">
+      <section className="relative z-10 pt-28 pb-12 md:pb-16 px-6">
         <div className="max-w-5xl mx-auto">
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
             <ArrowLeft className="w-4 h-4" /> Back to Home
@@ -29,12 +29,12 @@ const Locations = () => {
             </div>
             <p className="text-primary text-sm tracking-[0.3em] uppercase mb-3">Our Presence</p>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Our Locations</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">Strategically positioned across Asia and the Middle East for global reach.</p>
+            <p className="text-base text-muted-foreground max-w-2xl">Strategically positioned across Asia and the Middle East for global reach.</p>
           </motion.div>
         </div>
       </section>
 
-      <section className="relative z-10 py-16 px-6">
+      <section className="relative z-10 py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {locations.map((loc, i) => (
             <motion.div key={loc.city} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.6 }}

@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useState, useEffect } from "react";
 
 // Mock data for country case studies
@@ -391,7 +392,7 @@ export default function CountryPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative z-10 pt-40 pb-20 px-6 overflow-hidden min-h-[60vh] flex flex-col justify-center">
+      <section className="relative z-10 pt-40 pb-12 md:pb-16 px-6 overflow-hidden min-h-[60vh] flex flex-col justify-center">
         <div className="absolute inset-0">
           {data.bgImage && (
             <>
@@ -414,7 +415,7 @@ export default function CountryPage() {
           <HeroParticles />
         </div>
 
-        <div className="max-w-5xl mx-auto relative z-10">
+        <div className="max-w-full relative z-10">
           <Link href="/global-presence" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group">
             <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
             Back to Global Presence
@@ -428,7 +429,7 @@ export default function CountryPage() {
             <div className="flex items-center gap-4 mb-6">
               <span className="text-6xl drop-shadow-2xl">{data.flag}</span>
               <div>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                   {data.name}
                 </h1>
                 <span className="inline-block mt-2 px-3 py-1 rounded-full border bg-primary/10 border-primary/30 text-primary text-xs font-bold uppercase tracking-widest">
@@ -437,7 +438,7 @@ export default function CountryPage() {
               </div>
             </div>
 
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed mt-8 font-light">
+            <p className="text-base text-muted-foreground max-w-3xl leading-relaxed mt-8 font-light">
               <strong className="text-foreground font-semibold block mb-2">{data.headline}</strong>
               {data.overview}
             </p>
@@ -446,7 +447,7 @@ export default function CountryPage() {
       </section>
 
       {/* Key Stats */}
-      <section className="relative z-20 -mt-10 px-6 pb-20">
+      <section className="relative z-20 -mt-10 py-12 md:py-16 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {data.stats.map((stat: any, index: number) => (
@@ -462,7 +463,7 @@ export default function CountryPage() {
                   <stat.icon className="w-8 h-8 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold text-foreground mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{stat.value}</h4>
+                  <h4 className="text-3xl font-bold text-foreground mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}><AnimatedCounter value={stat.value} /></h4>
                   <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{stat.label}</p>
                 </div>
               </motion.div>
@@ -472,13 +473,13 @@ export default function CountryPage() {
       </section>
 
       {/* Jobs Completed Section (Detailed Case Study Style) */}
-      <section className="py-24 px-6 relative z-10 bg-background/50 backdrop-blur-md border-y border-border/20">
+      <section className="py-12 md:py-16 px-6 relative z-10 bg-background/50 backdrop-blur-md border-y border-border/20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Work <span className="text-gradient-cyan">Delivered</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-base text-muted-foreground max-w-2xl">
               A detailed look at the specific types of professional jobs and projects we have successfully executed in this region.
             </p>
           </div>
@@ -516,13 +517,13 @@ export default function CountryPage() {
       </section>
 
       {/* Portfolio / Featured Projects Section */}
-      <section className="py-24 px-6 relative z-10">
+      <section className="py-12 md:py-16 px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Featured <span className="text-gradient-cyan">Case Studies</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
+            <p className="text-base text-muted-foreground max-w-2xl">
               Explore our recent projects and discover how our solutions solve complex business challenges.
             </p>
           </div>
@@ -597,7 +598,7 @@ export default function CountryPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 relative z-10 text-center">
+      <section className="py-12 md:py-16 px-6 relative z-10 text-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
           className="max-w-3xl mx-auto p-12 rounded-[3rem] bg-card/30 border border-border/50 backdrop-blur-xl relative overflow-hidden"
@@ -606,7 +607,7 @@ export default function CountryPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Ready to expand into {data.name}?
           </h2>
-          <p className="text-muted-foreground mb-10 relative z-10 text-lg">
+          <p className="text-muted-foreground mb-10 relative z-10 text-base">
             Leverage our established presence and operational expertise to accelerate your growth.
           </p>
           <Link href="/contact" className="relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold hover:scale-105 transition-transform hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]">

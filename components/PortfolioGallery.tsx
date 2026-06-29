@@ -89,7 +89,7 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
               />
               
               {/* Glass Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Content */}
               <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
@@ -106,7 +106,7 @@ const PortfolioGallery = ({ projects, categories }: PortfolioGalleryProps) => {
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 text-xs font-semibold tracking-wide uppercase bg-background/50 backdrop-blur-md text-white rounded-md border border-white/10"
+                      className="px-3 py-1 text-xs font-semibold tracking-wide uppercase bg-black/50 backdrop-blur-md text-white rounded-md border border-white/10"
                     >
                       {tech}
                     </span>

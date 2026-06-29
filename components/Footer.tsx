@@ -1,9 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Send, Linkedin, Twitter, Facebook, Instagram, ArrowRight } from "lucide-react";
+import { Mail, Send, Linkedin, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
+const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const serviceLinks = [
   { label: "Government Tenders", path: "/services/govt-tender" },
@@ -29,8 +35,9 @@ const legalLinks = [
 
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/113504182", color: "hover:text-blue-500 hover:border-blue-500 hover:bg-blue-500/10 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]" },
+  { icon: XIcon, href: "#", color: "hover:text-white hover:border-white hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]" },
   { icon: Facebook, href: "https://www.facebook.com/people/RH-International-Sourcing-Center", color: "hover:text-blue-600 hover:border-blue-600 hover:bg-blue-600/10 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)]" },
-  { icon: Mail, href: "mailto:info@rhinternationalsc.com", color: "hover:text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500/10 hover:shadow-[0_0_15px_rgba(16,185,129,0.5)]" },
+  { icon: Instagram, href: "#", color: "hover:text-pink-500 hover:border-pink-500 hover:bg-pink-500/10 hover:shadow-[0_0_15px_rgba(236,72,153,0.5)]" },
 ];
 
 const Footer = () => {

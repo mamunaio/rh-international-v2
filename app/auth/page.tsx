@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const Auth = () => {
   const navigate = useRouter();
@@ -70,11 +69,21 @@ const Auth = () => {
     "w-full pl-11 pr-4 py-3.5 text-sm rounded-xl bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_12px_hsl(var(--primary)/0.1)] transition-all";
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
+    <div className="min-h-screen bg-background relative overflow-hidden flex flex-col justify-center py-12">
       <div className="fixed inset-0 mesh-gradient pointer-events-none" />
-      <Navbar />
+      
+      {/* Back to Home Button */}
+      <div className="absolute top-6 left-6 z-20">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl bg-secondary/30 border border-border/30 text-muted-foreground hover:text-foreground transition-all hover:bg-secondary/50 backdrop-blur-sm"
+        >
+          <ArrowRight className="w-3.5 h-3.5 rotate-180 group-hover:-translate-x-0.5 transition-transform" />
+          Back to Home
+        </Link>
+      </div>
 
-      <section className="relative z-10 pt-32 pb-20 px-6">
+      <section className="relative z-10 px-6">
         <div className="max-w-md mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -84,7 +93,7 @@ const Auth = () => {
           >
             <div className="text-center mb-8">
               <h1
-                className="text-3xl font-bold text-foreground tracking-tight mb-2"
+                className="text-4xl md:text-6xl font-bold text-foreground tracking-tight mb-2"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {isLogin ? "Welcome back" : "Create account"}
@@ -184,8 +193,6 @@ const Auth = () => {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

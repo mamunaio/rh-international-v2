@@ -186,7 +186,7 @@ const BookingContent = () => {
             <span className="text-xs text-primary font-bold tracking-[0.2em] uppercase">Schedule Meeting</span>
           </motion.div>
           
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Book a <span className="text-gradient-cyan">Consultation</span>
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">

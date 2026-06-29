@@ -138,7 +138,7 @@ export default function JohnDoeProfile() {
               </motion.div>
 
               <h1 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
+                className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 John Doe
@@ -149,7 +149,7 @@ export default function JohnDoeProfile() {
                 <span className="text-sm font-semibold text-primary tracking-wide">Global Operations Manager</span>
               </div>
 
-              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
                 John oversees our global operations, ensuring that our international hubs work in perfect sync to deliver unparalleled service to our clients.
               </p>
 

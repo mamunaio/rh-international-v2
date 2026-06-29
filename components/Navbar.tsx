@@ -89,6 +89,17 @@ const Navbar = () => {
     setAdminOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const isActive = (path: string) => location === path;
   
   const isDropdownActive = (link: any) => {
@@ -102,7 +113,7 @@ const Navbar = () => {
   };
   
   const toggleMobileMenu = (label: string) => {
-    setMobileMenusOpen(prev => ({ ...prev, [label]: !prev[label] }));
+    setMobileMenusOpen(prev => (prev[label] ? {} : { [label]: true }));
   };
 
   return (
@@ -310,136 +321,158 @@ const Navbar = () => {
 
             <Link
               href="/booking"
-              className="hidden lg:flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-[0_0_25px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-1.5 lg:gap-2 px-3.5 py-2 lg:px-5 lg:py-2.5 text-xs lg:text-sm font-semibold bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-all duration-300 hover:shadow-[0_0_25px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98]"
             >
               Get a Quote
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3 h-3 lg:w-3.5 lg:h-3.5" />
             </Link>
 
             <button
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(true)}
               className="lg:hidden relative z-10 p-2 rounded-lg hover:bg-secondary/50 transition-colors"
             >
-              <AnimatePresence mode="wait">
-                {open ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X size={22} className="text-foreground" />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu size={22} className="text-foreground" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <Menu size={22} className="text-foreground" />
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Sidebar overlay and container */}
         <AnimatePresence>
           {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden relative border-t border-border/20 bg-background/98 backdrop-blur-2xl overflow-hidden"
-            >
-              <div className="px-6 py-5 flex flex-col gap-1">
-                {navLinks.map((link) =>
-                  link.megaCategories ? (
-                    <div key={link.label}>
-                      <button
-                        onClick={() => toggleMobileMenu(link.label)}
-                        className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${isDropdownActive(link)
+            <>
+              {/* Backdrop Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setOpen(false)}
+                className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              />
+
+              {/* Offcanvas Sidebar */}
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+                className="lg:hidden fixed inset-y-0 left-0 z-50 w-80 max-w-[85vw] h-full bg-background/95 backdrop-blur-xl border-r border-border/40 shadow-2xl flex flex-col"
+              >
+                {/* Sidebar Header */}
+                <div className="p-6 border-b border-border/20 flex items-center justify-between shrink-0">
+                  <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
+                    <img src={logo.src} alt="RH International" className="h-[45px] w-auto" />
+                    <span className="text-base font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                      RH International
+                    </span>
+                  </Link>
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="p-2 rounded-lg hover:bg-secondary/50 text-foreground transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                {/* Sidebar Scrollable Content */}
+                <div className="px-6 py-5 flex flex-col gap-1 flex-1 overflow-y-auto">
+                  {navLinks.map((link) =>
+                    link.megaCategories ? (
+                      <div key={link.label}>
+                        <button
+                          onClick={() => toggleMobileMenu(link.label)}
+                          className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${isDropdownActive(link)
+                              ? "text-primary bg-primary/5"
+                              : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
+                            }`}
+                        >
+                          {link.label}
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileMenusOpen[link.label] ? "rotate-180" : ""}`} />
+                        </button>
+                        <AnimatePresence>
+                          {mobileMenusOpen[link.label] && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pl-2 pt-1 space-y-3">
+                                {link.megaCategories.map((cat) => (
+                                  <div key={cat.title}>
+                                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-4 mb-1 block">{cat.title}</span>
+                                    {cat.items.map((item) => {
+                                      const Icon = item.icon;
+                                      return (
+                                        <Link
+                                          key={item.path}
+                                          href={item.path}
+                                          onClick={() => setOpen(false)}
+                                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${isActive(item.path) ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                                            }`}
+                                        >
+                                          <Icon className="w-4 h-4" />
+                                          {item.label}
+                                        </Link>
+                                      );
+                                    })}
+                                  </div>
+                                ))}
+                                {link.label === "Procurement" && (
+                                  <Link
+                                    href="/services"
+                                    onClick={() => setOpen(false)}
+                                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-primary"
+                                  >
+                                    All Services <ArrowRight className="w-3.5 h-3.5" />
+                                  </Link>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        key={link.path}
+                        href={link.path}
+                        onClick={() => setOpen(false)}
+                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive(link.path)
                             ? "text-primary bg-primary/5"
                             : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
                           }`}
                       >
                         {link.label}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileMenusOpen[link.label] ? "rotate-180" : ""}`} />
-                      </button>
-                      <AnimatePresence>
-                        {mobileMenusOpen[link.label] && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="overflow-hidden"
+                      </Link>
+                    )
+                  )}
+                  {/* Admin links (mobile) */}
+                  {isAdmin && (
+                    <div className="pt-2 mt-2 border-t border-border/20">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-4 mb-1 block">Admin</span>
+                      {adminLinks.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.path}
+                            href={item.path}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${(item.path === "/admin" ? location === "/admin" : location.startsWith(item.path))
+                                ? "text-primary bg-primary/5"
+                                : "text-muted-foreground hover:text-foreground"
+                              }`}
                           >
-                            <div className="pl-2 pt-1 space-y-3">
-                              {link.megaCategories.map((cat) => (
-                                <div key={cat.title}>
-                                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-4 mb-1 block">{cat.title}</span>
-                                  {cat.items.map((item) => {
-                                    const Icon = item.icon;
-                                    return (
-                                      <Link
-                                        key={item.path}
-                                        href={item.path}
-                                        onClick={() => setOpen(false)}
-                                        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors ${isActive(item.path) ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
-                                          }`}
-                                      >
-                                        <Icon className="w-4 h-4" />
-                                        {item.label}
-                                      </Link>
-                                    );
-                                  })}
-                                </div>
-                              ))}
-                              {link.label === "Procurement" && (
-                                <Link
-                                  href="/services"
-                                  onClick={() => setOpen(false)}
-                                  className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-primary"
-                                >
-                                  All Services <ArrowRight className="w-3.5 h-3.5" />
-                                </Link>
-                              )}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                            <Icon className="w-4 h-4" />
+                            {item.label}
+                          </Link>
+                        );
+                      })}
                     </div>
-                  ) : (
-                    <Link
-                      key={link.path}
-                      href={link.path}
-                      onClick={() => setOpen(false)}
-                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive(link.path)
-                          ? "text-primary bg-primary/5"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/40"
-                        }`}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                )}
-                {/* Admin links (mobile) */}
-                {isAdmin && (
-                  <div className="pt-2 mt-2 border-t border-border/20">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-4 mb-1 block">Admin</span>
-                    {adminLinks.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.path}
-                          href={item.path}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${(item.path === "/admin" ? location === "/admin" : location.startsWith(item.path))
-                              ? "text-primary bg-primary/5"
-                              : "text-muted-foreground hover:text-foreground"
-                            }`}
-                        >
-                          <Icon className="w-4 h-4" />
-                          {item.label}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-                <div className="pt-3 mt-2 border-t border-border/20">
+                  )}
+                </div>
+
+                {/* Sidebar Fixed Footer */}
+                <div className="p-6 border-t border-border/20 bg-background/95 shrink-0">
                   <Link
                     href="/booking"
                     onClick={() => setOpen(false)}
@@ -448,8 +481,8 @@ const Navbar = () => {
                     Get a Quote <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </motion.nav>

@@ -5,6 +5,7 @@ import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
 import ThemeToggle from "@/components/ThemeToggle";
+import BackToTop from "@/components/BackToTop";
 
 export const metadata: Metadata = {
   title: "RH International",
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Providers>
           <CustomCursor />
           <ThemeToggle />
+          <BackToTop />
           <PageTransition>
             {children}
           </PageTransition>

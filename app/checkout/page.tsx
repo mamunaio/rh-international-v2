@@ -104,7 +104,7 @@ const Checkout = () => {
         <Navbar />
         <div className="relative z-10 pt-40 pb-20 text-center px-6">
           <LogIn className="w-20 h-20 text-muted-foreground/20 mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Sign in to checkout
           </h1>
           <p className="text-muted-foreground mb-8">You need an account to place an order.</p>
@@ -127,7 +127,7 @@ const Checkout = () => {
         <Navbar />
         <div className="relative z-10 pt-40 pb-20 text-center px-6">
           <ShoppingBag className="w-20 h-20 text-muted-foreground/20 mx-auto mb-6" />
-          <h1 className="text-3xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Your cart is empty
           </h1>
           <p className="text-muted-foreground mb-8">Add some products before checking out.</p>
@@ -151,7 +151,7 @@ const Checkout = () => {
               <Check className="w-12 h-12 text-primary" />
             </div>
           </motion.div>
-          <h1 className="text-4xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-3" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Order Confirmed!
           </h1>
           <p className="text-muted-foreground mb-2">Thank you for your purchase.</p>
@@ -179,7 +179,7 @@ const Checkout = () => {
       <div className="fixed inset-0 mesh-gradient pointer-events-none" />
       <Navbar />
 
-      <section className="relative z-10 pt-32 pb-20 px-6">
+      <section className="relative z-10 pt-32 pb-12 md:pb-16 px-6">
         <div className="max-w-5xl mx-auto">
           <button onClick={() => navigate.push("/shop")} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
             <ChevronLeft className="w-4 h-4" /> Back to Shop

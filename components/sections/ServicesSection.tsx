@@ -122,7 +122,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
 };
 
 const ServicesSection = () => (
-  <section id="services" className="relative z-10 py-20 px-6">
+  <section id="services" className="relative z-10 py-12 md:py-16 px-6">
     <div className="max-w-7xl mx-auto">
       
       {/* Header */}
@@ -154,7 +154,7 @@ const ServicesSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg text-muted-foreground leading-relaxed"
+          className="text-base text-muted-foreground leading-relaxed"
         >
           Everything you need to scale your business, under one roof. From winning government tenders to complete digital transformation, we are your strategic partner.
         </motion.p>

@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Building2, Clock, Globe, Mail, MapPin, Phone, TrendingUp, Users, MessageCircle } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const offices = [
   {
@@ -272,7 +273,7 @@ const GlobalPresence = () => (
     <Navbar />
 
     {/* Hero */}
-    <section className="relative z-10 pt-32 pb-24 px-6 overflow-hidden">
+    <section className="relative z-10 pt-32 pb-12 md:pb-16 px-6 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0">
         <motion.div
@@ -305,7 +306,7 @@ const GlobalPresence = () => (
             <span className="text-xs text-primary font-semibold tracking-wider uppercase">Global Presence</span>
           </motion.div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             {"Our Global".split("").map((char, i) => (
               <motion.span
                 key={i}
@@ -332,7 +333,7 @@ const GlobalPresence = () => (
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.7 }}
-            className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed"
+            className="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed"
           >
             We don’t just operate globally; we integrate locally. From Asia to the Middle East and Europe, our strategic hubs ensure your business gets the right support, exactly where you need it.
           </motion.p>
@@ -353,7 +354,7 @@ const GlobalPresence = () => (
             >
               <stat.icon className="w-5 h-5 text-primary mx-auto mb-2 opacity-60" />
               <div className="text-2xl font-bold text-gradient-cyan" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                {stat.value}
+                <AnimatedCounter value={stat.value} />
               </div>
               <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1">{stat.label}</div>
             </motion.div>
@@ -363,7 +364,7 @@ const GlobalPresence = () => (
     </section>
 
     {/* Office Cards */}
-    <section className="relative z-10 px-6 pb-24">
+    <section className="relative z-10 py-12 md:py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -385,21 +386,9 @@ const GlobalPresence = () => (
       </div>
     </section>
 
-    {/* Connection lines visual */}
-    <section className="relative z-10 px-6 pb-8">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
-        />
-      </div>
-    </section>
 
     {/* Countries We Serve */}
-    <section className="relative z-10 px-6 pb-28">
+    <section className="relative z-10 py-12 md:py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

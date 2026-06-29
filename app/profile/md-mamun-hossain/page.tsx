@@ -139,7 +139,7 @@ export default function MdMamunHossainProfile() {
               </motion.div>
 
               <h1 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
+                className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Md Mamun Hossain
@@ -150,7 +150,7 @@ export default function MdMamunHossainProfile() {
                 <span className="text-sm font-semibold text-primary tracking-wide">Full Stack Web Developer & SEO Specialist</span>
               </div>
 
-              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
                 With over 10 years of extensive experience in the digital landscape, Md Mamun Hossain is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings, ensuring every project is both technically robust and highly engaging.
               </p>
 

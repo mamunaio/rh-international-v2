@@ -14,7 +14,7 @@ export default function ClientPage({ project }: { project: any }) {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 lg:pt-40 pb-20 px-6">
+      <section className="relative pt-32 lg:pt-40 pb-12 md:pb-16 px-6">
         <div className="max-w-4xl mx-auto relative z-10">
           <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8 group">
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Portfolio
@@ -31,11 +31,11 @@ export default function ClientPage({ project }: { project: any }) {
               </h2>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-foreground mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               {project.title}
             </h1>
 
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10 max-w-3xl">
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-3xl">
               {project.overview}
             </p>
 
@@ -75,7 +75,7 @@ export default function ClientPage({ project }: { project: any }) {
       </section>
 
       {/* Hero Image */}
-      <section className="relative px-6 pb-24 z-10">
+      <section className="relative px-6 pb-12 md:pb-16 z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -111,7 +111,7 @@ export default function ClientPage({ project }: { project: any }) {
       </section>
 
       {/* Case Study Details */}
-      <section className="relative px-6 pb-32 z-10">
+      <section className="relative py-12 md:py-16 px-6 z-10">
         <div className="max-w-4xl mx-auto grid gap-16">
           
           <motion.div
@@ -129,7 +129,7 @@ export default function ClientPage({ project }: { project: any }) {
               </h3>
             </div>
             <div>
-              <p className="text-lg text-muted-foreground leading-relaxed">{project.challenge}</p>
+              <p className="text-base text-muted-foreground leading-relaxed">{project.challenge}</p>
             </div>
           </motion.div>
 
@@ -148,7 +148,7 @@ export default function ClientPage({ project }: { project: any }) {
               </h3>
             </div>
             <div>
-              <p className="text-lg text-muted-foreground leading-relaxed">{project.solution}</p>
+              <p className="text-base text-muted-foreground leading-relaxed">{project.solution}</p>
             </div>
           </motion.div>
 
@@ -194,7 +194,7 @@ export default function ClientPage({ project }: { project: any }) {
               </h3>
             </div>
             <div>
-              <p className="text-xl text-emerald-500/90 font-semibold leading-relaxed">{project.result}</p>
+              <p className="text-base text-emerald-500/90 font-semibold leading-relaxed">{project.result}</p>
             </div>
           </motion.div>
 

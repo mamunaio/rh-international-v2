@@ -37,7 +37,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section className="relative z-10 py-24 px-6 overflow-hidden">
+  <section className="relative z-10 py-12 md:py-16 px-6 overflow-hidden">
     {/* Animated Background Orbs */}
     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
     <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px] animate-pulse delay-1000" />
@@ -73,7 +73,7 @@ const TestimonialsSection = () => (
       {/* Row 1: Moving Left */}
       <div className="flex animate-[marquee_40s_linear_infinite] whitespace-nowrap hover:[animation-play-state:paused]">
         {[...Array(2)].map((_, rep) => (
-          <div key={rep} className="flex gap-6 px-3">
+          <div key={rep} className="flex gap-6 px-3 pt-4">
             {testimonials.map((t, i) => (
               <div
                 key={`${rep}-${i}`}

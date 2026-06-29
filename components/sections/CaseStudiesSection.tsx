@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, TrendingUp, Award, Zap, Monitor, Plane } from "lucide-react";
 import Link from "next/link";
@@ -56,6 +56,14 @@ const caseStudies = [
 // Reusable Card Component for the Premium 3D Stacking Effect
 const Card = ({ study, i, progress, range, targetScale }: any) => {
   const container = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   
   // Advanced Animation Transforms
   const scale = useTransform(progress, range, [1, targetScale]);
@@ -67,9 +75,13 @@ const Card = ({ study, i, progress, range, targetScale }: any) => {
   const Icon = study.icon;
 
   return (
-    <div ref={container} className="h-screen flex items-center justify-center sticky" style={{ top: `calc(10vh + ${i * 25}px)` }}>
+    <div 
+      ref={container} 
+      className="h-auto py-6 md:h-[80vh] flex items-center justify-center relative md:sticky" 
+      style={isMobile ? {} : { top: `calc(12vh + ${i * 30}px)` }}
+    >
       <motion.div 
-        style={{ 
+        style={isMobile ? {} : { 
           scale, 
           opacity, 
           y: yOffset,
@@ -77,7 +89,11 @@ const Card = ({ study, i, progress, range, targetScale }: any) => {
           transformPerspective: 1200,
           transformOrigin: "top"
         }}
-        className="group relative rounded-[2.5rem] bg-card/80 backdrop-blur-3xl border border-border/40 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.4)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.7)] w-full max-w-5xl"
+        initial={isMobile ? { opacity: 0, y: 40 } : undefined}
+        whileInView={isMobile ? { opacity: 1, y: 0 } : undefined}
+        viewport={isMobile ? { once: true, margin: "-50px" } : undefined}
+        transition={isMobile ? { duration: 0.6, ease: "easeOut" } : undefined}
+        className="group relative rounded-[2rem] md:rounded-[2.5rem] bg-card/80 backdrop-blur-3xl border border-border/40 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.6)] w-full max-w-5xl"
       >
         {/* Subtle Glowing Hover Edge */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -162,7 +178,7 @@ const CaseStudiesSection = () => {
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.04),transparent_60%)] pointer-events-none blur-[80px]" />
 
-      <div className="max-w-5xl mx-auto relative z-10">
+      <div className="max-w-full relative z-10">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-2">
           <motion.div

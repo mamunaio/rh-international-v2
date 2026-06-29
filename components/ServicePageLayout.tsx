@@ -53,7 +53,7 @@ const ServicePageLayout = ({
       <main className="relative z-10 pt-32 pb-24">
         
         {/* --- HERO SECTION --- */}
-        <section className="px-6 pb-24 md:pb-32">
+        <section className="px-6 pb-12 md:pb-16">
           <div className="max-w-6xl mx-auto">
             {/* Breadcrumbs */}
             <motion.div
@@ -81,7 +81,7 @@ const ServicePageLayout = ({
                 </span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-foreground mb-8 tracking-tight leading-[1.05]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-8 tracking-tight leading-[1.05]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 {title.split(' ').map((word, i, arr) => (
                   <span key={i} className={i === arr.length - 1 ? "text-gradient-cyan drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]" : ""}>
                     {word}{" "}
@@ -89,7 +89,7 @@ const ServicePageLayout = ({
                 ))}
               </h1>
 
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl border-l-2 border-primary/30 pl-6">
+              <p className="text-base text-muted-foreground leading-relaxed max-w-3xl border-l-2 border-primary/30 pl-6">
                 {description}
               </p>
             </motion.div>
@@ -98,7 +98,7 @@ const ServicePageLayout = ({
 
         {/* --- ZIG-ZAG ALTERNATING FEATURES --- */}
         {features.length > 0 && (
-          <section className="py-20 px-6 relative">
+          <section className="py-12 md:py-16 px-6 relative">
             <div className="max-w-6xl mx-auto flex flex-col gap-24 md:gap-32">
               {features.map((feature, i) => {
                 const isEven = i % 2 === 0;
@@ -162,7 +162,7 @@ const ServicePageLayout = ({
                         {feature.title}
                       </h3>
                       
-                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                      <p className="text-base text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -175,8 +175,8 @@ const ServicePageLayout = ({
 
         {/* --- DEEP DIVE CONTENT (Children) --- */}
         {children && (
-          <section className="py-24 px-6 border-t border-border/20 mt-20">
-            <div className="max-w-4xl mx-auto">
+          <section className="py-12 md:py-16 px-6 border-t border-border/20 mt-12">
+            <div className="max-w-full">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -191,7 +191,7 @@ const ServicePageLayout = ({
 
         {/* --- HIGHLIGHTS SECTION --- */}
         {highlights && (
-          <section className="py-24 px-6">
+          <section className="py-12 md:py-16 px-6">
             <div className="max-w-6xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -223,7 +223,7 @@ const ServicePageLayout = ({
                             {titlePart}
                           </span>
                           {hasColon && (
-                            <p className="text-lg text-muted-foreground leading-relaxed">{descPart.trim()}</p>
+                            <p className="text-base text-muted-foreground leading-relaxed">{descPart.trim()}</p>
                           )}
                         </div>
                       </div>
@@ -236,7 +236,7 @@ const ServicePageLayout = ({
         )}
 
         {/* --- PREMIUM CTA --- */}
-        <section className="py-32 px-6">
+        <section className="py-12 md:py-16 px-6">
           <div className="max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -249,7 +249,7 @@ const ServicePageLayout = ({
               >
                 Ready to <span className="text-gradient-cyan">Elevate Your Business?</span>
               </h2>
-              <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
+              <p className="text-base text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Get in touch with our experts today and discover how our global solutions can drive your success.
               </p>
               

@@ -42,7 +42,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative z-10 py-24 px-6 overflow-hidden">
+    <section className="relative z-10 py-12 md:py-16 px-6 overflow-hidden">
       {/* Background Effect */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.04),transparent_60%)] pointer-events-none -translate-y-1/4 translate-x-1/4" />
       
@@ -69,7 +69,7 @@ const FAQSection = () => {
               <span className="text-gradient-cyan">Asked Questions.</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-md">
+            <p className="text-base text-muted-foreground leading-relaxed mb-10 max-w-md">
               Everything you need to know about our services and how we can help your business scale globally. Can't find the answer? We're here to help.
             </p>
 

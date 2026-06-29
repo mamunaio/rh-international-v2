@@ -138,7 +138,7 @@ export default function JaneDoeProfile() {
               </motion.div>
 
               <h1 
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight" 
+                className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Jane Doe
@@ -149,7 +149,7 @@ export default function JaneDoeProfile() {
                 <span className="text-sm font-semibold text-primary tracking-wide">Creative Director</span>
               </div>
 
-              <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
                 Jane brings brands to life with her exceptional eye for design and user experience. She leads our creative teams to craft memorable digital identities.
               </p>
 

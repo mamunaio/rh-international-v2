@@ -73,13 +73,13 @@ const offices = [
 
 const GlobalPresenceSection = () => {
   return (
-    <section id="global-presence" className="relative z-10 py-24 px-6 overflow-hidden">
+    <section id="global-presence" className="relative z-10 py-12 md:py-16 px-6 overflow-hidden">
       {/* Background Orbs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.05),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ const GlobalPresenceSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground leading-relaxed"
+            className="text-base text-muted-foreground leading-relaxed"
           >
             From our strategic base in the USA to our Middle East hub in Dubai and operational centers in Bangladesh, our global network accelerates your business growth.
           </motion.p>
@@ -130,7 +130,7 @@ const GlobalPresenceSection = () => {
                 alt={office.city}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-transparent transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent transition-opacity duration-500" />
               <div className={`absolute inset-0 bg-gradient-to-br ${office.color} mix-blend-overlay opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
               
               <div className="relative z-10 h-full flex flex-col">
