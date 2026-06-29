@@ -138,7 +138,7 @@ export default function VcardPage({ params }: { params: Promise<{ name: string }
                   alt={profile.name}
                   width={160}
                   height={160}
-                  className={`w-full h-full object-cover ${resolvedParams.name === 'kias' ? 'object-[center_12%]' : ''}`}
+                  className={`w-full h-full object-cover ${resolvedParams.name === 'kias' ? 'object-[center_12%]' : 'object-top'}`}
                 />
               </div>
               
