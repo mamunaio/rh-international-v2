@@ -2,7 +2,7 @@ export const portfolioCategories = ["All", "FinTech / Web", "Internal Tools", "S
 
 export const portfolioProjects = [
   {
-    id: 1,
+    id: "1",
     slug: "traders-sme-platform",
     title: "Traders SME - Trading Analytics Dashboard",
     category: "FinTech / Web",
@@ -24,7 +24,7 @@ export const portfolioProjects = [
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "WebSockets"]
   },
   {
-    id: 2,
+    id: "2",
     slug: "luxury-ecommerce-platform",
     title: "Aegis: Financial Infrastructure API Platform",
     category: "FinTech / Web",
@@ -46,7 +46,7 @@ export const portfolioProjects = [
     techStack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"]
   },
   {
-    id: 3,
+    id: "3",
     slug: "codenext-agency-os",
     title: "CodeNext IT HQ - Agency OS",
     category: "Internal Tools",
@@ -68,7 +68,7 @@ export const portfolioProjects = [
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL"]
   },
   {
-    id: 4,
+    id: "4",
     slug: "odyssey-infrastructure-dashboard",
     title: "Odyssey - Cloud Infrastructure & Workspace Dashboard",
     category: "SaaS Platform",
@@ -90,7 +90,7 @@ export const portfolioProjects = [
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "WebSockets", "Prisma"]
   },
   {
-    id: 5,
+    id: "5",
     slug: "injaazh-global-dashboard",
     title: "Injaazh Global - Business Management Dashboard",
     category: "Business OS",
@@ -112,7 +112,7 @@ export const portfolioProjects = [
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js"]
   },
   {
-    id: 6,
+    id: "6",
     slug: "devapi-infrastructure",
     title: "DevAPI - High-Performance API Infrastructure",
     category: "SaaS / DevTools",
