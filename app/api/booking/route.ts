@@ -215,11 +215,11 @@ export async function POST(request: Request) {
       </html>
     `;
 
-    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'info@rhinternationalsc.com';
+    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'a.kias@rhinternationalsc.com';
 
     const info = await transporter.sendMail({
       from: '"RH Booking System" <' + senderEmail + '>',
-      to: 'info@rhinternationalsc.com',
+      to: 'a.kias@rhinternationalsc.com',
       subject: `New Booking Request: ${data.name} - ${data.service}`,
       html: htmlTemplate,
     });

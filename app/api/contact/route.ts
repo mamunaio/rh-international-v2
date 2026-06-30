@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'info@rhinternationalsc.com';
+    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'a.kias@rhinternationalsc.com';
 
     const htmlTemplate = `
       <!DOCTYPE html>
@@ -106,7 +106,7 @@ export async function POST(req: Request) {
 
     const info = await transporter.sendMail({
       from: `"RH Contact Form" <${senderEmail}>`,
-      to: 'info@rhinternationalsc.com',
+      to: 'a.kias@rhinternationalsc.com',
       subject: `New Message: ${data.subject}`,
       html: htmlTemplate,
     });
