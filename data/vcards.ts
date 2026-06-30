@@ -8,7 +8,7 @@ export const vCardsData = {
     website: "https://www.rhinternationalsc.com",
     linkedin: "https://www.linkedin.com/in/md-abu-sama-kias"
   },
-  "abm-reza": {
+  "abm-reza-islam": {
     name: "A.B.M. REZA ISLAM",
     title: "CO-FOUNDER",
     image: "/images/abm-reza.jpg",
