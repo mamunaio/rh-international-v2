@@ -14,7 +14,7 @@ const leadershipMembers = [
     role: "MANAGING DIRECTOR",
     bio: "As the visionary Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
     initials: "AR",
-    image: "/images/team/abm-reza.jpg",
+    image: "/images/team/abm-reza-v2.jpg",
     objectPosition: "center 10%",
     expertise: ["Visionary Leadership", "Global Trade", "Strategic Partnerships"],
     accent: "180 60% 45%",

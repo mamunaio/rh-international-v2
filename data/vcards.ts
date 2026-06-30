@@ -11,7 +11,7 @@ export const vCardsData = {
   "abm-reza-islam": {
     name: "A.B.M. REZA ISLAM",
     title: "MANAGING DIRECTOR",
-    image: "/images/abm-reza.jpg",
+    image: "/images/abm-reza-v2.jpg",
     whatsapp: "+601164328215",
     phoneOnly: true,
     email: "abm@rhinternationalsc.com",
