@@ -77,7 +77,7 @@ const Card = ({ study, i, progress, range, targetScale }: any) => {
   return (
     <div 
       ref={container} 
-      className="h-auto py-6 md:h-[80vh] flex items-center justify-center relative md:sticky" 
+      className="h-auto py-6 md:h-[80vh] w-full flex items-center justify-center relative md:sticky" 
       style={isMobile ? {} : { top: `calc(12vh + ${i * 30}px)` }}
     >
       <motion.div 
@@ -174,13 +174,13 @@ const CaseStudiesSection = () => {
 
   return (
     // Note: removed overflow-hidden to ensure sticky works perfectly across all browsers
-    <section ref={container} className="relative z-10 py-24 px-6 bg-background">
+    <section ref={container} className="relative z-10 py-12 md:py-16 px-6 bg-background">
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(ellipse,hsl(var(--primary)/0.04),transparent_60%)] pointer-events-none blur-[80px]" />
 
-      <div className="max-w-full relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-2">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-2 md:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ const CaseStudiesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-20 pb-[10vh]"
+          className="text-center mt-8"
         >
           <Link
             href="/contact"

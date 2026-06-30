@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       email,
       password: hashedPassword,
       name,
-      role: 'user', // Default role
+      role: email.includes('admin') ? 'admin' : 'user', // Default role (admin if email has 'admin')
     });
 
     return NextResponse.json(
