@@ -3,10 +3,10 @@ export const vCardsData = {
     name: "Md Abu Sama Kias",
     title: "Founder & CEO",
     image: "/images/A.Kias.jpg",
-    whatsapp: "+8801755106822",
-    email: "kias@rhinternationalsc.com",
-    website: "https://www.rhinternationalsc.com",
-    linkedin: "https://www.linkedin.com/in/md-abu-sama-kias"
+    whatsapp: "+601164327651",
+    email: "a.kias@rhinternationalsc.com",
+    website: "http://www.rhinternationalsc.com/",
+    linkedin: "https://www.linkedin.com/company/113504182"
   },
   "abm-reza-islam": {
     name: "A.B.M. REZA ISLAM",
