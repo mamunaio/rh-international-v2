@@ -1,7 +1,7 @@
 export const vCardsData = {
   "abu-sama-kias": {
-    name: "MD ABU SAMA KIAS",
-    title: "CEO & CO-FOUNDER",
+    name: "Md Abu Sama Kias",
+    title: "Founder & CEO",
     image: "/images/A.Kias.jpg",
     whatsapp: "+8801755106822",
     email: "kias@rhinternationalsc.com",
