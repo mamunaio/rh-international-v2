@@ -1,5 +1,5 @@
 export const vCardsData = {
-  "abu-sama-kias": {
+  "Md-Abu-Sama-Kias": {
     name: "Md Abu Sama Kias",
     title: "Founder & CEO",
     image: "/images/A.Kias.jpg",
