@@ -166,10 +166,10 @@ export default function VcardPage({ params }: { params: Promise<{ name: string }
 
             {/* Social / Contact Links */}
             <div className="flex justify-center gap-4">
-              {/* WhatsApp */}
+              {/* Phone / WhatsApp */}
               <motion.a
-                href={`https://wa.me/${profile.whatsapp.replace("+", "")}`}
-                target="_blank"
+                href={(profile as any).phoneOnly ? `tel:${profile.whatsapp}` : `https://wa.me/${profile.whatsapp.replace("+", "")}`}
+                target={(profile as any).phoneOnly ? "_self" : "_blank"}
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
