@@ -66,7 +66,7 @@ const BookingContent = () => {
       if (!date) return;
       setLoadingSlots(true);
       try {
-        const dateOnly = date.toISOString().split('T')[0];
+        const dateOnly = format(date, 'yyyy-MM-dd');
         const res = await fetch(`/api/booking?date=${dateOnly}`, { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
@@ -134,7 +134,7 @@ const BookingContent = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
-          date: date.toISOString(),
+          date: format(date, 'yyyy-MM-dd'),
           time: selectedTime,
           expert: experts.find(e => e.id === form.expert)?.name || form.expert,
         })
