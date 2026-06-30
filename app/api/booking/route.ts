@@ -215,11 +215,18 @@ export async function POST(request: Request) {
       </html>
     `;
 
-    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'a.kias@rhinternationalsc.com';
+    const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'info@rhinternationalsc.com';
+
+    let toEmail = 'info@rhinternationalsc.com';
+    if (data.expert === 'Abu Sama Kias') {
+      toEmail = 'a.kias@rhinternationalsc.com';
+    } else if (data.expert === 'A.B.M. REZA ISLAM') {
+      toEmail = 'abm@rhinternationalsc.com';
+    }
 
     const info = await transporter.sendMail({
       from: '"RH Booking System" <' + senderEmail + '>',
-      to: 'a.kias@rhinternationalsc.com',
+      to: toEmail,
       subject: `New Booking Request: ${data.name} - ${data.service}`,
       html: htmlTemplate,
     });
