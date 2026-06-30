@@ -196,7 +196,7 @@ const HeroSection = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [textIndex, setTextIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-  const rotatingTexts = ["Global Business", "Government Tenders", "Corporate Printing", "Web & IT Solutions", "Global Expansion"];
+  const rotatingTexts = ["Global Business", "Government Tenders", "Web & IT Solutions", "Global Expansion"];
 
   useEffect(() => {
     const mountTimeout = setTimeout(() => setIsMounted(true), 150);
