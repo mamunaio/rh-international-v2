@@ -57,11 +57,12 @@ const teamMembers = [
     slug: "fahim-hasan",
   },
   {
-    name: "Fazly Rabbi",
+    name: "MD.Fozle Rabbi",
     role: "Office Executive",
+    email: "Sheikfazlerabbi101@gmail.com",
     bio: "Fazly is the backbone of our office management. He brings precision and dedication to our daily administrative tasks, ensuring a productive environment for everyone.",
-    initials: "FR",
-    image: "/images/team/fazly-rabbi.jpg",
+    initials: "MFR",
+    image: "/images/team/MD.Fozle Rabbi.jpeg",
     objectPosition: "center top",
     expertise: ["Office Administration", "Team Support", "Workflow Management"],
     accent: "340 70% 55%",
@@ -235,6 +236,14 @@ const TeamCard = ({ member, index }: { member: any; index: number }) => {
               {member.role}
             </span>
           </div>
+          {member.email && (
+            <div className="flex justify-center mb-6 mt-[-1rem]">
+              <a href={`mailto:${member.email}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Mail className="w-4 h-4" />
+                {member.email}
+              </a>
+            </div>
+          )}
           <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto flex-grow">
             {member.bio}
           </p>
