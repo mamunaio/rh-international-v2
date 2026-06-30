@@ -218,7 +218,7 @@ export async function POST(request: Request) {
     const senderEmail = process.env.SMTP_USER || (testAccount && testAccount.user) || 'info@rhinternationalsc.com';
 
     let toEmail = 'info@rhinternationalsc.com';
-    if (data.expert === 'Abu Sama Kias') {
+    if (data.expert === 'MD ABU SAMA KIAS') {
       toEmail = 'a.kias@rhinternationalsc.com';
     } else if (data.expert === 'A.B.M. REZA ISLAM') {
       toEmail = 'abm@rhinternationalsc.com';

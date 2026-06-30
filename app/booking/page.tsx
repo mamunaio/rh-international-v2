@@ -23,8 +23,8 @@ const bookingSchema = z.object({
 });
 
 const experts = [
-  { id: "abu-sama-kias", name: "Abu Sama Kias", role: "CEO & Founder" },
-  { id: "abm-reza", name: "A.B.M. REZA ISLAM", role: "Managing Director" },
+  { id: "abu-sama-kias", name: "MD ABU SAMA KIAS", role: "CEO & CO- FOUNDER" },
+  { id: "abm-reza", name: "A.B.M. REZA ISLAM", role: "MANAGING DIRECTOR" },
   { id: "any", name: "Any Available Expert", role: "Consulting Team" },
 ];
 

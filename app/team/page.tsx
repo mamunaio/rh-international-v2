@@ -11,7 +11,7 @@ import { AnimatedCounter } from "@/components/AnimatedCounter";
 const leadershipMembers = [
   {
     name: "A.B.M. REZA ISLAM",
-    role: "Managing Director & Co-Founder",
+    role: "MANAGING DIRECTOR",
     bio: "As the visionary Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.",
     initials: "AR",
     image: "/images/team/abm-reza.jpg",
@@ -21,8 +21,8 @@ const leadershipMembers = [
     slug: "abm-reza",
   },
   {
-    name: "Md Abu Sama Kias",
-    role: "Founder & CEO",
+    name: "MD ABU SAMA KIAS",
+    role: "CEO & CO- FOUNDER",
     bio: "As the driving force behind RH International, Abu Sama leads with a simple philosophy: build trust through flawless execution. He oversees our global expansion, ensuring that whether it's navigating complex government tenders or delivering high-end digital solutions, our clients always receive world-class results.",
     initials: "MAS",
     image: "/images/team/abu-sama.jpg",
