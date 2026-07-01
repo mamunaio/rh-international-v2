@@ -145,7 +145,7 @@ export default function FahimHasanProfile() {
               </div>
 
               <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
-                With over 10 years of extensive experience in the digital landscape, Fahim Hasan is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings, ensuring every project is both technically robust and highly engaging.
+                Fahim oversees our daily operations, ensuring that all our internal processes and client deliverables run smoothly, efficiently, and on schedule.
               </p>
 
               <div className="flex flex-wrap justify-center gap-2 mb-10">

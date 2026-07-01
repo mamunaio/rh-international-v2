@@ -151,7 +151,7 @@ export default function FazlyRabbiProfile() {
               </div>
 
               <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
-                With over 10 years of extensive experience in the digital landscape, MD.Fozle Rabbi is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings, ensuring every project is both technically robust and highly engaging.
+                Fazly is the backbone of our office management. He brings precision and dedication to our daily administrative tasks, ensuring a productive environment for everyone.
               </p>
 
               <div className="flex flex-wrap justify-center gap-2 mb-10">
