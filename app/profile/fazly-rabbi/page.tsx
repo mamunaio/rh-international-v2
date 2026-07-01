@@ -194,17 +194,7 @@ export default function FazlyRabbiProfile() {
                 ))}
               </div>
 
-              {/* Book Appointment CTA */}
-              <Link href="/booking?expert=fazly-rabbi" className="block w-full mb-4">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 rounded-xl border border-primary/40 bg-primary/10 text-primary font-bold text-base flex items-center justify-center gap-2 hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_30px_rgba(0,255,255,0.3)] transition-all duration-300"
-                >
-                  <CalendarDays className="w-5 h-5" />
-                  Book an Appointment
-                </motion.div>
-              </Link>
+              
 
               <motion.button 
                 onClick={() => {

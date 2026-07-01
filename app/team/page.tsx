@@ -59,7 +59,7 @@ const teamMembers = [
   {
     name: "MD.Fozle Rabbi",
     role: "Office Executive",
-    email: "Sheikfazlerabbi101@gmail.com",
+
     bio: "Fazly is the backbone of our office management. He brings precision and dedication to our daily administrative tasks, ensuring a productive environment for everyone.",
     initials: "MFR",
     image: "/images/team/MD.Fozle Rabbi.jpeg",
