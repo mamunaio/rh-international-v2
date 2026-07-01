@@ -228,12 +228,12 @@ export default function AbuSamaProfile() {
               {/* Save Contact Button */}
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Kias;Md;Abu Sama;;\nFN:Md Abu Sama Kias\nORG:RH International\nTITLE:Founder & CEO\nEMAIL;TYPE=INTERNET:kias@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Kias;Md;Abu Sama;;\nFN:MD ABU SAMA KIAS\nORG:RH International\nTITLE:CEO & CO- FOUNDER\nEMAIL;TYPE=INTERNET:a.kias@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");
                   link.href = url;
-                  link.download = "Md_Abu_Sama_Kias.vcf";
+                  link.download = "MD_ABU_SAMA_KIAS.vcf";
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
