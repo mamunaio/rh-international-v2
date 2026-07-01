@@ -42,7 +42,7 @@ const HeroParticles = () => {
   );
 };
 
-export default function JohnDoeProfile() {
+export default function MdMamunHossainProfile() {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -62,7 +62,7 @@ export default function JohnDoeProfile() {
     y.set(0); 
   };
 
-  const accentColor = "35 85% 55%"; 
+  const accentColor = "280 65% 55%"; 
 
   return (
     <div className="min-h-screen bg-background text-foreground flex justify-center py-12 px-4 font-sans relative overflow-hidden">
@@ -122,12 +122,13 @@ export default function JohnDoeProfile() {
                   className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 relative overflow-hidden"
                   style={{ boxShadow: `0 0 40px hsl(${accentColor} / 0.1)` }}
                 >
-                  <span
-                    className="text-4xl font-bold text-gradient-cyan"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                  >
-                    JD
-                  </span>
+                  <Image 
+                    src="/images/team/mamun.jpg" 
+                    alt="Md Mamun Hossain" 
+                    width={144}
+                    height={144}
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
                 
                 <motion.div
@@ -141,23 +142,23 @@ export default function JohnDoeProfile() {
                 className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                John Doe
+                Md Mamun Hossain
               </h1>
 
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
                 <Briefcase className="w-3.5 h-3.5 text-primary" />
-                <span className="text-sm font-semibold text-primary tracking-wide">Global Operations Manager</span>
+                <span className="text-sm font-semibold text-primary tracking-wide">Full Stack Web Developer & SEO Specialist</span>
               </div>
 
               <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
-                John oversees our global operations, ensuring that our international hubs work in perfect sync to deliver unparalleled service to our clients.
+                With over 10 years of extensive experience in the digital landscape, Md Mamun Hossain is a powerhouse of technical innovation and strategic SEO. He architects high-performance web applications and optimizes them to dominate search rankings, ensuring every project is both technically robust and highly engaging.
               </p>
 
               <div className="flex flex-wrap justify-center gap-2 mb-10">
                 {[
-                  "Operations Management",
-                  "Supply Chain",
-                  "Global Expansion"
+                  "Full Stack Development",
+                  "Search Engine Optimization (SEO)",
+                  "System Architecture"
                 ].map((skill, idx) => (
                   <motion.span
                     key={skill}
@@ -194,7 +195,7 @@ export default function JohnDoeProfile() {
               </div>
 
               {/* Book Appointment CTA */}
-              <Link href="/booking?expert=john-doe" className="block w-full mb-4">
+              <Link href="/booking?expert=md-mamun-hossain" className="block w-full mb-4">
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -207,12 +208,12 @@ export default function JohnDoeProfile() {
 
               <motion.button 
                 onClick={() => {
-                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;;\nFN:John Doe\nORG:RH International\nTITLE:Global Operations Manager\nEMAIL;TYPE=INTERNET:info@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
+                  const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Hossain;Md Mamun;;;\nFN:Md Mamun Hossain\nORG:RH International\nTITLE:Full Stack Web Developer & SEO Specialist\nEMAIL;TYPE=INTERNET:info@rhinternationalsc.com\nURL:https://rhinternationalsc.com\nEND:VCARD`;
                   const blob = new Blob([vcard], { type: "text/vcard" });
                   const url = URL.createObjectURL(blob);
                   const link = document.createElement("a");
                   link.href = url;
-                  link.download = "John_Doe.vcf";
+                  link.download = "Md_Mamun_Hossain.vcf";
                   document.body.appendChild(link);
                   link.click();
                   document.body.removeChild(link);
