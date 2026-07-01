@@ -134,7 +134,7 @@ export default function ABMRezaProfile() {
                   style={{ boxShadow: `0 0 40px hsl(${accentColor} / 0.1)` }}
                 >
                   <Image 
-                    src="/images/abm-reza.jpg" 
+                    src="/images/abm-reza-v2.jpg" 
                     alt="A.B.M. REZA ISLAM" 
                     width={144}
                     height={144}
@@ -161,11 +161,11 @@ export default function ABMRezaProfile() {
               {/* Title Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
                 <Briefcase className="w-3.5 h-3.5 text-primary" />
-                <span className="text-sm font-semibold text-primary tracking-wide">Managing Director & Co-Founder</span>
+                <span className="text-sm font-semibold text-primary tracking-wide">MANAGING DIRECTOR</span>
               </div>
 
               <p className="text-muted-foreground text-[15px] leading-relaxed mb-8 max-w-sm mx-auto">
-                As the visionary Managing Director & Co-Founder of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.
+                As the visionary Managing Director of RH International, A.B.M. REZA ISLAM laid the foundation of our company with a focus on trust, excellence, and global service integration. His leadership continues to guide our strategic direction.
               </p>
 
               {/* Expertise Tags */}
@@ -192,7 +192,7 @@ export default function ABMRezaProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:contact@rhinternationalsc.com" },
+                  { icon: Mail, label: "Email", href: "mailto:abm@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a

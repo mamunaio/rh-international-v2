@@ -135,7 +135,7 @@ export default function AbuSamaProfile() {
                 >
                   <Image 
                     src="/images/A.Kias.jpg" 
-                    alt="Md Abu Sama Kias" 
+                    alt="MD ABU SAMA KIAS" 
                     width={144}
                     height={144}
                     className="w-full h-full object-cover object-[center_12%]" // Adjusted to perfectly frame the portrait
@@ -155,18 +155,18 @@ export default function AbuSamaProfile() {
                 className="text-4xl md:text-6xl font-bold text-foreground mb-3 tracking-tight" 
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                Md Abu Sama Kias
+                MD ABU SAMA KIAS
               </h1>
 
               {/* Title Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
                 <Briefcase className="w-3.5 h-3.5 text-primary" />
-                <span className="text-sm font-semibold text-primary tracking-wide">Founder & CEO</span>
+                <span className="text-sm font-semibold text-primary tracking-wide">CEO & CO- FOUNDER</span>
               </div>
 
               {/* Generated Bio */}
               <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm mx-auto">
-                As the dynamic Founder & CEO of RH International, Md Abu Sama Kias leads with a philosophy centered on building trust through flawless execution. He is the driving force behind the company's global expansion and technological integration. Overseeing operations from complex government tenders to cutting-edge digital solutions, his innovative leadership ensures that clients worldwide receive nothing short of excellence.
+                As the dynamic CEO & CO- FOUNDER of RH International, MD ABU SAMA KIAS leads with a philosophy centered on building trust through flawless execution. He is the driving force behind the company's global expansion and technological integration. Overseeing operations from complex government tenders to cutting-edge digital solutions, his innovative leadership ensures that clients worldwide receive nothing short of excellence.
               </p>
 
               {/* Expertise Tags */}
@@ -195,7 +195,7 @@ export default function AbuSamaProfile() {
               <div className="flex justify-center gap-3 mb-8">
                 {[
                   { icon: Linkedin, label: "LinkedIn", href: "#" },
-                  { icon: Mail, label: "Email", href: "mailto:kias@rhinternationalsc.com" },
+                  { icon: Mail, label: "Email", href: "mailto:a.kias@rhinternationalsc.com" },
                   { icon: Globe, label: "Website", href: "/" },
                 ].map((item, idx) => (
                   <motion.a
